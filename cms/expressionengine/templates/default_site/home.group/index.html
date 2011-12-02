@@ -1,0 +1,173 @@
+{embed="common/head"}
+	<title>On Plate Still Hungry | The Best food guide ever | Home</title>
+	<meta property="og:title" content="On Plate Still Hungry | The Best food guide ever" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="{site_url}" />
+	<meta property="og:image" content="{site_url}/images/logo.png" />
+</head>
+<body>
+	{embed="common/navigation"}
+	<section id="content" class="wrapper">
+		{embed="common/branding"}
+		<section id="main">
+			<!-- Featured Articles -->
+			<section id="featured">
+				<div id="featured-large" class="featured-item">
+					{exp:channel:entries channel="text_piece|video_piece" orderby="entry_date" limit="1"}
+						<div class="featured-item-image">
+							{exp:ce_img:pair src="{main_image}" width="615" height="305" crop="yes" allow_scale_larger="yes"}
+								<a href="/columns/{entry_date format="%Y"}/{entry_date format="%m"}/{entry_date format="%d"}/{url_title}"><img src="{made}" alt="{title}" width="{width}" height="{height}" /></a>
+							{/exp:ce_img:pair}
+						</div>
+						<div class="featured-item-body">
+							<h2><a href="/columns/{entry_date format="%Y"}/{entry_date format="%m"}/{entry_date format="%d"}/{url_title}">{title} <span class="grey"> - {author}</span></a></h2>
+							<p class="date">{entry_date format="%l %j%S %F"}</p>
+							<div style="display:none;">
+								<p>
+									{exp:eehive_hacksaw
+										chars = "250" // Limit by number of characters
+										words = "" // Limit by number of words
+										cutoff = "" // Limit by a specific cutoff string
+										append = "" // String to append to the end of the excerpt
+										allow = "" // HTML tags you want to allow. Ex allow="<b><a>"
+										}
+										{text_body}
+									{/exp:eehive_hacksaw}
+								</p>
+							</div>
+						</div>						
+					{/exp:channel:entries}
+				</div>
+				<div id="featured-small" class="featured-item">
+					{exp:channel:entries channel="text_piece|video_piece" orderby="entry_date" limit="1" offset="1" }
+						<div class="featured-item-image">
+							{exp:ce_img:pair src="{main_image}" width="300" height="305" crop="yes" allow_scale_larger="yes"}
+								<a href="/columns/{entry_date format="%Y"}/{entry_date format="%m"}/{entry_date format="%d"}/{url_title}"><img src="{made}" alt="{title}" width="{width}" height="{height}" /></a>
+							{/exp:ce_img:pair}
+						</div>
+						<div class="featured-item-body">
+							<p class="date">{entry_date format="%l %j%S %F"}</p>
+							<div style="display:none;">
+								<p>
+									{exp:eehive_hacksaw
+										chars = "150" // Limit by number of characters
+										words = "" // Limit by number of words
+										cutoff = "" // Limit by a specific cutoff string
+										append = "" // String to append to the end of the excerpt
+										allow = "" // HTML tags you want to allow. Ex allow="<b><a>"
+										}
+										{text_body}
+									{/exp:eehive_hacksaw}
+								</p>
+							</div>
+						</div>						
+					{/exp:channel:entries}
+				</div>
+				<div class="clear"></div>
+			</section>
+			<!-- //End Featured Articles -->
+			<!-- Secondary Articles -->
+			<section id="secondary-articles">
+				{exp:channel:entries channel="text_piece|video_piece" orderby="entry_date" limit="2" offset="2" }
+					<article>
+						<div class="left-col">
+							<header>
+								<div class="line"></div>
+								<h3><a href="/columns/{entry_date format="%Y"}/{entry_date format="%m"}/{entry_date format="%d"}/{url_title}">{title} <span class="grey"> - {author}</span></a></h3>
+							</header>
+							<p>
+								{exp:eehive_hacksaw
+									chars = "200" // Limit by number of characters
+									words = "" // Limit by number of words
+									cutoff = "" // Limit by a specific cutoff string
+									append = "" // String to append to the end of the excerpt
+									allow = "" // HTML tags you want to allow. Ex allow="<b><a>"
+									}
+									{text_body}
+								{/exp:eehive_hacksaw}
+							<a href="/columns/{entry_date format="%Y"}/{entry_date format="%m"}/{entry_date format="%d"}/{url_title}">(Read More)</a>
+							</p>
+							<footer>
+								<p class="date">{entry_date format="%l %j%S %F"}</p>
+							</footer>
+						</div>
+						<div class="right-col">
+							{exp:ce_img:pair src="{main_image}" width="315" height="180" crop="yes" allow_scale_larger="yes"}
+								<a href="/columns/{entry_date format="%Y"}/{entry_date format="%m"}/{entry_date format="%d"}/{url_title}"><img src="{made}" alt="{title}" width="{width}" height="{height}" /></a>
+							{/exp:ce_img:pair}
+						</div>
+					</article>
+				{/exp:channel:entries}
+			</section>
+			<!-- //End Secondary Articles -->
+			<!-- Full List of Articles -->
+			<section id="article-list" class="scroll">
+				{exp:channel:entries channel="text_piece|video_piece" orderby="entry_date" limit="9" offset="4" paginate="bottom"}
+					<article class="item">
+						<div class="left-col">
+							<header>
+								<div class="line"></div>
+								<h3><a href="/columns/{entry_date format="%Y"}/{entry_date format="%m"}/{entry_date format="%d"}/{url_title}">{title} <span class="grey"> - {author}</span></a></h3>
+							</header>
+							<p>
+								{exp:eehive_hacksaw
+									chars = "200" // Limit by number of characters
+									words = "" // Limit by number of words
+									cutoff = "" // Limit by a specific cutoff string
+									append = "" // String to append to the end of the excerpt
+									allow = "" // HTML tags you want to allow. Ex allow="<b><a>"
+									}
+									{text_body}
+								{/exp:eehive_hacksaw}
+							<a href="/columns/{entry_date format="%Y"}/{entry_date format="%m"}/{entry_date format="%d"}/{url_title}">(Read More)</a>
+							</p>
+							<footer>
+								<p class="date">{entry_date format="%l %j%S %F"}</p>
+							</footer>
+						</div>
+						<div class="right-col">
+							{exp:ce_img:pair src="{main_image}" width="315" height="180" crop="yes" allow_scale_larger="yes"}
+								<a href="/columns/{entry_date format="%Y"}/{entry_date format="%m"}/{entry_date format="%d"}/{url_title}"><img src="{made}" alt="{title}" width="{width}" height="{height}" /></a>
+							{/exp:ce_img:pair}
+						</div>
+					</article>
+					{paginate}
+					<div class="navigation">
+						<span id="paginationtotal">{total_pages}</span>
+				        {if previous_page}<a href="{auto_path}">Previous Page</a> &nbsp;{/if}
+		        		{if next_page}<a class="next" href="{auto_path}">Next Page</a>{/if}
+					</div>
+					{/paginate}
+				{/exp:channel:entries}
+			</section>
+			<!-- //End Full List of Articles -->
+			<!-- Right Column -->
+			<section id="right-col">
+				<!-- MPU 1 -->
+				<!-- //End MPU 1 -->
+				<!-- MPU 2 -->
+				<!-- //End MPU 2 -->
+				<div class="list">
+					<h3>Recent Recipes</h3>
+					<ul>
+						{exp:channel:entries channel="text_piece|video_piece" orderby="entry_date" limit="10"}
+							<li><a href=""#>{title}</a></li>
+						{/exp:channel:entries}
+					</ul>
+				</div>
+				<div class="list">
+					<h3>Popular Posts</h3>
+					<ul>
+						{exp:channel:entries channel="text_piece|video_piece" orderby="track_views" limit="10"}
+							<li><a href=""#>{title}</a></li>
+						{/exp:channel:entries}
+					</ul>
+				</div>
+			</section>
+			<!-- //End Right Column -->
+			<div class="clear"></div>
+		</section>
+		<!-- // End Main Div -->
+	</section>
+	<!-- //End Content div -->
+	{embed="common/footer"}

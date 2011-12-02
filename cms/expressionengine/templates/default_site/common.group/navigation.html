@@ -1,0 +1,59 @@
+<header id="navigation">
+	<!-- Top Navigation Row -->
+	<div class="header-row" id="navbar-1">
+		<div class="wrapper">
+			<!-- Social Channels -->
+				<nav id="social">
+					<a href="#">Facebook</a>
+					<a href="#">Twitter</a>
+					<a href="#">Vimeo</a>
+					<a href="#">Newsletter</a>
+				</nav>
+				<!-- //End Social Channels -->
+				<!-- Tag Cloud -->
+				<div id="tag-cloud">
+					<a href="#" id="tag-btn" class="arrow-down">Tag Cloud</a>
+					<div id="tags" style="display:none;">
+						<p>tag cloud here</p>
+					</div>
+				</div>
+				<!-- //End Tag Cloud -->
+				<!-- Search Box -->
+				<div id="search">
+					{exp:search:simple_form channel="" search_in="entries"}
+						<input type="image" src="{site_url}images/search.png" id="search-icon" alt="Search" /><input type="text" name="keywords" value="Search..." size="18" maxlength="100" onClick="this.value=''" />
+					{/exp:search:simple_form}
+				</div>
+				
+				<div class="clear"></div>
+		<!-- //End Search Box -->
+		</div>
+	</div>
+	<!-- //End Top Navigation Row -->
+	
+	<!-- Second Navigation Row -->
+	<div class="header-row" id="navbar-2">
+		<div class="wrapper">
+			<!-- Primary Navigation Bar -->
+			<nav id="primary-navigation">
+				<a href="{path="/"}" {if segment_1 == ""}class="active" {/if}>Home</a>
+				<a href="{path="columns"}" {if segment_1 == "columns"}class="active" {/if}>Columns &amp; Contributors</a>
+				<a href="{path="recipes"}" {if segment_1 == "recipes"}class="active" {/if}>Recipes</a>
+				<a href="{path="film"}" {if segment_1 == "film"}class="active" {/if}>Film</a>
+				<a href="{path="about"}" {if segment_1 == "about"}class="active" {/if}>About</a>
+			</nav>
+			<!-- //End Primary Navigation Bar -->
+			<!-- Primary Navigation Bar -->
+			<nav id="category-navigation">
+				<h4 id="category-navigation-title">Categories:</h4>
+				<a href="{path="columns"}" {if segment_1 == ""}class="active" {/if}>All</a>
+				<a href="{path="food"}" {if segment_1 == "food"}class="active" {/if}>Food</a>
+				<a href="{path="drink"}" {if segment_1 == "drink"}class="active" {/if}>Drink</a>
+				<a href="{path="travel"}" class="{if segment_2 == "travel"}active {/if}last">Travel</a>
+			</nav>
+		<!-- //End Primary Navigation Bar -->
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- //End Second Navigation Row -->
+</header>

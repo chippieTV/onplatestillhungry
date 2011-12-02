@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	background-color:#FAFAFA;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#333;
+	text-decoration:none;
+}
+
+#container {
+	width:300px;
+	margin-top: 50px;
+	margin-left:auto;
+	margin-right:auto;
+	padding:30px 30px 40px 30px;
+	background-color:#FFF;
+	position: relative;
+	z-index:3000;
+}
+
+#header {
+}
+
+#box {
+	width:300px;
+	margin:0px;
+	padding:0px 0px 0px 0px;
+}
+
+.subheader {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	color:#333;
+	font-weight:bold;
+}
+
+.social {
+	border:none;
+	margin:0px 10px 0px 0px;
+}
+
+.bar {
+	margin:15px 0px 15px 0px;
+	padding:0px 0px 0px 0px;
+	width:300px;
+	height:1px;
+	background-color:#999;
+	background-image:url(dotted.gif);
+	background-repeat:repeat;
+}
+
+.credit {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9px;
+	color:#999;
+	text-decoration:none;
+}
+
+a:link.credit {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9px;
+	color:#999;
+	text-decoration:none;
+}
+
+a:hover.credit {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9px;
+	color:#C00;
+	text-decoration:none;
+}
+
+a:link { color:#333; text-decoration:none; }
+
+a:hover { color:#C00; text-decoration:none; }
+
+a:active { color:#333; text-decoration:none; }
+
+a:visited { color:#333; text-decoration:none; }
+
+img.bg {
+        /* Set rules to fill background */
+        min-height: 100%;
+        min-width: 1024px;
+
+        /* Set up proportionate scaling */
+        width: 100%;
+        height: auto;
+
+        /* Set up positioning */
+        position: fixed;
+        top: 0;
+        left: 0;
+		z-index:2000;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+        img.bg {
+                left: 50%;
+                margin-left: -512px;   /* 50% */
+        }
+}
