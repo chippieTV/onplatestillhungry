@@ -54,6 +54,32 @@ class CI_Location_local extends Image_Location
 
 	// ********************************************************************************* //
 
+	public function delete_dir($dir)
+	{
+		$this->EE->load->helper('file');
+
+		// Did we store a location?
+		if (isset($this->lsettings['location']) == FALSE OR $this->lsettings['location'] == FALSE)
+		{
+			return FALSE;
+		}
+
+		$loc = $this->get_location_prefs($this->lsettings['location']);
+
+		// We have a correct location?
+		if ($loc == FALSE)
+		{
+			return FALSE;
+		}
+
+		// Delete them all!
+		@delete_files($loc['path'] . $dir, TRUE);
+		@rmdir($loc['path'] . $dir);
+
+		return TRUE;
+	}
+
+	// ********************************************************************************* //
 	public function upload_file($source_file, $dest_filename, $dest_folder)
 	{
 		$loc = $this->get_location_prefs($this->lsettings['location']);
@@ -111,7 +137,22 @@ class CI_Location_local extends Image_Location
 			$loc['url'] = str_replace('http://', 'https://', $loc['url']);
 		}
 
-		return $loc['url'] . $dir . '/' . $filename;
+		$final = $loc['url'] . $dir . '/' . $filename;
+
+		// -----------------------------------------
+		// Local Spefic Parameters?
+		// -----------------------------------------
+		if (isset($this->EE->TMPL) == TRUE)
+		{
+			// Kill the domain name?
+			if ($this->EE->TMPL->fetch_param('local:remove_domain') == 'yes')
+			{
+				$url = parse_url($final);
+				$final = $url['path'];
+			}
+		}
+
+		return $final;
 	}
 
 	// ********************************************************************************* //

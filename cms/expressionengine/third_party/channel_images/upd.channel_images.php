@@ -222,11 +222,13 @@ class Channel_images_upd
 			{
 				foreach ($files as $file)
 				{
+					if ($file == '.' OR $file == '..' OR strtolower($file) == '.ds_store') continue;
+
 					// Get the version number
 					$ver = substr($file, 0, -4);
 
 					// We only want greater ones
-					if ($current > $ver) continue;
+					if ($current >= $ver) continue;
 
 					require $update_dir . $file;
 					$class = 'ChannelImagesUpdate_' . $ver;

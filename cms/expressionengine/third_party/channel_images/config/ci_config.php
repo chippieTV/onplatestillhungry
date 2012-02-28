@@ -18,6 +18,7 @@ $config['ci_columns']['cifield_4']	= '';
 $config['ci_columns']['cifield_5']	= '';
 
 // Defaults
+$config['ci_defaults']['no_sizes'] = 'no';
 $config['ci_defaults']['keep_original'] = 'yes';
 $config['ci_defaults']['upload_location'] = 'local';
 $config['ci_defaults']['categories'] = array();

@@ -7,6 +7,8 @@ $(document).ready(function() {
 
 	$('.CI_FIELDS .ci_grab_images').click(ChannelImages.GrabImages);
 	$('.CI_IMAGES .ci_start_resize').live('click', ChannelImages.StartResize);
+	
+	$('.ImportMatrixImages .submit').click(ChannelImages.ImportMatrixImages);
 
 });
 
@@ -61,6 +63,43 @@ ChannelImages.StartResize = function(Event){
 		}
 	});
 
+	
+	return false;
+};
+
+//********************************************************************************* //
+
+ChannelImages.ImportMatrixImages = function(Event){
+	
+	var Current = jQuery(Event.target).closest('table').find('.CI_IMAGES').find('.Queued:first');
+	var Params = jQuery(Event.target).closest('form').find(':input').serializeArray();
+	
+	if (Current.length == 0) return false;
+	
+	Params.push({name: 'ajax_method', value:'import_matrix_images'});
+	Params.push({name: 'entry_id', value:Current.attr('rel')});
+	Params.image_id = Current.attr('rel');
+	
+	Current.removeClass('Queued').addClass('Uploading');
+	
+	$.ajax({
+		type: "POST",
+		url: ChannelImages.AJAX_URL,
+		data: Params,
+		success: function(rData){			
+			if (rData.success == 'yes')	{
+				ChannelImages.ImportMatrixImages(Event);
+				Current.removeClass('Uploading').addClass('Done');
+			}
+			else{
+				Current.removeClass('Uploading').addClass('Error');
+			}
+		},
+		dataType: 'json',
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			Current.removeClass('Uploading').addClass('Error');
+		}
+	});
 	
 	return false;
 };

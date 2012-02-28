@@ -131,7 +131,7 @@ class Channel_images_ft extends EE_Fieldtype
 		$settings = $this->settings;
 
 		// Settings SET?
-		if (isset($settings['channel_images']['action_groups']) == FALSE OR empty($settings['channel_images']['action_groups']) == TRUE)
+		if ( (isset($settings['channel_images']['action_groups']) == FALSE OR empty($settings['channel_images']['action_groups']) == TRUE) && (isset($settings['channel_images']['no_sizes']) == FALSE OR $settings['channel_images']['no_sizes'] != 'yes') )
 		{
 			$vData['missing_settings'] = TRUE;
 			return $this->EE->load->view('pbf_field', $vData, TRUE);
@@ -260,9 +260,20 @@ class Channel_images_ft extends EE_Fieldtype
 				// Get settings for that field..
 				$temp_settings = $this->EE->channel_images_model->get_field_settings($image->field_id);
 
-				// Display SIzes URL
-				$image->small_img_url = $preview_url . '&amp;fid=' . $image->field_id . '&amp;d=' . $image->entry_id . '&amp;f=' . str_replace('.'.$image->extension, "__{$settings['small_preview']}.{$image->extension}", $image->filename);
-				$image->big_img_url = $preview_url . '&amp;fid=' . $image->field_id . '&amp;d=' . $image->entry_id . '&amp;f=' . str_replace('.'.$image->extension, "__{$settings['big_preview']}.{$image->extension}", $image->filename);
+				$act_img_url = "{$preview_url}&amp;fid={$image->field_id}&amp;d={$image->entry_id}&amp;f=";
+				if ( empty($settings['action_groups']) == FALSE && (isset($settings['no_sizes']) == FALSE OR $settings['no_sizes'] != 'yes') )
+				{
+					// Display SIzes URL
+					$image->small_img_url = $act_img_url . str_replace('.'.$image->extension, "__{$settings['small_preview']}.{$image->extension}", $image->filename);
+					$image->big_img_url = $act_img_url .str_replace('.'.$image->extension, "__{$settings['big_preview']}.{$image->extension}", $image->filename);
+				}
+				else
+				{
+					// Display SIzes URL
+					$image->small_img_url = $act_img_url . $image->filename;
+					$image->big_img_url = $act_img_url .$image->filename;
+				}
+
 
 				// ReAssign Field ID (WE NEED THIS)
 				$image->field_id = $this->field_id;
@@ -368,6 +379,28 @@ class Channel_images_ft extends EE_Fieldtype
 		}
 
 		return $this->EE->load->view('pbf_field', $vData, TRUE);
+	}
+
+	// ********************************************************************************* //
+
+	/**
+	 * Validates the field input
+	 *
+	 * @param $data Contains the submitted field data.
+	 * @return mixed Must return TRUE or an error message
+	 */
+	public function validate($data)
+	{
+		// Is this a required field?
+		if ($this->settings['field_required'] == 'y')
+		{
+			if (isset($data['images']) == FALSE OR empty($data['images']) == TRUE)
+			{
+				return $this->EE->lang->line('ci:required_field');
+			}
+		}
+
+		return TRUE;
 	}
 
 	// ********************************************************************************* //
@@ -512,6 +545,9 @@ class Channel_images_ft extends EE_Fieldtype
 				//Extension
 				$extension = substr( strrchr($file['filename'], '.'), 1);
 
+				// Remove unwanted stuff
+				$file = $this->EE->security->xss_clean($file);
+
 				// Mime type
 				$filemime = 'image/jpeg';
 				if ($extension == 'png') $filemime = 'image/png';
@@ -638,6 +674,9 @@ class Channel_images_ft extends EE_Fieldtype
 			{
 				//Extension
 				$extension = substr( strrchr($file['filename'], '.'), 1);
+
+				// Remove unwanted stuff
+				$file = $this->EE->security->xss_clean($file);
 
 				// Mime type
 				$filemime = 'image/jpeg';
@@ -785,87 +824,71 @@ class Channel_images_ft extends EE_Fieldtype
 	 */
 	function delete($ids)
 	{
-		$this->EE->load->library('image_helper');
-
 		foreach ($ids as $entry_id)
 		{
 			// -----------------------------------------
 			// ENTRY TO FIELD (we need settigns :()
 			// -----------------------------------------
-			$this->EE->db->select('channel_id');
+			$this->EE->db->select('field_id');
 			$this->EE->db->from('exp_channel_images');
 			$this->EE->db->where('entry_id', $entry_id);
 			$query = $this->EE->db->get();
 
 			if ($query->num_rows() == 0) continue;
 
-			$channel_id = $query->row('channel_id');
+			$field_id = $query->row('field_id');
 
-			if (isset($this->EE->session->cache['Channel_Images']['Channel2Field'][$channel_id]) == FALSE)
-			{
-				// Then we need to use the Channel ID :(
-				$query = $this->EE->db->query("SELECT cf.field_id FROM exp_channel_fields AS cf
-												LEFT JOIN exp_channels AS c ON c.field_group = cf.group_id
-												WHERE c.channel_id = {$channel_id} AND cf.field_type = 'channel_images'");
-				if ($query->num_rows() == 0)
-				{
-					$query->free_result();
-					continue;
-				}
-
-				$this->EE->session->cache['Channel_Images']['Channel2Field'][$channel_id] = $query->row('field_id');
-
-				$query->free_result();
-			}
-
-			$field_id = $this->EE->session->cache['Channel_Images']['Channel2Field'][$channel_id];
-
-			$this->settings = $this->EE->image_helper->grab_field_settings($field_id);
-
-			if (isset($this->settings['ci_upload_location']) == FALSE OR $this->settings['ci_upload_location'] < 1)
-			{
-				continue;
-			}
-			else
-			{
-				$loc_id = $this->settings['ci_upload_location'];
-			}
+			// Grab the field settings
+			$settings = $this->EE->image_helper->grab_field_settings($field_id);
+			$settings = $settings['channel_images'];
 
 			// -----------------------------------------
-			// Grab the upload loc data
+			// Load Location
 			// -----------------------------------------
-			if (isset($this->EE->session->cache['Channel_Images']['Locations'][$loc_id]) == FALSE)
-			{
-				$query = $this->EE->db->select('server_path, url')->from('exp_upload_prefs')->where('id', $loc_id)->get();
+			$location_type = $settings['upload_location'];
+			$location_class = 'CI_Location_'.$location_type;
 
-				if ($query->num_rows() == 0)
+			// Load Settings
+			if (isset($settings['locations'][$location_type]) == FALSE)
+			{
+				$o['body'] = $this->EE->lang->line('ci:location_settings_failure');
+				exit( $this->EE->image_helper->generate_json($o) );
+			}
+
+			$location_settings = $settings['locations'][$location_type];
+
+			// Load Main Class
+			if (class_exists('Image_Location') == FALSE) require PATH_THIRD.'channel_images/locations/image_location.php';
+
+			// Try to load Location Class
+			if (class_exists($location_class) == FALSE)
+			{
+				$location_file = PATH_THIRD.'channel_images/locations/'.$location_type.'/'.$location_type.'.php';
+
+				if (file_exists($location_file) == FALSE)
 				{
-					continue;
+					$o['body'] = $this->EE->lang->line('ci:location_load_failure');
+					exit( $this->EE->image_helper->generate_json($o) );
 				}
 
-				$this->EE->session->cache['Channel_Images']['Locations'][$loc_id] = array('path' => $query->row('server_path'), 'url' => $query->row('url'));
-
-				$this->settings['file_path'] = $this->EE->session->cache['Channel_Images']['Locations'][$loc_id]['path'];
-
-				$query->free_result();
-			}
-			else
-			{
-				$this->settings['file_path'] = $this->EE->session->cache['Channel_Images']['Locations'][$loc_id]['path'];
+				require $location_file;
 			}
 
-			if (@is_dir($this->settings['file_path'].$entry_id) == TRUE)
-			{
-				$this->EE->image_helper->delete_files($this->settings['file_path'].$entry_id);
-				@rmdir($this->settings['file_path'].$entry_id);
-			}
+			// Init
+			$LOC = new $location_class($location_settings);
 
-			// Delete from db
+			// -----------------------------------------
+			// Delete From DB
+			// -----------------------------------------
 			$this->EE->db->where('entry_id', $entry_id);
 			$this->EE->db->or_where('link_entry_id', $entry_id);
 			$this->EE->db->delete('exp_channel_images');
-		}
 
+			// -----------------------------------------
+			// Delete!
+			// -----------------------------------------
+			$LOC->delete_dir($entry_id);
+		}
 
 	}
 
@@ -900,6 +923,10 @@ class Channel_images_ft extends EE_Fieldtype
 		$this->EE->image_helper->mcp_meta_parser('js', CHANNELIMAGES_THEME_URL . 'jquery.colorbox.js', 'jquery.colorbox', 'jquery');
 		$this->EE->image_helper->mcp_meta_parser('js', CHANNELIMAGES_THEME_URL . 'channel_images_fts.js', 'ci-fts');
 		$this->EE->cp->add_js_script(array('ui' => array('tabs', 'draggable', 'sortable')));
+
+		$this->EE->load->library('javascript');
+		$this->EE->javascript->output('ChannelImages.Init();');
+
 
 		// -----------------------------------------
 		// Upload Location
@@ -938,7 +965,9 @@ class Channel_images_ft extends EE_Fieldtype
 		// -----------------------------------------
 		$vData['actions'] = &$this->EE->image_helper->get_actions();
 
-		if (isset($data['channel_images']['action_groups']) == FALSE)
+		$vData['action_groups'] = array();
+
+		if (isset($data['channel_images']['action_groups']) == FALSE && (isset($data['channel_images']['no_sizes']) == FALSE OR $data['channel_images']['no_sizes'] != 'yes') )
 		{
 			$vData['action_groups'] = $this->EE->config->item('ci_default_action_groups');
 		}
@@ -1001,39 +1030,71 @@ class Channel_images_ft extends EE_Fieldtype
 		$actions = &$this->EE->image_helper->get_actions();
 
 		// -----------------------------------------
-		// Loop over all action_groups
+		// Loop over all action_groups (if any)
 		// -----------------------------------------
-		foreach($P['action_groups'] as $order => &$group)
+		if (isset($P['action_groups']) == TRUE)
 		{
-			// Format Group Name
-			$group['group_name'] = strtolower(url_title($group['group_name']));
-
-			// WYSIWYG
-			if (isset($group['wysiwyg']) == FALSE OR $group['wysiwyg'] == FALSE)
+			foreach($P['action_groups'] as $order => &$group)
 			{
-				$group['wysiwyg'] = 'no';
-			}
+				// Format Group Name
+				$group['group_name'] = strtolower(url_title($group['group_name']));
 
-			// -----------------------------------------
-			// Process Actions
-			// -----------------------------------------
-			if (isset($group['actions']) == FALSE OR empty($group['actions']) == TRUE)
-			{
-				unset($P['action_groups'][$order]);
-				continue;
-			}
-
-			foreach($group['actions'] as $action => &$action_settings)
-			{
-				if (isset($actions[$action]) == FALSE)
+				// WYSIWYG
+				if (isset($group['wysiwyg']) == FALSE OR $group['wysiwyg'] == FALSE)
 				{
-					unset($group['actions'][$action]);
+					$group['wysiwyg'] = 'no';
+				}
+
+				// -----------------------------------------
+				// Process Actions
+				// -----------------------------------------
+				if (isset($group['actions']) == FALSE OR empty($group['actions']) == TRUE)
+				{
+					unset($P['action_groups'][$order]);
 					continue;
 				}
 
-				$action_settings = $actions[$action]->save_settings($action_settings);
+				foreach($group['actions'] as $action => &$action_settings)
+				{
+					if (isset($actions[$action]) == FALSE)
+					{
+						unset($group['actions'][$action]);
+						continue;
+					}
+
+					$action_settings = $actions[$action]->save_settings($action_settings);
+				}
+			}
+
+			// -----------------------------------------
+			// Previews
+			// -----------------------------------------
+			if (isset($P['small_preview']) == TRUE && $P['small_preview'] != FALSE)
+			{
+				$P['small_preview'] = $P['action_groups'][$P['small_preview']]['group_name'];
+			}
+			else
+			{
+				$P['small_preview'] = $P['action_groups'][1]['group_name'];
+			}
+
+			// Big Preview
+			if (isset($P['big_preview']) == TRUE && $P['big_preview'] != FALSE)
+			{
+				$P['big_preview'] = $P['action_groups'][$P['big_preview']]['group_name'];
+			}
+			else
+			{
+				$P['big_preview'] = $P['action_groups'][1]['group_name'];
 			}
 		}
+		else
+		{
+			// Mark it as having no sizes!
+			$P['no_sizes'] = 'yes';
+			$P['action_groups'] = array();
+		}
+
 
 		// -----------------------------------------
 		// Parse categories
@@ -1046,28 +1107,6 @@ class Channel_images_ft extends EE_Fieldtype
 		}
 
 		$P['categories'] = $categories;
-
-		// -----------------------------------------
-		// Previews
-		// -----------------------------------------
-		if (isset($P['small_preview']) == TRUE && $P['small_preview'] != FALSE)
-		{
-			$P['small_preview'] = $P['action_groups'][$P['small_preview']]['group_name'];
-		}
-		else
-		{
-			$P['small_preview'] = $P['action_groups'][1]['group_name'];
-		}
-
-		// Big Preview
-		if (isset($P['big_preview']) == TRUE && $P['big_preview'] != FALSE)
-		{
-			$P['big_preview'] = $P['action_groups'][$P['big_preview']]['group_name'];
-		}
-		else
-		{
-			$P['big_preview'] = $P['action_groups'][1]['big_preview'];
-		}
 
 		// -----------------------------------------
 		// Put it Back!

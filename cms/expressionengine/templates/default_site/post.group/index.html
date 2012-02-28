@@ -1,0 +1,274 @@
+{embed="common/head"}
+
+{exp:channel:entries channel="NOT static_page" limit="1" dynamic="no" url_title="{segment_2}" }
+
+	<!-- SEO Stuff -->
+	<meta name="title" content="{title}" />
+	<meta name="description" content="{exp:eehive_hacksaw characters = "100" }{text_body}{/exp:eehive_hacksaw}" /> 
+	<meta name="author" content="{author}" />
+	<!-- //End SEO Stuff -->
+	
+	<!-- Facebook O:G Data -->
+	<meta property="og:url" content="{site_url}post/{url_title}" />
+	<meta property="og:site_name" content="On Plate, Still Hungry"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="{exp:ce_img:pair src="{image}" width="100" height="100" crop="yes"}http://www.onplatestillhungry.com{made}{/exp:ce_img:pair}" />
+	<meta property="og:title" content="{title}" />
+	<meta property="og:description" content="{exp:eehive_hacksaw characters = "100" }{text_body}{/exp:eehive_hacksaw}" />
+	<!-- //End Facebook O:G Data -->
+		
+	<title>{title} | {column_name} | {author}</title> 
+	
+{/exp:channel:entries}
+	
+{embed="common/header"}
+
+		<!-- Navigation -->
+		
+		{embed="common/navigation"}
+		
+		<!-- //End of Navigation -->
+		
+		<!-- Branding -->
+		
+		{embed="common/branding"}
+		
+		<!-- //End of Branding -->
+		
+		{exp:channel:entries channel="NOT static_page" limit="1" dynamic="no" url_title="{segment_2}" }
+		
+		<!-- Page Title -->
+		
+		<div id="page-title" class="container_12 block">
+		
+				<!-- Link to Previous Day -->
+				
+				{exp:channel:prev_entry}
+				    
+				    <a href="{path='post/{url_title}'}" id="previous">{title}</a>
+				
+				{/exp:channel:prev_entry}
+
+				<!-- //End of Link to Previous Day -->
+				
+				<h1 id="post-title">
+							
+						{exp:eehive_hacksaw characters = "80" }				
+						
+							{title}
+						
+						{/exp:eehive_hacksaw}
+						
+				</h1>
+				
+				<p class="date"><strong>{date_format} - {column_name} - {author}</strong></p>
+
+				<!-- Link to Next Day -->
+				
+				{exp:channel:next_entry}
+				    
+				    <a href="{path='post/{url_title}'}" id="next">{title}</a>
+				
+				{/exp:channel:next_entry}
+				
+				<!-- //End of Link to Previous Day -->
+						
+		</div>
+		
+		<!-- //End of Post Title -->
+
+		<!-- Post Section -->
+		
+		<section class="container_12 block white">
+		
+			<article class="grid_8">
+
+				<!-- Post Images -->
+				
+				<ul class="carousel">
+				
+					<li>
+		
+						{exp:ce_img:pair src="{image}" width="620" height="325" crop="yes" allow_scale_larger="yes"}
+					
+							<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+					
+						{/exp:ce_img:pair}
+				
+					</li>
+				
+				</ul>
+				
+				<div class="carousel-navigation"></div>
+				
+				<!-- //End of Post Image -->
+				
+				<!-- Post Copy -->
+			
+				<div id="post-wrapper">
+					
+					<p>{text_body}</p>
+
+					<p><strong>{column_name} - {author}</strong></p>
+					
+					<div class="divide"></div>
+				
+				</div>
+				
+				<!-- //End Post Copy -->
+			
+			</article>
+			
+			<!-- Right Column -->
+			
+			<aside id="right-col">
+			
+				<div class="grid_4">
+				
+					{exp:member:custom_profile_data member_id="{author_id}"}
+ 	
+						 <h4>{screen_name} - {member_columnname}</h4>
+						 
+						 <p>{bio}</p>
+						 
+						 <div id="avatar">
+						 
+						 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
+												
+								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+							
+						 	{/exp:ce_img:pair}
+						 
+						 
+						 </div>
+						
+						 
+						 <div class="connect">
+									
+								<ul>
+								
+									<li>Connect:</li>
+									
+									{if url != ""} <li><a href="http://{url}" target="_blank">Website</a></li> {/if}
+									
+									{if member_facebook != ""} <li><a href="http://{member_facebook}" target="_blank">Facebook</a></li> {/if}
+									
+									{if member_twitter != ""}<li><a href="http://{member_twitter}" target="_blank">Twitter</a></li>{/if}
+									
+									{if member_google != ""}<li><a href="http://{member_google}" target="_blank">Google+</a></li>{/if}
+								
+								</ul>
+							
+						</div>
+					
+					{/exp:member:custom_profile_data}
+
+				
+				</div>
+				
+				<div class="grid_4">
+				
+					{embed="common/mpu"}
+				
+				</div>
+				
+				<div class="clear"></div>
+			
+			</aside>
+			
+			<!-- //End of Right Column -->
+
+			<div class="clear"></div>
+		
+		</section>
+		<?php 
+			
+			//Setup similar items for further down the page
+			$author = {author_id}; 
+			$category = {categories}{category_id}{/categories};
+			
+		?>
+		
+		{/exp:channel:entries}
+		
+		<!-- //End of Articles Section -->
+		
+		<!-- Related Items -->
+		
+		<section class="container_12 block white">
+		
+			<!-- Contributor Articles -->
+		
+			<div class="grid_4 related_item">
+			
+				<h4>Contributor Articles</h4>
+
+					<ul class="carousel">
+					
+						{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" url_title="NOT {segment_2}" author="<?php print $author; ?>"}
+					
+							<li>
+							
+								<p>{title}</p>
+								
+								{exp:ce_img:pair src="{avatar_url}" width="295" height="163" crop="yes" allow_scale_larger="yes"}
+												
+									<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+							
+						 		{/exp:ce_img:pair}
+							
+							</li>
+						
+						{/exp:channel:entries}
+					
+					</ul>
+					
+					<div class="carousel-navigation"></div>
+			
+			</div>
+			
+			<!-- //End Contributor Articles -->
+			
+			<!-- Related Articles -->
+			
+			<div class="grid_4">
+			
+				<h4>Related Articles</h4>
+
+					<ul class="carousel">
+					
+						{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" url_title="NOT {segment_2}" show_group="<?php print $categories; ?>"}
+					
+							<li>
+							
+								<p>{title} - {author}</p>
+								
+								{exp:ce_img:pair src="{avatar_url}" width="295" height="163" crop="yes" allow_scale_larger="yes"}
+												
+									<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+							
+						 		{/exp:ce_img:pair}
+							
+							</li>
+						
+						{/exp:channel:entries}
+					
+					</ul>
+					
+					<div class="carousel-navigation"></div>
+			
+			</div>
+			
+			<!-- //Related Articles -->
+			
+			<div class="clear"></div>
+		
+		</section>
+		
+		<!-- //End of Related Items -->
+
+<!-- Filter -->
+		
+{embed="common/footer"}
+		
+<!-- //End of Filter -->	

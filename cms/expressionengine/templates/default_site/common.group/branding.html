@@ -1,16 +1,21 @@
-<section id="branding">	
+<!-- Branding Wrapper -->
+			
+<div id="branding">
+
+	<!-- Logo -->
+	
 	<div id="logo">
-		<a href="{site_url}">
-			<span class="hidden">On Plate Still Hungry</span>
-		</a>
+	
+		<h2>On Plate, Still Hungry</h2>
+		
 	</div>
-	<!-- Secondary Navigation Bar -->
-	<nav id="secondary-navigation">
-		<a href="{path="/"}" {if segment_1 == ""}class="active" {/if}>Home</a>
-		<a href="{path="columns"}" {if segment_1 == "columns"}class="active" {/if}>Columns &amp; Contributors</a>
-		<a href="{path="recipes"}" {if segment_1 == "recipes"}class="active" {/if}>Recipes</a>
-		<a href="{path="film"}" {if segment_1 == "film"}class="active" {/if}>Film</a>
-		<a href="{path="about"}" {if segment_1 == "about"}class="active" {/if}>About</a>
-	</nav>
-	<!-- //End Secondary Navigation Bar -->
-</section>
+	
+	<!-- //End of Logo -->
+	
+	<h3 id="strapline">Worldwide Family Style Food & Culture Magazine</h3>
+	
+	{if segment_1 == "" } {embed="common/category-navigation"} {/if}
+
+</div>
+
+<!-- //End of Branding Wrapper -->

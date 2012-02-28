@@ -162,6 +162,9 @@ class Channel_Images_AJAX
 		// -----------------------------------------
 		$actions = &$this->EE->image_helper->get_actions();
 
+		// Just double check for actions groups
+		if (isset($settings['action_groups']) == FALSE) $settings['action_groups'] = array();
+
 		// -----------------------------------------
 		// Loop over all action groups!
 		// -----------------------------------------
@@ -205,27 +208,58 @@ class Channel_Images_AJAX
 		// -----------------------------------------
 		// Which Previews?
 		// -----------------------------------------
-		if (isset($settings['small_preview']) == FALSE OR $settings['small_preview'] == FALSE)
+		if ( empty($settings['action_groups']) == FALSE && (isset($settings['no_sizes']) == FALSE OR $settings['no_sizes'] != 'yes') )
 		{
-			$settings['small_preview'] = $settings['action_groups'][1]['group_name'];
+			if (isset($settings['small_preview']) == FALSE OR $settings['small_preview'] == FALSE)
+			{
+				$settings['small_preview'] = $settings['action_groups'][1]['group_name'];
+			}
+
+			if (isset($settings['big_preview']) == FALSE OR $settings['big_preview'] == FALSE)
+			{
+				$settings['big_preview'] = $settings['action_groups'][1]['group_name'];
+			}
+		}
+		else
+		{
+			// No sizes? Then lets make it be the the original one!
+			$settings['small_preview'] = $filename;
+			$settings['big_preview'] = $filename;
 		}
 
-		if (isset($settings['big_preview']) == FALSE OR $settings['big_preview'] == FALSE)
-		{
-			$settings['big_preview'] = $settings['action_groups'][1]['group_name'];
-		}
 
-		// -----------------------------------------
-		// Return Data
-		// -----------------------------------------
+		// Lets start our image array
 		$image = array();
 
 		// Preview URL
 		$preview_url = $this->EE->image_helper->get_router_url('url', 'simple_image_url');
 
-		// Get Size Image URLS
-		$image['small_img_url'] = $preview_url . '&amp;fid=0&amp;d=' . $key . '&amp;f=' . str_replace($extension, "__{$settings['small_preview']}{$extension}", $filename);
-		$image['big_img_url'] = $preview_url . '&amp;fid=0&amp;d=' . $key . '&amp;f=' . str_replace($extension, "__{$settings['big_preview']}{$extension}", $filename);
+
+		// -----------------------------------------
+		// Generate Image URL's
+		// -----------------------------------------
+
+		// Are we using the original file?
+		if ($settings['small_preview'] == $filename)
+		{
+			$small_img_filename = $settings['small_preview'];
+			$big_img_filename = $settings['small_preview'];
+		}
+		else
+		{
+			$small_img_filename = str_replace($extension, "__{$settings['small_preview']}{$extension}", $filename);
+			$big_img_filename = str_replace($extension, "__{$settings['big_preview']}{$extension}", $filename);
+		}
+
+
+		// Create the URL's
+		$image['small_img_url'] = "{$preview_url}&amp;fid=0&amp;d={$key}&amp;f={$small_img_filename}";
+		$image['big_img_url'] = "{$preview_url}&amp;fid=0&amp;d={$key}&amp;f={$big_img_filename}";
+
+
+		// -----------------------------------------
+		// Output
+		// -----------------------------------------
 
 		// Add settings to Image
 		$image['settings'] = $settings;
@@ -305,6 +339,15 @@ class Channel_Images_AJAX
 		// Init
 		$LOC = new $location_class($location_settings);
 
+		// Delete from DB
+		if ($this->EE->input->post('image_id') > 0)
+		{
+			$this->EE->db->from('exp_channel_images');
+			$this->EE->db->where('image_id', $this->EE->input->post('image_id'));
+			$this->EE->db->or_where('link_image_id', $this->EE->input->post('image_id'));
+			$this->EE->db->delete();
+		}
+
 		// -----------------------------------------
 		// Delete!
 		// -----------------------------------------
@@ -326,15 +369,6 @@ class Channel_Images_AJAX
 		// Delete original file from system
 		if ($entry_id > 0) $res = $LOC->delete_file($entry_id, $filename);
 		else @unlink(APPPATH.'cache/channel_images/'.$key.'/'.$filename);
-
-		// Delete from DB
-		if ($this->EE->input->post('image_id') > 0)
-		{
-			$this->EE->db->from('exp_channel_images');
-			$this->EE->db->where('image_id', $this->EE->input->post('image_id'));
-			$this->EE->db->or_where('link_image_id', $this->EE->input->post('image_id'));
-			$this->EE->db->delete();
-		}
 
 		exit();
 	}
@@ -960,6 +994,303 @@ class Channel_Images_AJAX
 
 		exit( $this->EE->image_helper->generate_json($o) );
 	}
+
+	// ********************************************************************************* //
+
+	public function import_matrix_images()
+	{
+		$o = array('success' => 'no', 'body' => '');
+
+		$this->EE->load->helper('url');
+
+		$entry_id = $this->EE->input->get_post('entry_id');
+
+		// -----------------------------------------
+		// Increase all types of limits!
+		// -----------------------------------------
+		@set_time_limit(0);
+		@ini_set('memory_limit', '64M');
+		@ini_set('memory_limit', '96M');
+		@ini_set('memory_limit', '128M');
+		@ini_set('memory_limit', '160M');
+		@ini_set('memory_limit', '192M');
+		@ini_set('memory_limit', '256M');
+		@ini_set('memory_limit', '320M');
+		@ini_set('memory_limit', '512M');
+
+		// -----------------------------------------
+		// Find our image field!
+		// -----------------------------------------
+		if (array_search('image', $_POST['matrix']['fieldmap']) == FALSE)
+		{
+			$o['body'] = 'No Image Field Mapping found!';
+			exit( $this->EE->image_helper->generate_json($o) );
+		}
+
+		// -----------------------------------------
+		// Gather the usable cols
+		// -----------------------------------------
+		$cols = array();
+		$col_select = '';
+
+		foreach ($_POST['matrix']['fieldmap'] as $col_id => $map)
+		{
+			if ($map == FALSE) continue;
+
+			$cols[$col_id] = $map;
+			$col_select .= "col_id_{$col_id}, ";
+		}
+
+		// -----------------------------------------
+		// Grab all Col Data
+		// -----------------------------------------
+		$query = $this->EE->db->select('entry_id, '.$col_select)->from('exp_matrix_data')->where('field_id', $_POST['matrix']['field_id'])->where('entry_id', $entry_id)->get();
+
+		if ($query->num_rows() == 0)
+		{
+			$o['body'] = 'No Matrix Data Found!';
+			exit( $this->EE->image_helper->generate_json($o) );
+		}
+
+		// -----------------------------------------
+		// Create our Final Data Array
+		// -----------------------------------------
+		$data = array();
+
+		foreach ($query->result_array() as $row)
+		{
+			$entry_id = $row['entry_id'];
+			unset($row['entry_id']);
+
+			$data[$entry_id][] = $row;
+		}
+
+		$query->free_result(); unset($query);
+
+		// -----------------------------------------
+		// Grab our Field Settings
+		// -----------------------------------------
+		$ci_field = $_POST['matrix']['ci_field'];
+		$channel_id = $_POST['matrix']['channel_id'];
+		$settings = $this->EE->image_helper->grab_field_settings($ci_field);
+		$settings = $settings['channel_images'];
+
+		// -----------------------------------------
+		// Load Location
+		// -----------------------------------------
+		$location_type = $settings['upload_location'];
+		$location_class = 'CI_Location_'.$location_type;
+		$location_settings = $settings['locations'][$location_type];
+
+		// Load Main Class
+		if (class_exists('Image_Location') == FALSE) require PATH_THIRD.'channel_images/locations/image_location.php';
+
+		// Try to load Location Class
+		if (class_exists($location_class) == FALSE)
+		{
+			$location_file = PATH_THIRD.'channel_images/locations/'.$location_type.'/'.$location_type.'.php';
+
+			require $location_file;
+		}
+
+		// Init!
+		$LOC = new $location_class($location_settings);
+
+		// -----------------------------------------
+		// Load Actions :O
+		// -----------------------------------------
+		$actions = &$this->EE->image_helper->get_actions();
+
+		// -----------------------------------------
+		// Which Col was our image?
+		// -----------------------------------------
+		$image_col = array_search('image', $cols);
+		unset($cols[$image_col]);
+
+		// -----------------------------------------
+		// Create file dir array
+		// -----------------------------------------
+		$file_dirs = array();
+		$temp = $this->EE->db->select('id, server_path')->get('exp_upload_prefs');
+
+		foreach ($temp->result() as $val)
+		{
+			$file_dirs["{filedir_{$val->id}}"] = $val->server_path;
+		}
+
+		$file_dirs_search = array_keys($file_dirs);
+		$file_dirs_replace = array_values($file_dirs);
+
+		// -----------------------------------------
+		// Loop over all entries and BEGIN!
+		// -----------------------------------------
+		foreach($data as $entry_id => $rows)
+		{
+			// Create the DIR!
+			$LOC->create_dir($entry_id);
+
+			// -----------------------------------------
+			// Temp Dir to run Actions
+			// -----------------------------------------
+			$temp_dir = APPPATH.'cache/channel_images/'.$this->EE->localize->now.'-'.$entry_id.'/';
+
+			if (@is_dir($temp_dir) === FALSE)
+			{
+				@mkdir($temp_dir, 0777, true);
+				@chmod($temp_dir, 0777);
+			}
+
+			// Loop over all rows in the entry!
+			foreach ($rows as $count => $row)
+			{
+				// -----------------------------------------
+				// Create a Temp image array
+				// -----------------------------------------
+				$image_path = str_replace($file_dirs_search, $file_dirs_replace, $row['col_id_'.$image_col]);
+
+				if (file_exists($image_path) == FALSE) continue;
+
+				$image = array();
+				$image['site_id']	= $this->site_id;
+				$image['field_id'] = $ci_field;
+				$image['image_order'] = $count;
+				$image['member_id'] = $this->EE->session->userdata['member_id'];
+				$image['entry_id'] = $entry_id;
+				$image['channel_id'] = $channel_id;
+				$image['filename'] = basename($image_path);
+				$image['extension'] = end(explode('.', $image['filename']));
+				$image['upload_date'] = $this->EE->localize->now;
+				$image['filesize'] = @filesize($image_path);
+				$image['title'] = 'Untitled';
+
+				// Mime type
+				$filemime = 'image/jpeg';
+				if ($image['extension'] == 'png') $filemime = 'image/png';
+				elseif ($image['extension'] == 'gif') $filemime = 'image/gif';
+				$image['mime'] = $filemime;
+
+				// -----------------------------------------
+				// Loop through all columns and map
+				// -----------------------------------------
+				foreach($cols as $col_id => $map)
+				{
+					if ($map == 'image') continue;
+
+					if (isset($row['col_id_'.$col_id]) === TRUE) $image[$map] = $row['col_id_'.$col_id];
+				}
+
+				// -----------------------------------------
+				// Copy file to temp dir
+				// -----------------------------------------
+				copy($image_path, $temp_dir.$image['filename']);
+
+				// -----------------------------------------
+				// Loop over all action groups!
+				// -----------------------------------------
+				foreach ($settings['action_groups'] as $group)
+				{
+					$size_name = $group['group_name'];
+					$size_filename = str_replace('.'.$image['extension'], "__{$size_name}.{$image['extension']}", $image['filename']);
+
+					// Make a copy of the file
+					@copy($temp_dir.$image['filename'], $temp_dir.$size_filename);
+					@chmod($temp_dir.$size_filename, 0777);
+
+					// -----------------------------------------
+					// Loop over all Actions and RUN! OMG!
+					// -----------------------------------------
+					foreach($group['actions'] as $action_name => $action_settings)
+					{
+						// RUN!
+						$actions[$action_name]->settings = $action_settings;
+						$res = $actions[$action_name]->run($temp_dir.$size_filename);
+
+					}
+
+
+				}
+
+				// -----------------------------------------
+				// Keep Original Image?
+				// -----------------------------------------
+				if (isset($settings['keep_original']) == TRUE && $settings['keep_original'] == 'no')
+				{
+					@unlink($temp_dir.$image['filename']);
+				}
+
+				// -----------------------------------------
+				// Upload all Images!
+				// -----------------------------------------
+				$metadata = array();
+				$tempfiles = @scandir($temp_dir);
+
+				if (is_array($tempfiles) == TRUE)
+				{
+					foreach ($tempfiles as $tempfile)
+					{
+						if ($tempfile == '.' OR $tempfile == '..') continue;
+
+						$file	= $temp_dir . '/' . $tempfile;
+
+						$res = $LOC->upload_file($file, $tempfile, $entry_id);
+
+						if ($res == FALSE)
+						{
+
+						}
+
+						// Parse Image Size
+						$imginfo = @getimagesize($file);
+
+						// Metadata!
+						$metadata[$tempfile] = array('width' => @$imginfo[0], 'height' => @$imginfo[1], 'size' => @filesize($file));
+
+						@unlink($file);
+					}
+				}
+
+				@unlink($temp_dir);
+
+
+				$image['width'] = isset($metadata[$image['filename']]['width']) ? $metadata[$image['filename']]['width'] : 0;
+				$image['height'] = isset($metadata[$image['filename']]['height']) ? $metadata[$image['filename']]['height'] : 0;
+				$image['filesize'] = isset($metadata[$image['filename']]['size']) ? $metadata[$image['filename']]['size'] : 0;
+
+				// -----------------------------------------
+				// Parse Size Metadata!
+				// -----------------------------------------
+				$mt = '';
+				foreach($settings['action_groups'] as $group)
+				{
+					$name = strtolower($group['group_name']);
+					$size_filename = str_replace('.'.$image['extension'], "__{$name}.{$image['extension']}", $image['filename']);
+
+					$mt .= $name.'|' . implode('|', $metadata[$size_filename]) . '/';
+				}
+
+				// Check URL Title
+				if (isset($image['url_title']) == FALSE OR $image['url_title'] == FALSE)
+				{
+					$image['url_title'] = url_title(trim(strtolower($image['title'])));
+				}
+
+				$image['sizes_metadata'] = $mt;
+
+				// -----------------------------------------
+				// New File
+				// -----------------------------------------
+				$this->EE->db->insert('exp_channel_images', $image);
+
+
+			}
+
+		}
+
+		$o['success'] = 'yes';
+		exit( $this->EE->image_helper->generate_json($o) );
+	}
+
+	// ********************************************************************************* //
 
 } // END CLASS
 

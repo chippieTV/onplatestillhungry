@@ -1,0 +1,51 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}audio,canvas,video{display:inline-block;*display:inline;*zoom:1}audio:not([controls]){display:none}[hidden]{display:none}html{font-size:100%;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0;font-size:13px;line-height:1.4;color:#595A5C;background:#F2F2F3}body,button,input,select,textarea{font-family:sans-serif;color:#222}::-moz-selection{background:#fff;color:#000;text-shadow:none}::selection{background:#fff;color:#000;text-shadow:none}a{color:#000;text-decoration:none}a:visited{color:#551a8b}a:hover{color:#06e}a:focus{outline:none}a:hover,a:active{outline:0;color:#000}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}blockquote{margin:1em
+40px}dfn{font-style:italic}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em
+0;padding:0}ins{background:#ff9;color:#000;text-decoration:none}mark{background:#ff0;color:#000;font-style:italic;font-weight:bold}pre,code,kbd,samp{font-family:monospace,monospace;_font-family:'courier new',monospace;font-size:1em}pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word}q{quotes:none}q:before,q:after{content:"";content:none}small{font-size:85%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top: -0.5em}sub{bottom: -0.25em}ul,ol{margin:1em
+0;padding:0
+0 0 40px}dd{margin:0
+0 0 40px}nav ul, nav
+ol{list-style:none;list-style-image:none;margin:0;padding:0}img{border:0;-ms-interpolation-mode:bicubic;vertical-align:middle}svg:not(:root){overflow:hidden}figure{margin:0}form{margin:0}fieldset{border:0;margin:0;padding:0}label{cursor:pointer}legend{border:0;*margin-left: -7px;padding:0}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}button,input{line-height:normal;*overflow:visible}table button, table
+input{*overflow:auto}button,input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button}input[type="text"]{border:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top;resize:vertical}input:valid,textarea:valid{}input:invalid,textarea:invalid{background-color:#f0dddd}table{border-collapse:collapse;border-spacing:0}td{vertical-align:top}h1,h3,h3,h4{font-family:Arial,helvetica,sans;color:#000}h1{font-size:24px;text-transform:uppercase;letter-spacing:1px}h2{font-size:20px}h3{font-size:16px;margin:0px
+0px 10px 0px}.grid_1,.grid_2,.grid_3,.grid_4,.grid_5,.grid_6,.grid_7,.grid_8,.grid_9,.grid_10,.grid_11,.grid_12{display:inline;float:left}.container_12
+.grid_1{width:60px}.container_12
+.grid_2{width:140px}.container_12
+.grid_3{width:220px}.container_12
+.grid_4{width:300px}.container_12
+.grid_5{width:380px}.container_12
+.grid_6{width:460px}.container_12
+.grid_7{width:540px}.container_12
+.grid_8{width:620px}.container_12
+.grid_9{width:700px}.container_12
+.grid_10{width:780px}.container_12
+.grid_11{width:860px}.container_12
+.grid_12{width:940px}.container_12{margin:0
+auto;width:940px;padding:10px
+20px}.clear{clear:both}#branding{position:absolute;left:50%;top:50%;width:350px;height:220px;margin-left: -175px;margin-top: -160px;text-align:center}#logo{width:350px;height:152px;background:url(http://local.onplatestillhungry.com//css/../images/assets.png) no-repeat 4px -19px;text-indent: -9999px}#strapline{font-size:11px}#category{margin:30px
+0px}#category ul
+li{display:inline}#category
+a{font-size:16px;font-weight:bold;padding:0px
+10px;color:#000}#category a:hover{color:#FFF}#category ul li.with-bullet{padding:5px
+3px;background:url(http://local.onplatestillhungry.com//css/../images/assets.png) no-repeat -71px 7px}#navigation{width:100%;background:#000;border-top:1px solid #222;-webkit-box-shadow:0 0 3px #000;-moz-box-shadow:0 0 3px #000;-o-box-shadow:0 0 3px #000;box-shadow:0 0 3px #000}#primary-navigation a, #category-navigation a,#category-navigation-title{color:#BDBEC1;margin-right:10px}#category-navigation-title{float:left;font-weight:normal;margin:0px}.active, #primary-navigation a:hover, #category-navigation a:hover{color:#FFF !important}#top{display:block;height:10px;width:10px;background:url(http://local.onplatestillhungry.com//css/../images/assets.png) no-repeat -71px 7px}#filter{clear:both;margin-top:10px;margin-bottom:10px;background:#FFF}#main-post-share{position:absolute;bottom:100px;width:100%}.share
+ul{padding:0px;text-align:center;margin:0
+auto}.share ul
+li{display:inline;list-style:none;margin:0px
+10px}#main-post-share .share ul li a:hover{color:#FFF}#todays-post{position:relative;min-height:700px}#todays-post
+img{position:absolute;width:100%;height:100%;z-index: -10}#scroll-down{margin:0
+auto;width:150px}#scroll-down
+a{display:block;background:#000;padding:10px
+0px;margin:0
+0 10px 0;text-align:center;color:#FFF}#scroll-down a:hover{background:rgba(00,00,00,0.7)}#scroll-down .down-arrow{margin:0
+auto}.down-arrow{height:10px;width:15px;background:url(http://local.onplatestillhungry.com//css/../images/assets.png) no-repeat -1px -1px}#main-post-title{position:absolute;width:100%;height:85px;background:#000;bottom:0px}#main-post-title
+h1{color:#FFF;margin:20px
+0px 0px 0px}#main-post-title
+p{color:#FFF;margin:5px
+0px}.col{float:left}.center{text-align:center}.left{text-align:left}.right{text-align:right;float:right}.small{width:10%}.medium{width:20%}.medium_larger{width:26%}.large{width:40%}#articles{background:#FFF}article{position:relative;height:163px;margin:10px
+0px 20px 0px;clear:both}.border-bottom{height:163px;border-bottom:1px solid #E7E8E9;margin-right:20px}.date{margin:0px;color:#414142}article
+p{color:#595A5C;line-height:1.6}.front,.back{position:absolute}.back{background:rgba(255,255,255, 0.75) url(http://local.onplatestillhungry.com//css/../images/assets.png) no-repeat 95px -212px;width:300px;height:163px;opacity:0}.back
+.share{position:absolute;bottom:10px;width:300px}#right-col{margin-left:20px;float:right;width:300px}.connect
+ul{margin:0;padding:0}.connect ul
+li{display:inline;list-style:none;margin-right:5px}#right-col
+.grid_4{margin-bottom:20px}.ir{display:block;border:0;text-indent: -999em;overflow:hidden;background-color:transparent;background-repeat:no-repeat;text-align:left;direction:ltr}.ir
+br{display:none}.hidden{display:none !important;visibility:hidden}.visuallyhidden{border:0;clip:rect(0 0 0 0);height:1px;margin: -1px;overflow:hidden;padding:0;position:absolute;width:1px}.visuallyhidden.focusable:active,.visuallyhidden.focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}.invisible{visibility:hidden}.clearfix:before,.clearfix:after{content:"";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}@media only screen and (min-width: 280px){@media only screen and (min-width: 768px){@media
+print{*{background:transparent !important;color:black !important;text-shadow:none !important;filter:none !important;-ms-filter:none !important}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href) ")"}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px
+solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h2,h3{page-break-after:avoid}}

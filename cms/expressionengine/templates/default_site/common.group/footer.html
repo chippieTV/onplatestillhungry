@@ -1,9 +1,71 @@
-		<footer id="footer">
+	<footer id="footer" class="container_12 black">
+	
+		<nav class="grid_3 navigation-footer">
 		
-		</footer>
+			<h4>Sitemap</h4>
+			
+			<a href="{path="/"}" {if segment_1 == ""}class="active" {/if}>Home</a>
+	
+			<a href="{path="columns"}" {if segment_1 == "columns" || segment_1 == "post"}class="active" {/if}>Columns &amp; Contributors</a>
+
+			<a href="{path="recipes"}" {if segment_1 == "recipes"}class="active" {/if}>Recipes</a>
+
+			<a href="{path="film"}" {if segment_1 == "film"}class="active" {/if}>Film</a>
+
+			<a href="{path="about"}" {if segment_1 == "about"}class="active" {/if}>About</a>
 		
-		<!-- Load Scripts -->
-		{embed="common/_scripts"}
-		<!-- //End Load Scripts -->
-	</body>
+		</nav>
+		
+		<nav class="grid_3 navigation-footer">
+		
+			<h4>Network</h4>
+			
+			<a href="http://prote.in" target="_blank">Protein</a>
+	
+			<a href="http://www.earnestendeavours.com" target="_blank">Ernest Endeavours</a>
+			
+			<a href="#" target="_blank">Ensemble</a>
+				
+		</nav>
+		
+		<nav class="grid_3 navigation-footer">
+		
+			<h4>Social</h4>
+			
+			<a href="http://www.facebook.com" target="_blank">Facebook</a>
+			
+			<a href="http://www.google.com" target="_blank">Google+</a>
+			
+			<a href="http://www.twitter.com" target="_blank">Twitter</a>
+			
+			<a href="http://www.vimeo.com" target="_blank">Vimeo</a>
+				
+		</nav>
+		
+		<div class="clear"></div>
+
+    </footer>
+  
+  </div> <!--! end of #wrapper -->
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+  
+  {embed="common/_scripts"}
+	
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
 </html>

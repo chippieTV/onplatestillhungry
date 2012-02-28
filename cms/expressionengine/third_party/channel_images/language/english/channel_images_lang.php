@@ -26,7 +26,11 @@ $lang = array(
 'ci:ci_fields'		=>	'Channel Images Fields',
 'ci:grab_images'	=>	'Grab Images',
 'ci:start_resize'	=>	'Start the regeneration process.',
-
+'ci:import'			=>	'Import Images',
+'ci:transfer_field'	=>	'Transfer To',
+'ci:column_mapping'	=>	'Column Mapping',
+'ci:dont_transfer'	=>	'Do Not Transfer',
+'ci:import_entries'	=>	'Entries to Process',
 //----------------------------------------
 // FIELDTYPE
 //----------------------------------------
@@ -161,6 +165,8 @@ $lang = array(
 // Pagination
 'ci:pag_first_link' => '&lsaquo; First',
 'ci:pag_last_link' => 'Last &rsaquo;',
+
+'ci:required_field'	=>	'REQUIRED FIELD: Please add at least one image.',
 
 // Errors
 'ci:file_arr_empty'	=> 'No file was uploaded or file is not allowed by EE.(See EE Mime-type settings).',

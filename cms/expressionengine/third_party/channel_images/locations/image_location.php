@@ -31,6 +31,13 @@ class Image_Location
 
 	// ********************************************************************************* //
 
+	public function delete_dir($dir)
+	{
+		return FALSE;
+	}
+
+	// ********************************************************************************* //
+
 	public function upload_file($source_file, $dest_filename, $dest_folder)
 	{
 		return FALSE;

@@ -35,7 +35,11 @@ class Channel_images_mcp
 
 		// Some Globals
 		$this->base = BASE.AMP.'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module=channel_images';
-		$this->vData = array('base_url'	=> $this->base); // Global Views Data Array
+		$this->base_short = 'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module=channel_images';
+
+		$this->vData = array(); // Global Views Data Array
+		$this->vData['base_url'] = $this->base;
+		$this->vData['base_url_short'] = $this->base_short;
 
 		$this->EE->image_helper->define_theme_url();
 
@@ -43,9 +47,10 @@ class Channel_images_mcp
 
 		// Add Right Top Menu
 		$this->EE->cp->set_right_nav(array(
+			'ci:import' 			=> $this->base.'&method=import',
 			'ci:regenerate_sizes' 			=> $this->base.'&method=regenerate_sizes',
 			'ci:legacy_settings' 			=> $this->base.'&method=legacy_settings',
-			'ci:docs' 				=> $this->EE->cp->masked_url('http://www.devdemon.com/channel_images/docs/'),
+			'ci:docs' 				=> $this->EE->cp->masked_url('http://www.devdemon.com/docs/channel_images/'),
 		));
 
 		$this->site_id = $this->EE->config->item('site_id');
@@ -108,6 +113,62 @@ class Channel_images_mcp
 		$this->vData['settings'] = (isset($this->vData['settings']['site_id:'.$this->site_id]) == TRUE) ? $this->vData['settings']['site_id:'.$this->site_id] : array( 'channels' => array() );
 
 		return $this->EE->load->view('mcp_legacy_settings', $this->vData, TRUE);
+	}
+
+	// ********************************************************************************* //
+
+	public function import()
+	{
+		// TODO: the import script should have inserted our place holder in the custom_field so that conditional would work
+		// Page Title & BreadCumbs
+		$this->EE->cp->set_variable('cp_page_title', $this->EE->lang->line('ci:import'));
+
+		$this->vData['matrix'] = array();
+
+		// -----------------------------------------
+		// Grab all matrix fields
+		// -----------------------------------------
+		$this->EE->db->select('cf.field_label, cf.field_id, cf.group_id, fg.group_name');
+		$this->EE->db->from('exp_channel_fields cf');
+		$this->EE->db->join('exp_field_groups fg', 'cf.group_id = fg.group_id', 'left');
+		$this->EE->db->where('cf.field_type', 'matrix');
+		$this->EE->db->order_by('cf.field_label', 'ASC');
+		$query = $this->EE->db->get();
+
+		foreach($query->result() as $row)
+		{
+			// Grab all channel image fields whithin that field group
+			$q2 = $this->EE->db->select('field_id, field_label')->from('exp_channel_fields')->where('group_id', $row->group_id)->where('field_type', 'channel_images')->get();
+
+			// Grab ll matrix columns
+			$q3 = $this->EE->db->select('col_id, col_label')->from('exp_matrix_cols')->where('field_id', $row->field_id)->order_by('col_order', 'ASC')->get();
+
+			// Grab channel id's
+			$q4 = $this->EE->db->select('channel_id')->from('exp_channels')->where('field_group', $row->group_id)->get();
+
+			// Grab all entry ids
+			$q5 = $this->EE->db->select('entry_id')->from('exp_matrix_data')->where('field_id', $row->field_id)->group_by('entry_id')->get();
+
+			$matrix = array();
+			$matrix['field_label'] = $row->field_label;
+			$matrix['field_id'] = $row->field_id;
+			$matrix['group_label'] = $row->group_name;
+			$matrix['channel_id'] = $q4->row('channel_id');
+			$matrix['cols'] = $q3->result();
+			$matrix['ci_fields'] = $q2->result();
+			$matrix['entries'] = $q5->result();
+
+
+			$this->vData['matrix'][] = $matrix;
+		}
+
+
+
+		//print_r($this->vData['matrix']);
+
+
+
+		return $this->EE->load->view('mcp_import', $this->vData, TRUE);
 	}
 
 	// ********************************************************************************* //

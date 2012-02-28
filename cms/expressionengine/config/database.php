@@ -1,22 +1,13 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 
-$active_group = 'expressionengine';
-$active_record = TRUE;
+if ( ! defined('EXT')){
+exit('Invalid file request');
+}
 
-$db['expressionengine']['hostname'] = "localhost";
-$db['expressionengine']['username'] = "root";
-$db['expressionengine']['password'] = "DjaHhPQm";
-$db['expressionengine']['database'] = "onplatestillhungry";
-$db['expressionengine']['dbdriver'] = "mysql";
-$db['expressionengine']['pconnect'] = FALSE;
-$db['expressionengine']['dbprefix'] = "exp_";
-$db['expressionengine']['swap_pre'] = "exp_";
-$db['expressionengine']['db_debug'] = TRUE;
-$db['expressionengine']['cache_on'] = FALSE;
-$db['expressionengine']['autoinit'] = FALSE;
-$db['expressionengine']['char_set'] = "utf8";
-$db['expressionengine']['dbcollat'] = "utf8_general_ci";
-$db['expressionengine']['cachedir'] = "/Applications/MAMP/htdocs/local.onplatestillhungry.com/system/expressionengine/cache/db_cache/";
+/**
+* THIS FILE WILL NEED PERMISSIONS SET TO 400 OR SIMILAR SO EE DOESN'T OVERWRITE IT.
+*/
 
-/* End of file database.php */
-/* Location: ./system/expressionengine/config/database.php */
+require 'config.php';
+
+?>

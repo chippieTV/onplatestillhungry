@@ -28,11 +28,22 @@ class CI_Location_s3 extends Image_Location
 
 	// ********************************************************************************* //
 
-	public function create_dir($dir)
+	public function delete_dir($dir)
 	{
 		$this->init();
 
-		//$res = $this->S3->create_object($this->lsettings['bucket'], $dir, array('body' => '', 'contentType' => 'application/directory', 'acl' => $this->lsettings['acl'], 'storage' => $this->lsettings['storage']) );
+		// Subdirectory?
+		$subdir = (isset($this->lsettings['directory']) == TRUE && $this->lsettings['directory'] != FALSE) ? $this->lsettings['directory'] . '/' .$dir : $dir;
+
+		// Get all objects
+		$objects = $this->S3->get_object_list($this->lsettings['bucket'], array('prefix' => $subdir));
+
+		foreach  ($objects as $file)
+		{
+			$this->S3->batch()->delete_object($this->lsettings['bucket'], $file);
+		}
+
+		$responses = $this->S3->batch()->send();
 
 		return TRUE;
 	}

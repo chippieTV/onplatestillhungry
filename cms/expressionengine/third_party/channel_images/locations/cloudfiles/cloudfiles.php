@@ -48,6 +48,31 @@ class CI_Location_cloudfiles extends Image_Location
 		return TRUE;
 	}
 
+
+	// ********************************************************************************* //
+
+	public function delete_dir($dir)
+	{
+		$this->init();
+		$this->CF_CONT = $this->CF_CONN->get_container($this->lsettings['container']);
+
+		try
+		{
+			$objects = $this->CF_CONT->list_objects(0,NULL,NULL,$dir);
+		}
+		catch (NoSuchObjectException $e)
+		{
+			return FALSE;
+		}
+
+		foreach ($objects as $key => $value)
+		{
+			$this->CF_CONT->delete_object($value);
+		}
+
+		return TRUE;
+	}
+
 	// ********************************************************************************* //
 
 	public function upload_file($source_file, $dest_filename, $dest_folder)
@@ -99,7 +124,15 @@ class CI_Location_cloudfiles extends Image_Location
 		$this->init();
 		$this->CF_CONT = $this->CF_CONN->get_container($this->lsettings['container']);
 
-		$this->CF_CONT->delete_object($dir.'/'.$filename);
+		try
+		{
+			$this->CF_CONT->delete_object($dir.'/'.$filename);
+		}
+		catch (NoSuchObjectException $e)
+		{
+			return FALSE;
+		}
+
 
 		return TRUE;
 	}
@@ -226,7 +259,10 @@ class CI_Location_cloudfiles extends Image_Location
 			}
 
 			// Include the SDK
-			require_once PATH_THIRD.'channel_images/locations/cloudfiles/sdk/cloudfiles.php';
+			if (class_exists('CF_Authentication') == FALSE)
+			{
+				require_once PATH_THIRD.'channel_images/locations/cloudfiles/sdk/cloudfiles.php';
+			}
 
 			// Which Region?
 			if ($this->lsettings['region'] == 'uk') $this->lsettings['region'] = constant('UK_AUTHURL');

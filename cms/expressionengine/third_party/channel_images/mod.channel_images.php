@@ -102,7 +102,7 @@ class Channel_images
 		if ($this->EE->TMPL->fetch_param('cover_only') != FALSE && $this->EE->TMPL->fetch_param('force_cover') != 'yes')
 		{
 			$this->EE->db->limit(1);
-			$this->EE->db->order_by('cover DESC');
+			$this->EE->db->order_by('cover DESC, image_order ASC');
 		}
 		else if ($this->EE->TMPL->fetch_param('force_cover') == 'yes')
 		{
@@ -1088,6 +1088,7 @@ class Channel_images
 				$vars[$this->prefix.'file_path'] = $filedir;
 				$vars[$this->prefix.'file_path_secure'] = str_replace('http://', 'https://', $filedir);
 				$vars[$this->prefix.'mimetype'] = $image->mime;
+				$vars[$this->prefix.'cover'] = $image->cover;
 				$vars[$this->prefix.'field:1'] = $image->cifield_1;
 				$vars[$this->prefix.'field:2'] = $image->cifield_2;
 				$vars[$this->prefix.'field:3'] = $image->cifield_3;
@@ -1422,6 +1423,7 @@ class Channel_images
 		$vars[$this->prefix.'url'] = $image_url;
 		$vars[$this->prefix.'secure_url'] = $image_url;
 		$vars[$this->prefix.'mimetype'] = $image->mime;
+		$vars[$this->prefix.'cover'] = $image->cover;
 		$vars[$this->prefix.'field:1'] = $image->cifield_1;
 		$vars[$this->prefix.'field:2'] = $image->cifield_2;
 		$vars[$this->prefix.'field:3'] = $image->cifield_3;
@@ -1940,12 +1942,18 @@ class Channel_images
 				exit();
 			}
 
+			fpassthru($fh);
+			flush();
+
+			/*
 			while (!feof($fh))
 			{
 				@set_time_limit(0);
 			  	print(fread($fh, 8192));
 			  	flush();
 			}
+			*/
+
 			fclose($fh);
 
 
@@ -1993,12 +2001,18 @@ class Channel_images
 				exit();
 			}
 
+			fpassthru($fh);
+			flush();
+
+			/*
 			while (!feof($fh))
 			{
 				@set_time_limit(0);
 			  	print(fread($fh, 8192));
 			  	flush();
 			}
+			*/
+
 			fclose($fh);
 			exit();
 		}

@@ -1,0 +1,97 @@
+<!-- Show random profile on homepage -->
+
+{if segment_1 == "" }
+
+	{exp:member:custom_profile_data member_id="3" }
+	
+	<h4>{screen_name} - {member_columnname}</h4>
+		 
+		 <p>
+		 	{exp:eehive_hacksaw words = "20" append="..."}				
+									
+				{bio}
+									
+			{/exp:eehive_hacksaw}
+		 </p>
+		 
+		 <div id="avatar">
+		 
+		 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
+								
+				<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+			
+		 	{/exp:ce_img:pair}
+		 
+		 
+		 </div>
+		
+		 
+		 <div class="connect">
+					
+				<ul>
+				
+					<li>Connect:</li>
+					
+					{if url != ""} <li><a href="http://{url}" target="_blank">Website</a></li> {/if}
+					
+					{if member_facebook != ""} <li><a href="http://{member_facebook}" target="_blank">Facebook</a></li> {/if}
+					
+					{if member_twitter != ""}<li><a href="http://{member_twitter}" target="_blank">Twitter</a></li>{/if}
+					
+					{if member_google != ""}<li><a href="http://{member_google}" target="_blank">Google+</a></li>{/if}
+				
+				</ul>
+			
+		</div>
+	
+	{/exp:member:custom_profile_data}
+	
+<!-- //End Show random profile on homepage -->
+
+{if:else}
+ 
+ 	{exp:member:custom_profile_data member_id="{author_id}"}
+ 	
+		 <h4>{screen_name} - {member_columnname}</h4>
+		 
+		 <p>
+		 	{exp:eehive_hacksaw words = "20" append="..."}				
+									
+				{bio}
+									
+			{/exp:eehive_hacksaw}
+		 </p>
+		 
+		 <div id="avatar">
+		 
+		 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
+								
+				<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+			
+		 	{/exp:ce_img:pair}
+		 
+		 
+		 </div>
+		
+		 
+		 <div class="connect">
+					
+				<ul>
+				
+					<li>Connect:</li>
+					
+					{if url != ""} <li><a href="http://{url}" target="_blank">Website</a></li> {/if}
+					
+					{if member_facebook != ""} <li><a href="http://{member_facebook}" target="_blank">Facebook</a></li> {/if}
+					
+					{if member_twitter != ""}<li><a href="http://{member_twitter}" target="_blank">Twitter</a></li>{/if}
+					
+					{if member_google != ""}<li><a href="http://{member_google}" target="_blank">Google+</a></li>{/if}
+				
+				</ul>
+			
+		</div>
+	
+	{/exp:member:custom_profile_data}
+	
+{/if}

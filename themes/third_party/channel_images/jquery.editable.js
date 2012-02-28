@@ -177,6 +177,12 @@
                 /* Create the form object. */
                 var form = $('<form />');
                 
+                if (typeof(form.validate) != 'undefined'){
+                	form.validate({
+                        ignore: ":input"
+                    });
+                }
+                
                 /* Apply css or style or both. */
                 if (settings.cssclass) {
                     if ('inherit' == settings.cssclass) {
@@ -281,15 +287,7 @@
                         }, 200);
                     });
 
-                    // Except for SELECT!
-                    if (settings.type != 'select') {
-	                    input.mouseleave(function(e) {
-	                        /* Prevent double submit if submit was clicked. */
-	                        t = setTimeout(function() {
-	                            form.submit();
-	                        }, 200);
-	                    });
-                    }
+
                 } else if ($.isFunction(settings.onblur)) {
                     input.blur(function(e) {
                         settings.onblur.apply(self, [input.val(), settings]);

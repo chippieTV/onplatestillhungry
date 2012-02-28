@@ -1,0 +1,62 @@
+	<!-- AdGear Code -->
+	<script type="text/javascript">
+		/*
+		<![CDATA[
+		*/
+		(function() {
+		  var proto = "http:";
+		  var host = "cdn.adgear.com";
+		  var bucket = "a";
+		  if (window.location.protocol == "https:") {
+			proto = "https:";
+			host = "a.adgear.com";
+			bucket = "";
+		  }
+		  document.writeln('<scr' + 'ipt type="text/ja' + 'vascr' + 'ipt" s' + 'rc="' +
+			  proto + '//' + host + '/' + bucket + '/adgear.js/current/adgear.js' +
+			  '"></scr' + 'ipt>');
+		})();
+		/*
+		]]>
+		*/
+		</script>
+		<script type="text/javascript" language="JavaScript">
+		/*
+		<![CDATA[
+		*/
+		  ADGEAR.tags.script.init();
+		  ADGEAR.lang.namespace("ADGEAR.site_callbacks");
+		
+		  /*
+		   * Make this return a hash of key/value pairs you would like to have automatically
+		   * sent through to AdGear via the querystring in every impression:
+		   */
+		  ADGEAR.site_callbacks.variables = function() {
+			return { };
+		  }
+		/*
+		]]>
+		*/
+	</script>
+	<script type="text/javascript">
+		/*
+		<![CDATA[
+		*/
+		ADGEAR.tags.data.init();
+		ADGEAR.env.add_load_listener(function() {
+		  ADGEAR.tags.data.embed({ "id": "146", "chip_key": "938716d07904012e47970024e87a30c2" });
+		});
+		/*
+		]]>
+		*/
+	</script>
+	<!-- //End Adgear Code -->
+	
+</head>
+
+<body class="{if segment_1 != ""}page-{segment_1}{if:else}page-home{/if}">
+
+	<div id="wrapper" role="main">
+	
+	
+		

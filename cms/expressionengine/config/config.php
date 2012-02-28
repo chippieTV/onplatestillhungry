@@ -1,4 +1,12 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if ( ! defined('EXT')){
+exit('Invalid file request');
+}
+
+/**
+* THIS FILE WILL NEED PERMISSIONS SET TO 400 OR SIMILAR SO EE DOESN'T OVERWRITE IT.
+*/
 
 /*
 |--------------------------------------------------------------------------
@@ -6,22 +14,113 @@
 |--------------------------------------------------------------------------
 |
 | The following items are for use with ExpressionEngine.  The rest of
-| the config items are for use with CodeIgniter, some of which are not
-| observed by ExpressionEngine, e.g. 'permitted_uri_chars'
+| the config items are for use with CodeIgniter.
 |
 */
 
-$config['app_version'] = '231';
-$config['install_lock'] = "";
+/* Environmental Variables */
+
+switch ( $_SERVER['SERVER_ADDR'] ) {
+    
+    // local
+    case '127.0.0.1' :
+	$db['expressionengine']['hostname'] = "localhost";
+	$db['expressionengine']['username'] = "root";
+	$db['expressionengine']['password'] = "DjaHhPQm";
+	$db['expressionengine']['database'] = "onplatestillhungry";
+    break;
+    
+    // local
+    case '192.168.1.27' :
+	$db['expressionengine']['hostname'] = "localhost";
+	$db['expressionengine']['username'] = "root";
+	$db['expressionengine']['password'] = "DjaHhPQm";
+	$db['expressionengine']['database'] = "onplatestillhungry";
+    break;
+    
+    // staging
+    case '64.207.146.24' :
+	$db['expressionengine']['hostname'] = "localhost";
+	$db['expressionengine']['username'] = "protein";
+	$db['expressionengine']['password'] = "DjaHhPQm";
+	$db['expressionengine']['database'] = "onplatestillhungry";
+    break;
+    
+    // live
+    case '178.79.156.195' :
+	$db['expressionengine']['hostname'] = "localhost";
+	$db['expressionengine']['username'] = "root";
+	$db['expressionengine']['password'] = "DjaHhPQm";
+	$db['expressionengine']['database'] = "onplatestillhungry";
+    break;
+    
+    // live
+    case '64.207.146.23' :
+	$db['expressionengine']['hostname'] = "localhost";
+	$db['expressionengine']['username'] = "admin";
+	$db['expressionengine']['password'] = "DjaHhPQm";
+	$db['expressionengine']['database'] = "onplatestillhungry";
+    break; 
+    
+}
+
+/* Universal Variables */
+
+$config['app_version'] = "231";
 $config['license_number'] = "6583-4300-4415-6333";
-$config['debug'] = '1';
-$config['cp_url'] = "http://local.onplatestillhungry.com/cms.php";
+$config['debug'] = "0";
+$config['install_lock'] = "";
+$config['system_folder'] = "cms";
 $config['doc_url'] = "http://expressionengine.com/user_guide/";
 $config['is_system_on'] = "y";
-$config['allow_extensions'] = 'y';
-$config['site_label'] = 'On Plate Still Hungry';
-$config['cookie_prefix'] = '';
+$config['cookie_prefix'] = "";
+$config['site_name'] = "Protein Network";
+$config['allow_extensions'] = "y";
 
+/* General
+-------------------------------------------------------------------*/
+$config['site_index'] = "";
+$config['site_url'] = "http://".$_SERVER['HTTP_HOST']."/";
+$config['server_path'] = $_SERVER['DOCUMENT_ROOT'];
+$config['cp_url'] = $config['site_url']."".$config['system_folder'];
+
+/* Universal database connection settings
+-------------------------------------------------------------------*/
+$active_group = 'expressionengine';
+$active_record = TRUE;
+$db['expressionengine']['dbdriver'] = "mysql";
+$db['expressionengine']['dbprefix'] = "exp_";
+$db['expressionengine']['pconnect'] = FALSE;
+$db['expressionengine']['swap_pre'] = "exp_";
+$db['expressionengine']['db_debug'] = FALSE;
+$db['expressionengine']['cache_on'] = FALSE;
+$db['expressionengine']['autoinit'] = FALSE;
+$db['expressionengine']['char_set'] = "utf8";
+$db['expressionengine']['dbcollat'] = "utf8_general_ci";
+$db['expressionengine']['cachedir'] = $config['server_path'].$config['system_folder']."/expressionengine/cache/db_cache/";
+
+/* Member directory paths and urls
+-------------------------------------------------------------------*/
+$config['avatar_url'] = $config['site_url']."/images/avatars/";
+$config['avatar_path'] = $config['server_path']."/images/avatars/";
+$config['photo_url'] = $config['site_url']."/images/member_photos/";
+$config['photo_path'] = $config['server_path']."/images/member_photos/";
+$config['sig_img_url'] = $config['site_url']."/images/signature_attachments/";
+$config['sig_img_path'] = $config['server_path']."/images/signature_attachments/";
+$config['prv_msg_upload_path'] = $config['server_path']."/images/pm_attachments/";
+
+/* Misc directory paths and urls
+-------------------------------------------------------------------*/
+$config['theme_folder_url'] = $config['site_url']."/themes/";
+$config['theme_folder_path'] = $config['server_path']."/themes/";
+
+/* Templates Preferences
+-------------------------------------------------------------------*/
+$config['save_tmpl_files'] = "y";
+$config['tmpl_file_basepath'] = $config['server_path']."/cms/expressionengine/templates/";
+$config['site_404'] = "404/index";
+$config['strict_urls'] = "n";
+$config['autosave_interval_seconds'] = '300';
 
 // END EE config items
 
@@ -36,7 +135,7 @@ $config['cookie_prefix'] = '';
 |	http://example.com/
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= $config['site_url']."";
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +165,7 @@ $config['index_page'] = "";
 | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
 |
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol']	= "AUTO";
 
 /*
 |--------------------------------------------------------------------------
@@ -79,7 +178,7 @@ $config['uri_protocol']	= 'AUTO';
 | http://codeigniter.com/user_guide/general/urls.html
 */
 
-$config['url_suffix'] = '';
+$config['url_suffix'] = "";
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +190,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']	= "english";
 
 /*
 |--------------------------------------------------------------------------
@@ -102,7 +201,7 @@ $config['language']	= 'english';
 | that require a character set to be provided.
 |
 */
-$config['charset'] = 'UTF-8';
+$config['charset'] = "UTF-8";
 
 /*
 |--------------------------------------------------------------------------
@@ -113,7 +212,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 
 /*
@@ -128,7 +227,7 @@ $config['enable_hooks'] = FALSE;
 | http://codeigniter.com/user_guide/general/creating_libraries.html
 |
 */
-$config['subclass_prefix'] = 'EE_';
+$config['subclass_prefix'] = "EE_";
 
 
 /*
@@ -148,7 +247,7 @@ $config['subclass_prefix'] = 'EE_';
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 |
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\\-';
+$config['permitted_uri_chars'] = "a-z 0-9~%.:_\-";
 
 
 /*
@@ -174,9 +273,9 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\\-';
 |
 */
 $config['enable_query_strings'] = FALSE;
-$config['directory_trigger'] = 'D';
-$config['controller_trigger'] = 'C';
-$config['function_trigger'] = 'M';
+$config['directory_trigger'] = "D";
+$config['controller_trigger'] = "C";
+$config['function_trigger'] = "M";
 
 /*
 |--------------------------------------------------------------------------
@@ -207,7 +306,7 @@ $config['log_threshold'] = 0;
 | system/logs/ folder.  Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = '';
+$config['log_path'] = "";
 
 /*
 |--------------------------------------------------------------------------
@@ -218,7 +317,7 @@ $config['log_path'] = '';
 | codes to set your own date formatting
 |
 */
-$config['log_date_format'] = 'Y-m-d H:i:s';
+$config['log_date_format'] = "Y-m-d H:i:s";
 
 /*
 |--------------------------------------------------------------------------
@@ -229,7 +328,7 @@ $config['log_date_format'] = 'Y-m-d H:i:s';
 | system/cache/ folder.  Use a full server path with trailing slash.
 |
 */
-$config['cache_path'] = '';
+$config['cache_path'] = "";
 
 /*
 |--------------------------------------------------------------------------
@@ -240,7 +339,7 @@ $config['cache_path'] = '';
 | enabled you MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = "";
 
 /*
 |--------------------------------------------------------------------------
@@ -295,7 +394,7 @@ $config['compress_output'] = FALSE;
 | regarding date handling.
 |
 */
-$config['time_reference'] = 'local';
+$config['time_reference'] = "local";
 
 
 /*
@@ -327,3 +426,16 @@ $config['proxy_ips'] = "";
 
 /* End of file config.php */
 /* Location: ./system/expressionengine/config/config.php */
+
+
+/*
+|--------------------------------------------------------------------------
+| TCPDF Library
+|--------------------------------------------------------------------------
+|
+| Used to create dynamic PDFs
+|
+*/
+$config['eei_tcpdf_lib_path'] = $config['server_path']."/includes/tcpdf"; // NO TRAILING SLASH
+
+?>

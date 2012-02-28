@@ -1,1 +1,5 @@
-<link href="{site_url}css/main.css" media="all" rel="stylesheet" type="text/css" />
+{exp:minimee:css}
+
+	<link rel="stylesheet" media="screen" href="/css/main.css" type="text/css" />
+
+{/exp:minimee:css}

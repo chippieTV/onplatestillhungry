@@ -15,20 +15,23 @@
  * Custom Exceptions for the CloudFiles API
  * @package php-cloudfiles-exceptions
  */
-class SyntaxException extends Exception { }
-class AuthenticationException extends Exception { }
-class InvalidResponseException extends Exception { }
-class NonEmptyContainerException extends Exception { }
-class NoSuchObjectException extends Exception { }
-class NoSuchContainerException extends Exception { }
-class NoSuchAccountException extends Exception { }
-class MisMatchedChecksumException extends Exception { }
-class IOException extends Exception { }
-class CDNNotEnabledException extends Exception { }
-class BadContentTypeException extends Exception { }
-class InvalidUTF8Exception extends Exception { }
-class ConnectionNotOpenException extends Exception { }
 
+if (class_exists('SyntaxException') == FALSE)
+{
+	class SyntaxException extends Exception { }
+	class AuthenticationException extends Exception { }
+	class InvalidResponseException extends Exception { }
+	class NonEmptyContainerException extends Exception { }
+	class NoSuchObjectException extends Exception { }
+	class NoSuchContainerException extends Exception { }
+	class NoSuchAccountException extends Exception { }
+	class MisMatchedChecksumException extends Exception { }
+	class IOException extends Exception { }
+	class CDNNotEnabledException extends Exception { }
+	class BadContentTypeException extends Exception { }
+	class InvalidUTF8Exception extends Exception { }
+	class ConnectionNotOpenException extends Exception { }
+}
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /*
@@ -38,4 +41,3 @@ class ConnectionNotOpenException extends Exception { }
  * c-hanging-comment-ender-p: nil
  * End:
  */
-?>
