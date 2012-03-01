@@ -445,5 +445,14 @@ $config['ce_image_remote_cache_time'] = 1440;
 $config['ce_image_quality'] = 90;
 // END CE Image basic config items
 
+/*
+| By default, CE Image uses the EE instalation's root folder as the base
+| path for CE Image. All relative paths and references will build off of
+| this path's value. This setting allows you to override the default, and
+| can also be overridden in the global_array in your index.php file.
+*/
+$config['ce_image_document_root'] = '/var/www/vhosts/prote.in/dev.onplatestillhungry.com/';
+
+
 
 ?>
