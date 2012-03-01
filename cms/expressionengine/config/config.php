@@ -29,39 +29,15 @@ switch ( $_SERVER['SERVER_ADDR'] ) {
 	$db['expressionengine']['password'] = "DjaHhPQm";
 	$db['expressionengine']['database'] = "onplatestillhungry";
     break;
-    
-    // local
-    case '192.168.1.27' :
-	$db['expressionengine']['hostname'] = "localhost";
-	$db['expressionengine']['username'] = "root";
-	$db['expressionengine']['password'] = "DjaHhPQm";
-	$db['expressionengine']['database'] = "onplatestillhungry";
-    break;
-    
+
     // staging
     case '64.207.146.24' :
-	$db['expressionengine']['hostname'] = "localhost";
-	$db['expressionengine']['username'] = "protein";
-	$db['expressionengine']['password'] = "DjaHhPQm";
-	$db['expressionengine']['database'] = "onplatestillhungry";
-    break;
-    
-    // live
-    case '178.79.156.195' :
-	$db['expressionengine']['hostname'] = "localhost";
-	$db['expressionengine']['username'] = "root";
-	$db['expressionengine']['password'] = "DjaHhPQm";
-	$db['expressionengine']['database'] = "onplatestillhungry";
-    break;
-    
-    // live
-    case '64.207.146.23' :
 	$db['expressionengine']['hostname'] = "localhost";
 	$db['expressionengine']['username'] = "admin";
 	$db['expressionengine']['password'] = "DjaHhPQm";
 	$db['expressionengine']['database'] = "onplatestillhungry";
-    break; 
-    
+    break;
+      
 }
 
 /* Universal Variables */
