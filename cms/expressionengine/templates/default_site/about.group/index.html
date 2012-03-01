@@ -1,0 +1,68 @@
+{embed="common/head"}
+
+	<!-- SEO Stuff -->
+	<meta name="title" content="About | On Plate, Still Hungry" />
+	<meta name="description" content="some text here" /> 
+	<meta name="author" content="On Plate, Still Hungry" />
+	<!-- //End SEO Stuff -->
+	
+	<!-- Facebook O:G Data -->
+	<meta property="og:url" content="{site_url}/travel" />
+	<meta property="og:site_name" content="On Plate, Still Hungry"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="{site_url}images/logo.png" />
+	<meta property="og:title" content="About | On Plate, Still Hungry;" />
+	<meta property="og:description" content="some text here" />
+	<!-- //End Facebook O:G Data -->
+		
+	<title>About | On Plate, Still Hungry</title> 
+		
+{embed="common/header"}
+
+		<!-- Navigation -->
+		
+		{embed="common/navigation"}
+		
+		<!-- //End of Navigation -->
+		
+		<!-- Branding -->
+		
+		{embed="common/branding"}
+		
+		<!-- //End of Branding -->
+	
+		<!-- Page Title -->
+		
+		<div id="page-title" class="container_12 block">
+				
+				<h1 id="post-title">About</h1>
+		
+		</div>
+		
+		<!-- //End of Post Title -->
+
+		<!-- Post Section -->
+		
+		<section id="categories" class="container_12 block white">
+		
+			{exp:channel:entries channel="static_page" url_title="about" limit="1"}
+		
+			<!-- Invidual Page -->
+				
+				<p>{text_body}</p>
+					
+			<!-- //End Invidual Page -->
+				
+			{/exp:channel:entries}		
+
+			<div class="clear"></div>
+		
+		</section>
+		
+		<!-- //End of Related Items -->
+
+<!-- Filter -->
+		
+{embed="common/footer"}
+		
+<!-- //End of Filter -->	

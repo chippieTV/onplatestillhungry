@@ -1,0 +1,109 @@
+{embed="common/head"}
+
+	<!-- SEO Stuff -->
+	<meta name="title" content="Drink | On Plate, Still Hungry" />
+	<meta name="description" content="some text here" /> 
+	<meta name="author" content="On Plate, Still Hungry" />
+	<!-- //End SEO Stuff -->
+	
+	<!-- Facebook O:G Data -->
+	<meta property="og:url" content="{site_url}/drink" />
+	<meta property="og:site_name" content="On Plate, Still Hungry"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="{site_url}images/logo.png" />
+	<meta property="og:title" content="Drink | On Plate, Still Hungry;" />
+	<meta property="og:description" content="some text here" />
+	<!-- //End Facebook O:G Data -->
+		
+	<title>Drink | On Plate, Still Hungry</title> 
+		
+{embed="common/header"}
+
+		<!-- Navigation -->
+		
+		{embed="common/navigation"}
+		
+		<!-- //End of Navigation -->
+		
+		<!-- Branding -->
+		
+		{embed="common/branding"}
+		
+		<!-- //End of Branding -->
+	
+		<!-- Page Title -->
+		
+		<div id="page-title" class="container_12 block">
+				
+				<h1 id="post-title">drink</h1>
+		
+		</div>
+		
+		<!-- //End of Post Title -->
+
+		<!-- Post Section -->
+		
+		<section id="categories" class="container_12 block white">
+		
+			{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" category="2" paginate="bottom"}
+		
+			<!-- Invidual Post -->
+				
+				<article class="grid_4 margin-right{switch="|| last"}">
+				
+					{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
+					
+							<a href="{path="post/{url_title}"}">
+								
+								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+							
+							</a>
+					
+					{/exp:ce_img:pair}
+			
+				
+					<h3>
+					
+						<a href="{path="post/{url_title}"}">
+					
+						{exp:eehive_hacksaw characters = "80" }				
+						
+							{title}
+						
+						{/exp:eehive_hacksaw}
+						
+						</a>
+						
+					</h3>
+				
+					<p class="date"><strong>{column_name} - {author}</strong></p>
+					
+					<p class="date"><strong>{date_format}</strong></p>
+					
+					<p>
+					
+						{exp:eehive_hacksaw words = "20" append="..."}				
+						
+							{text_body}
+						
+						{/exp:eehive_hacksaw}
+							
+					</p>
+					
+					<div class="clear"></div>
+									
+				</article>
+				
+				<!-- //End of Invidual Post -->	
+				
+				{/exp:channel:entries}		
+		
+		</section>
+		
+		<!-- //End of Related Items -->
+
+<!-- Filter -->
+		
+{embed="common/footer"}
+		
+<!-- //End of Filter -->	

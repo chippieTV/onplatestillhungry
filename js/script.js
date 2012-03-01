@@ -1,6 +1,7 @@
 $(document).ready(function() 
 {
 	
+	
 	/* Homepage Image fit screen
 	-------------------------------------------------------------- */
 	$('#todays-post').css('width', $(window).width()+'px').css('height', $(window).height()+'px');
@@ -49,10 +50,10 @@ $(document).ready(function()
     -------------------------------------------------------------- */
 	// infinitescroll() is called on the element that
     // surrounds the items you will be loading more of
-    $('.scroll').infinitescroll({
+    $('#categories').infinitescroll({
         navSelector : ".navigation",
         nextSelector : "a.next",
-        itemSelector : ".item",
+        itemSelector : "article",
         loadingImg : "/images/loader.gif",
         bufferPx : 100   
     });  

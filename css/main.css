@@ -51,8 +51,8 @@ body, button, input, select, textarea { font-family: sans-serif; }
    ========================================================================== */
 
 a { color: #000; text-decoration: none;}
-a:visited { color: #551a8b; }
-a:hover { color: #06e; }
+a:visited { color: #000; }
+a:hover { color: #000; }
 a:focus { outline: none; }
 
 /* Improve readability when focused and hovered in all browsers: h5bp.com/h */
@@ -273,6 +273,10 @@ td { vertical-align: top; }
 
 .clear {
 	clear: both;
+}
+
+.last {
+	margin-right: 0px !important;
 }
 
 /* ==========================================================================
@@ -510,7 +514,6 @@ footer, #footer {
 	margin-bottom: 20px;
 }
 
-
 .col {
 	float: left;
 }
@@ -547,6 +550,7 @@ footer, #footer {
 
 #articles {
 	background: #FFF;
+	overflow: hidden; 
 }
 
 #articles article {
@@ -677,7 +681,7 @@ footer, #footer {
   position: absolute;
   clip: rect(1px 111px 16px 97px);
   bottom: 0;
-  right: -135px;
+  right: -100px;
   height: 15px;
   border: 1px solid #000;
 }
@@ -731,6 +735,28 @@ ul.carousel li {
 	background: url(../images/assets.png) no-repeat -70px 0px !important;
 }
 
+
+/* ==========================================================================
+   Category Pages
+   ========================================================================== */
+
+#categories, #main {
+	overflow: hidden;
+}
+
+#categories article {
+	border-bottom: 1px solid #E7E8E9;
+	margin-bottom: 20px;
+	min-height: 325px;
+}
+
+.margin-right {
+	margin-right: 20px;
+}
+
+#categories article img {
+	margin-bottom: 10px;
+}
 
 
 /* ==|== non-semantic helper classes ========================================
