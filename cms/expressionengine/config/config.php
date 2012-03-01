@@ -414,4 +414,36 @@ $config['proxy_ips'] = "";
 */
 $config['eei_tcpdf_lib_path'] = $config['server_path']."/includes/tcpdf"; // NO TRAILING SLASH
 
+/*
+|--------------------------------------------------------------------------
+| CE Image Basic Config Items
+|--------------------------------------------------------------------------
+|
+| The following items are for use with CE Image. They are all optional,
+| as the defaults in the actual plugin will be used if not specified below.
+*/
+/*
+| The *relative path* (to your web root) of the directory to cache images in.
+| This path will override the $cache_dir variable in the plugin file,
+| and can optionally be overridden via the cache_dir= plugin parameter.
+*/
+$config['ce_image_cache_dir'] = '/images/made/';
+/*
+| The ce_image_memory_limit sets the amount of memory (in megabytes) PHP can
+| use for the script (64 is generally sufficient).
+*/
+$config['ce_image_memory_limit'] = 64;
+/*
+| If the plugin cannot determine the last change date of a remote image,
+| wait this long (in minutes) before re-downloading the image:
+*/
+$config['ce_image_remote_cache_time'] = 1440;
+/*
+| The default quality to save a jpg/jpeg file. The quality can range from
+| 0 (lowest) to 100 (highest) and should be a whole number.
+*/
+$config['ce_image_quality'] = 90;
+// END CE Image basic config items
+
+
 ?>
