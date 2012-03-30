@@ -1,4 +1,5 @@
-{exp:minimee:js}	
+{exp:minimee:js}
+
 	<script type="text/javascript" src="/js/mylibs/jquery.cycle.all.min.js"></script>
 	<script type="text/javascript" src="/js/mylibs/jquery.infinitescroll.js"></script>
 	<script type="text/javascript" src="/js/mylibs/jquery.scrollTo-1.4.2-min.js"></script>

@@ -22,12 +22,14 @@
 
 		<!-- Todays Post with Full Screen Image -->
 		
-		<section id="todays-post">
-		
 		{exp:channel:entries channel="NOT static_page" limit="1" dynamic="no" orderby="entry_date" }
 		
-			<img src="{image}" alt="{title}" />
-			
+		<section id="todays-post" 
+			style="background: url({image}) no-repeat center center fixed; 
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.{image}', sizingMethod='scale');
+			-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{image}', sizingMethod='scale')";">
+		
+
 			<!-- Scroll Down Button -->
 			
 			<div id="scroll-down">
@@ -42,32 +44,7 @@
 			
 			
 			{embed="common/branding"}
-			
-			<div id="main-post-share">
-
-				<!-- Social Share Icons -->
-
-				<div class="share">
-				
-					<ul>
 					
-						<li>Share Post:</li>
-						
-						<li><a href="http://{member_facebook}">Facebook</a></li>
-						
-						<li><a href="http://{member_twitter}">Twitter</a></li>
-						
-						<li><a href="http://{member_google}">Google+</a></li>
-					
-					</ul>
-				
-				</div>
-	
-				<!-- //End Social Share Icons -->
-			
-			</div>
-			
-			
 			
 			<div id="main-post-title">
 			
@@ -195,11 +172,7 @@
 						
 						<!-- Hidden by default -->
 						
-						<div class="back">
-						
-							{embed="common/share"}
-
-						</div>
+						<div class="back"></div>
 						
 						<!-- //End Hidden by default -->					
 					

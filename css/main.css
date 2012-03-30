@@ -213,7 +213,7 @@ td { vertical-align: top; }
    
    
    h1, h3, h3, h4 {
-   		font-family: Arial, helvetica, sans;
+   		font-family: "Pontano Sans", Arial, helvetica, sans;
    		color: #000;
    }
    
@@ -411,7 +411,7 @@ footer, #footer {
 
 #filter {
 	clear: both;
-	margin-top: 10px;
+	margin-top: 15px;
 	margin-bottom: 10px;
 	background: #FFF;
 }
@@ -449,14 +449,10 @@ footer, #footer {
 
 #todays-post {
 	position: relative;
-	min-height: 700px;
-}
-
-#todays-post img {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	z-index: -10;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 #scroll-down {

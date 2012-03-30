@@ -17,8 +17,14 @@ $(document).ready(function()
 	var top = $('#navigation').offset().top;
     $(window).scroll(function (event) {
       var y = $(this).scrollTop();
-      if (y >= top) { $('#navigation').addClass('fixed'); }
-      else { $('#navigation').removeClass('fixed'); }
+      if (y >= top) { 
+      	$('#navigation').addClass('fixed'); 
+      	$('#filter').css('margin-top', '55px');
+      }
+      else { 
+      	$('#navigation').removeClass('fixed');
+      	$('#filter').css('margin-top', '15px'); 
+      }
 	});
 	
 	
