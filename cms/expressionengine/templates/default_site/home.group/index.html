@@ -19,19 +19,17 @@
 		
 {embed="common/header"}
 
+	
+		
+
+
 
 		<!-- Todays Post with Full Screen Image -->
+		<section id="todays-post">
 		
-		{exp:channel:entries channel="NOT static_page" limit="1" dynamic="no" orderby="entry_date" }
 		
-		<section id="todays-post" 
-			style="background: url({image}) no-repeat center center fixed; 
-			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.{image}', sizingMethod='scale');
-			-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{image}', sizingMethod='scale')";">
-		
-
 			<!-- Scroll Down Button -->
-			
+				
 			<div id="scroll-down">
 			
 				<a href="#navigation">Scroll Down</a>
@@ -44,50 +42,55 @@
 			
 			
 			{embed="common/branding"}
+		
+		
+			<!-- Get items -->
+		
+			<ul id="carousel" class="no-bullets">
+			
+				{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" orderby="entry_date"  }
+				
+					<li style="background-image: url({image}); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.{image}', sizingMethod='scale'); -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{image}', sizingMethod='scale')";" >
+				
+						<div class="post-title-wrapper">
+						
+							<!-- Link to Previous Day -->
+
+							<a href="#" class="previous"><?php echo date("Y-m-d", mktime(0, 0, 0, date("m"),date("d")-1,date("Y"))); ?></a>
+							
+							<!-- //End of Link to Previous Day -->
+							
+							<!-- Current Day -->
+							
+							<div class="post-title">
+							
+								<h1><a href="{path="post/{url_title}"}">{title}</a></h1>
+								
+								<p>{date_format} - {column_name} - {author}</p>
+								
+							</div>
+							
+							<!-- //End of Current Day -->
+							
+							<!-- Link to Next Day -->
+							
+							<a href="#" class="next"><?php echo date("Y-m-d", mktime(0, 0, 0, date("m"),date("d")+1,date("Y"))); ?></a>
+
+							<!-- //End Link to Previous Day -->
+						
+						</div>
 					
+					</li>
+				
+				{/exp:channel:entries}
 			
-			<div id="main-post-title">
+			</ul>
 			
-				<div class="col medium left">&nbsp;</div>
-			
-				<!-- Link to Previous Day -->
-				
-				<div class="col small left">
-				
-					<a href="#">Previous</a>
-				
-				</div>
-				
-				<!-- //End of Link to Previous Day -->
-				
-				<!-- Current Day -->
-				
-				<div class="col large center">
-				
-					<h1><a href="{path="post/{url_title}"}">{title}</a></h1>
-					
-					<p>{date_format} - {column_name} - {author}</p>
-					
-				</div>
-				
-				<div class="col medium right">&nbsp;</div>
-				
-				<!-- //End of Current Day -->
-				
-				<!-- Link to Next Day -->
-				<div class="col small right">
-				
-					<a href="#">next</a>
-				
-				</div>
-				<!-- //End Link to Previous Day -->
-			
-			</div>
-			
-		{/exp:channel:entries}
+			<!-- //End Get items -->
+
 		
 		</section>
-		
+
 		<!--  //End of Todays Post with Full Screen Image -->
 		
 		<!-- Navigation -->

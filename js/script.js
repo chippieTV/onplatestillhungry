@@ -4,7 +4,7 @@ $(document).ready(function()
 	
 	/* Homepage Image fit screen
 	-------------------------------------------------------------- */
-	$('#todays-post').css('width', $(window).width()+'px').css('height', $(window).height()+'px');
+	$('#todays-post, #carousel, #carousel li').css('width', $(window).width()+'px').css('height', $(window).height()+'px');
 	
 	
 	/* ScrollTo
@@ -19,7 +19,7 @@ $(document).ready(function()
       var y = $(this).scrollTop();
       if (y >= top) { 
       	$('#navigation').addClass('fixed'); 
-      	$('#filter').css('margin-top', '55px');
+      	$('#filter').css('margin-top', '52px');
       }
       else { 
       	$('#navigation').removeClass('fixed');
@@ -28,7 +28,7 @@ $(document).ready(function()
 	});
 	
 	
-	/* Homepage Image fit screen
+	/* Homepage Image rollover
 	-------------------------------------------------------------- */
 	$('.back').hover(
 		function(){
@@ -38,6 +38,18 @@ $(document).ready(function()
 			$(this).stop(true, false).animate({ opacity: 0 });
 		}
 	);
+	
+	
+	/* Homepage Carousel
+	-------------------------------------------------------------- */
+	$('#carousel') 
+	.cycle({ 
+	    fx:     'scrollHorz', 
+	    speed:  'slow', 
+	    timeout: 0, 
+	    next: '.next',
+	    prev: '.previous' 
+	});
 	
 	
 	/* Carousel
@@ -68,5 +80,5 @@ $(document).ready(function()
 });
 
 $(window).resize(function() {
-  $('#todays-post').css('width', $(window).width()+'px').css('height', $(window).height()+'px');
+  $('#todays-post, #carousel, #carousel li').css('width', $(window).width()+'px').css('height', $(window).height()+'px');
 });
