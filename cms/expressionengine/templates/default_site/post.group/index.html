@@ -41,15 +41,16 @@
 		
 		<div id="page-title" class="container_12 block">
 		
-				<!-- Link to Previous Day -->
+				<!-- Link to Next Day -->
 				
-				{exp:channel:prev_entry}
+				{exp:channel:next_entry}
 				    
-				    <a href="{path='post/{url_title}'}" class="previous">{title}</a>
+				    <a href="{path='post/{url_title}'}" class="next">{title}</a>
 				
-				{/exp:channel:prev_entry}
-
+				{/exp:channel:next_entry}
+				
 				<!-- //End of Link to Previous Day -->
+				
 				
 				<h1 id="post-title">
 							
@@ -63,14 +64,16 @@
 				
 				<p class="date"><strong>{date_format} - {column_name} - {author}</strong></p>
 
-				<!-- Link to Next Day -->
 				
-				{exp:channel:next_entry}
+				
+				<!-- Link to Previous Day -->
+				
+				{exp:channel:prev_entry}
 				    
-				    <a href="{path='post/{url_title}'}" class="next">{title}</a>
+				    <a href="{path='post/{url_title}'}" class="previous">{title}</a>
 				
-				{/exp:channel:next_entry}
-				
+				{/exp:channel:prev_entry}
+
 				<!-- //End of Link to Previous Day -->
 						
 		</div>

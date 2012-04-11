@@ -17,16 +17,10 @@
 		
 	<title>Welcome | On Plate, Still Hungry</title> 
 		
-{embed="common/header"}
-
-	
-		
-
-
+	{embed="common/header"}
 
 		<!-- Todays Post with Full Screen Image -->
 		<section id="todays-post">
-		
 		
 			<!-- Scroll Down Button -->
 				
@@ -40,25 +34,34 @@
 			
 			<!-- //End of Scroll Down Button -->
 			
-			
 			{embed="common/branding"}
-		
 		
 			<!-- Get items -->
 		
 			<ul id="carousel" class="no-bullets">
 			
-				{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" orderby="entry_date"  }
+				{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" }
 				
 					<li style="background-image: url({image}); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.{image}', sizingMethod='scale'); -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{image}', sizingMethod='scale')";" >
 				
 						<div class="post-title-wrapper">
 						
-							<!-- Link to Previous Day -->
-
-							<a href="#" class="previous"><?php echo date("Y-m-d", mktime(0, 0, 0, date("m"),date("d")-1,date("Y"))); ?></a>
+							{if count == "1"}
 							
-							<!-- //End of Link to Previous Day -->
+							{if:else}
+							
+								<!-- Link to Next Day -->
+								
+								{exp:sm_links type="next" entry_id="{entry_id}" channel="NOT static_page"}
+									<a href="#" class="next">{l_title}</a>
+								{/exp:sm_links}
+								
+								<!-- //End Link to Previous Day -->
+							
+							{/if}
+
+							
+							
 							
 							<!-- Current Day -->
 							
@@ -71,13 +74,21 @@
 							</div>
 							
 							<!-- //End of Current Day -->
-							
-							<!-- Link to Next Day -->
-							
-							<a href="#" class="next"><?php echo date("Y-m-d", mktime(0, 0, 0, date("m"),date("d")+1,date("Y"))); ?></a>
-
-							<!-- //End Link to Previous Day -->
 						
+							{if count == "5"}
+							
+							{if:else}
+							
+								<!-- Link to Previous Day -->
+	
+								{exp:sm_links type="previous" entry_id="{entry_id}" channel="NOT static_page"}
+									<a href="#" class="previous">{l_title}</a>
+								{/exp:sm_links}
+	
+								<!-- //End of Link to Previous Day -->
+							
+							{/if}
+							
 						</div>
 					
 					</li>
@@ -87,7 +98,6 @@
 			</ul>
 			
 			<!-- //End Get items -->
-
 		
 		</section>
 
@@ -113,7 +123,7 @@
 			
 			<div class="grid_8">
 			
-			{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" orderby="entry_date" offset="1" paginate="bottom"}
+			{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" orderby="entry_date" paginate="bottom"}
 			
 				<!-- Invidual Post -->
 				
@@ -163,11 +173,15 @@
 						
 						<div class="front">
 						
-							{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
-						
-								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
-						
-							{/exp:ce_img:pair}
+							<a href="{path="post/{url_title}"}">
+							
+								{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
+							
+									<img src="{made}" alt="{title}" />
+							
+								{/exp:ce_img:pair}
+							
+							</a>
 
 						</div>
 						
@@ -175,7 +189,9 @@
 						
 						<!-- Hidden by default -->
 						
-						<div class="back"></div>
+						<div class="back {categories limit="1"}{category_url_title}{/categories}">
+							<a href="{path="post/{url_title}"}"></a>
+						</div>
 						
 						<!-- //End Hidden by default -->					
 					
@@ -197,7 +213,7 @@
 			
 			<!-- Right Column -->
 			
-			<aside id="right-col">
+			<aside class="right-col">
 			
 				<div class="grid_4">
 				

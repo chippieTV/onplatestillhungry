@@ -375,6 +375,7 @@
    ========================================================================== */
 
 	#navigation {
+		position: relative;
 		width: 100%;
 		background: #000;
 		border-top: 1px solid #222;
@@ -383,11 +384,16 @@
 		-o-box-shadow: 		0 0 3px #000;
 		box-shadow: 		0 0 3px #000;
 	}
-	
+
 	#navigation.fixed {
 		position: fixed;
 		top: 0px;
 		z-index: 99;
+	}
+	
+	#primary-navigation {
+		float: left;
+		width: 460px;
 	}
 	
 	#primary-navigation a, #category-navigation a, #category-navigation-title {
@@ -398,9 +404,7 @@
 	#category-navigation-title {
 		float: left;
 		font-weight: normal;
-		margin: 0px;
 	}
-	
 	
 	.active, #primary-navigation a:hover, #category-navigation a:hover {
 		color: #FFF !important;
@@ -411,6 +415,21 @@
 		height: 10px;
 		width: 10px;
 		background: url(../images/assets.png) no-repeat -71px 7px;
+	}
+	
+	#category-navigation {
+		float: right;
+		width: 300px;
+	}
+	
+	#up a {
+		float: left;
+		margin: 0 auto;
+		width: 15px;
+		height: 10px;
+		margin-top: 5px;
+		background: url(../images/assets.png) no-repeat -77px -1px;
+		text-indent: -9999px;
 	}
 
 /* ==========================================================================
@@ -446,6 +465,18 @@
 		margin-top: 15px;
 		margin-bottom: 10px;
 		background: #FFF;
+	}
+	
+	#tags {
+		padding: 30px 0px 10px 0px;
+	}
+	
+	#tags ul li a {
+		color: #595A5C;
+	}
+	
+	#tags ul li a:hover {
+		color: #000;
 	}
 
 
@@ -529,6 +560,7 @@
 		width: 100%;
 		height: 85px;
 		background: #000;
+		padding-bottom: 15px;
 		bottom: 0px;
 		z-index: 10;
 	}
@@ -536,7 +568,7 @@
 	.post-title {
 		position: relative;
 		text-align: center;
-		width: 50%;
+		width: 30%;
 		margin: 0 auto;
 	}
 	
@@ -573,7 +605,7 @@
 	
 	.post-title-wrapper .previous:before, .post-title-wrapper .previous img {
 	  	clip: rect(1px 32px 16px 15px);
-	  	left: -20px
+	  	left: -20px;
 	}
 		
 	#articles {
@@ -610,26 +642,42 @@
 	}
 	
 	.back {
-		background: rgba(255,255,255, 0.75) url(../images/assets.png) no-repeat 95px -212px;
 		width: 300px;
 		height: 163px;
 		opacity: 0;
 	}
 	
-	.back .share {
-		position: absolute;
-		bottom: 10px;
-		width: 300px;
+	.back a {
+		display: block;
+		height: 100%;
+		width: 100%;
+	}
+
+	
+	.back.travel {
+		background: rgba(255,255,255, 0.75) url(../images/assets.png) no-repeat 101px -212px;
+	}
+
+	.back.food {
+		background: rgba(255,255,255, 0.75) url(../images/assets.png) no-repeat 101px -523px;
+	}
+	
+	.back.drink {
+		background: rgba(255,255,255, 0.75) url(../images/assets.png) no-repeat 101px -1175px;
 	}
 
 /* ==========================================================================
    Right Col
    ========================================================================== */
 
-	#right-col {
+	.right-col {
 		margin-left: 20px;
 		float: right;
 		width: 300px;
+	}
+	
+	.connect {
+		margin-bottom: 15px;
 	}
 	
 	.connect ul {

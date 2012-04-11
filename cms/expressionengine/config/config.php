@@ -451,7 +451,7 @@ $config['ce_image_quality'] = 90;
 | this path's value. This setting allows you to override the default, and
 | can also be overridden in the global_array in your index.php file.
 */
-$config['ce_image_document_root'] = '/var/www/vhosts/prote.in/dev.onplatestillhungry.com/';
+#$config['ce_image_document_root'] = '/var/www/vhosts/prote.in/local.onplatestillhungry.com/uploads/images/';
 
 
 

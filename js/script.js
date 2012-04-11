@@ -19,7 +19,7 @@ $(document).ready(function()
       var y = $(this).scrollTop();
       if (y >= top) { 
       	$('#navigation').addClass('fixed'); 
-      	$('#filter').css('margin-top', '52px');
+      	$('#filter').css('margin-top', '58px');
       }
       else { 
       	$('#navigation').removeClass('fixed');
@@ -47,8 +47,10 @@ $(document).ready(function()
 	    fx:     'scrollHorz', 
 	    speed:  'slow', 
 	    timeout: 0, 
-	    next: '.next',
-	    prev: '.previous' 
+	    rev:	1,
+	    nowrap: 1,
+	    next: '.previous',
+	    prev: '.next' 
 	});
 	
 	
@@ -60,6 +62,13 @@ $(document).ready(function()
 	    speed:  'fast', 
 	    timeout: 0, 
 	    pager:  '.carousel-navigation' 
+	});
+	
+	
+	/* Filter Expandables
+	-------------------------------------------------------------- */
+	$('.expand').click(function() {
+		$("#tags").slideToggle();
 	});
 	
 
