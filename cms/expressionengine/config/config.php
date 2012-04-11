@@ -23,10 +23,20 @@ exit('Invalid file request');
 switch ( $_SERVER['SERVER_ADDR'] ) {
     
     // local
-    case '127.0.0.1' :
+    /*
+case '127.0.0.1' :
 	$db['expressionengine']['hostname'] = "localhost";
 	$db['expressionengine']['username'] = "root";
 	$db['expressionengine']['password'] = "DjaHhPQm";
+	$db['expressionengine']['database'] = "onplatestillhungry";
+    break;
+*/
+    
+     // local
+    case '127.0.0.1' :
+	$db['expressionengine']['hostname'] = "localhost";
+	$db['expressionengine']['username'] = "root";
+	$db['expressionengine']['password'] = "root";
 	$db['expressionengine']['database'] = "onplatestillhungry";
     break;
 

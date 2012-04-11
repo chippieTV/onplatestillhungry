@@ -59,15 +59,12 @@
 								<!-- //End Link to Previous Day -->
 							
 							{/if}
-
-							
-							
 							
 							<!-- Current Day -->
 							
 							<div class="post-title">
 							
-								<h1><a href="{path="post/{url_title}"}">{title}</a></h1>
+								<h1><a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">{title}</a></h1>
 								
 								<p>{date_format} - {column_name} - {author}</p>
 								
@@ -135,7 +132,7 @@
 					
 						<h3>
 						
-							<a href="{path="post/{url_title}"}">
+							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
 						
 							{exp:eehive_hacksaw characters = "80" }				
 							
@@ -173,7 +170,7 @@
 						
 						<div class="front">
 						
-							<a href="{path="post/{url_title}"}">
+							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
 							
 								{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
 							
@@ -190,7 +187,9 @@
 						<!-- Hidden by default -->
 						
 						<div class="back {categories limit="1"}{category_url_title}{/categories}">
-							<a href="{path="post/{url_title}"}"></a>
+							
+							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}"></a>
+						
 						</div>
 						
 						<!-- //End Hidden by default -->					

@@ -298,7 +298,6 @@
 	  	height: 15px;
 	}
 	
-	
 	.white {
 		background: #FFF;
 	}
@@ -655,7 +654,7 @@
 
 	
 	.back.travel {
-		background: rgba(255,255,255, 0.75) url(../images/assets.png) no-repeat 101px -212px;
+		background: rgba(255,255,255, 0.75) url(../images/assets.png) no-repeat 101px -1172px;
 	}
 
 	.back.food {
@@ -663,7 +662,7 @@
 	}
 	
 	.back.drink {
-		background: rgba(255,255,255, 0.75) url(../images/assets.png) no-repeat 101px -1175px;
+		background: rgba(255,255,255, 0.75) url(../images/assets.png) no-repeat 101px -852px;
 	}
 
 /* ==========================================================================
@@ -715,7 +714,7 @@
 		text-align: center;
 	}
 	
-	#post-title,  {
+	#post-title  {
 		padding: 0px;
 		margin: 0px;
 		line-height: 1.8;
@@ -731,6 +730,28 @@
 		padding: 20px 60px;
 	}
 	
+	#page-title .next {
+		right: 0;
+	}
+	
+	#page-title .previous {
+		left: 0;
+	}
+	
+	#page-title .next:hover, #page-title .previous:hover {
+		color: #666;
+	}
+	
+	#page-title .next:before, #page-title .next img {
+	  	clip: rect(1px 47px 16px 34px);
+	  	right: -310px;
+	}
+	
+	#page-title .previous:before, #page-title .previous img {
+	  	clip: rect(1px 32px 16px 15px);
+	  	left: -20px;
+	}
+
 	.divide {
 		width: 100%;
 		border-bottom: 2px solid #E7E8E9;
@@ -791,6 +812,11 @@
 	
 	#categories article img {
 		margin-bottom: 10px;
+	}
+	
+	.details {
+		position: relative;
+		top: 190px;
 	}
 
 

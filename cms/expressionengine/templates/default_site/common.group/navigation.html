@@ -8,7 +8,7 @@
 	
 			<nav id="primary-navigation">
 	
-				<a href="{path="home"}" {if segment_1 == ""}class="active" {/if}>Home</a>
+				<a href="/" {if segment_1 == ""}class="active" {/if}>Home</a>
 	
 				<a href="{path="contributors"}" {if segment_1 == "contributors" || segment_1 == "post"}class="active" {/if}>Columns &amp; Contributors</a>
 	
@@ -22,11 +22,15 @@
 	
 			<!-- //End Primary Navigation Bar -->
 			
-			<div id="up">
+			{if segment_1 == ""}
 			
-				<a href="#todays-post">Top</a>
+				<div id="up">
+				
+					<a href="#todays-post">Top</a>
+				
+				</div>
 			
-			</div>
+			{/if}
 			
 	
 			<!-- Primary Navigation Bar -->
@@ -41,7 +45,7 @@
 	
 				<a href="{path="drink"}" {if segment_1 == "drink"}class="active" {/if}>Drink</a>
 	
-				<a href="{path="travel"}" class="{if segment_2 == "travel"}active {/if}last">Travel</a>
+				<a href="{path="travel"}" class="{if segment_1 == "travel"}active {/if}last">Travel</a>
 	
 			</nav>
 	

@@ -56,12 +56,18 @@ $(document).ready(function()
 	
 	/* Carousel
 	-------------------------------------------------------------- */
-	$('.carousel') 
+	$('#related-carousel') 
 	.cycle({ 
 	    fx:     'fade', 
 	    speed:  'fast', 
-	    timeout: 0, 
-	    pager:  '.carousel-navigation' 
+	    pager:  '#relatedcarousel-navigation' 
+	});
+	
+	$('#contributor-carousel') 
+	.cycle({ 
+	    fx:     'fade', 
+	    speed:  'fast', 
+	    pager:  '#contributorcarousel-navigation' 
 	});
 	
 	

@@ -35,44 +35,31 @@
 		
 		<!-- //End of Branding -->
 		
-		{exp:channel:entries channel="NOT static_page" limit="1" dynamic="no" url_title="{segment_2}" }
+		{exp:channel:entries channel="NOT static_page" dynamic="no" limit="1" url_title="{segment_2}" }
 		
 		<!-- Page Title -->
 		
 		<div id="page-title" class="container_12 block">
 		
 				<!-- Link to Next Day -->
+								
+				{exp:sm_links type="next" entry_id="{entry_id}" channel="NOT static_page" category="{categories}{category_id}{/categories}" }
+					<a href="{path="{segment_1}/{l_url_title}"}" class="next">{l_title}</a>
+				{/exp:sm_links}
 				
-				{exp:channel:next_entry}
-				    
-				    <a href="{path='post/{url_title}'}" class="next">{title}</a>
+				<!-- //End Link to Previous Day -->
 				
-				{/exp:channel:next_entry}
-				
-				<!-- //End of Link to Previous Day -->
-				
-				
-				<h1 id="post-title">
-							
-						{exp:eehive_hacksaw characters = "80" }				
-						
-							{title}
-						
-						{/exp:eehive_hacksaw}
-						
-				</h1>
+
+				<h1 id="post-title">{exp:eehive_hacksaw characters = "80" }{title}{/exp:eehive_hacksaw}</h1>
 				
 				<p class="date"><strong>{date_format} - {column_name} - {author}</strong></p>
-
 				
 				
 				<!-- Link to Previous Day -->
-				
-				{exp:channel:prev_entry}
-				    
-				    <a href="{path='post/{url_title}'}" class="previous">{title}</a>
-				
-				{/exp:channel:prev_entry}
+	
+				{exp:sm_links type="previous" entry_id="{entry_id}" channel="NOT static_page" category="{categories}{category_id}{/categories}"}
+					<a href="{path="{segment_1}/{l_url_title}"}" class="previous">{l_title}</a>
+				{/exp:sm_links}
 
 				<!-- //End of Link to Previous Day -->
 						
@@ -92,9 +79,9 @@
 				
 					<li>
 		
-						{exp:ce_img:pair src="{image}" width="620" height="325" crop="yes" allow_scale_larger="yes"}
+						{exp:ce_img:pair src="{image}" width="600" height="325" crop="yes" allow_scale_larger="yes"}
 					
-							<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+							<img src="{made}" alt="{title}"  />
 					
 						{/exp:ce_img:pair}
 				
@@ -124,7 +111,7 @@
 			
 			<!-- Right Column -->
 			
-			<aside id="right-col">
+			<aside class="right-col">
 			
 				<div class="grid_4">
 				
@@ -198,7 +185,7 @@
 		
 		<!-- Related Items -->
 		
-		<section class="container_12 block white">
+		<section class="container_12 white block">
 		
 			<!-- Contributor Articles -->
 		
@@ -206,17 +193,17 @@
 			
 				<h4>Contributor Articles</h4>
 
-					<ul class="carousel">
+					<ul id="contributor-carousel" class="carousel">
 					
 						{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" url_title="NOT {segment_2}" author="<?php print $author; ?>"}
 					
 							<li>
 							
-								<p>{title}</p>
+								<p><a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">{title}</a></p>
 								
 								{exp:ce_img:pair src="{avatar_url}" width="295" height="163" crop="yes" allow_scale_larger="yes"}
 												
-									<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+									<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}"><img src="{made}" alt="{title}" /></a>
 							
 						 		{/exp:ce_img:pair}
 							
@@ -226,7 +213,7 @@
 					
 					</ul>
 					
-					<div class="carousel-navigation"></div>
+					<div id="contributorcarousel-navigation" class="carousel-navigation"></div>
 			
 			</div>
 			
@@ -238,17 +225,17 @@
 			
 				<h4>Related Articles</h4>
 
-					<ul class="carousel">
+					<ul id="related-carousel" class="carousel">
 					
 						{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" url_title="NOT {segment_2}" show_group="<?php print $categories; ?>"}
 					
 							<li>
 							
-								<p>{title} - {author}</p>
+								<p><a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">{title} - {author}</a></p>
 								
 								{exp:ce_img:pair src="{avatar_url}" width="295" height="163" crop="yes" allow_scale_larger="yes"}
 												
-									<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+									<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}"><img src="{made}" alt="{title}" /></a>
 							
 						 		{/exp:ce_img:pair}
 							
@@ -258,7 +245,7 @@
 					
 					</ul>
 					
-					<div class="carousel-navigation"></div>
+					<div id="relatedcarousel-navigation" class="carousel-navigation"></div>
 			
 			</div>
 			

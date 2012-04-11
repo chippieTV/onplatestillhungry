@@ -1,5 +1,11 @@
 {embed="common/head"}
 
+{if segment_2 != "" }
+
+	{embed="post/index"}
+
+{if:else}
+
 	<!-- SEO Stuff -->
 	<meta name="title" content="Food | On Plate, Still Hungry" />
 	<meta name="description" content="some text here" /> 
@@ -51,46 +57,65 @@
 				
 				<article class="grid_4 margin-right{switch="|| last"}">
 				
-					{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
-					
-							<a href="{path="post/{url_title}"}">
-								
-								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+					<!-- Image shown by default -->
+						
+						<div class="front">
+						
+							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
+							
+								{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
+							
+									<img src="{made}" alt="{title}" />
+							
+								{/exp:ce_img:pair}
 							
 							</a>
-					
-					{/exp:ce_img:pair}
-			
-				
-					<h3>
-					
-						<a href="{path="post/{url_title}"}">
-					
-						{exp:eehive_hacksaw characters = "80" }				
+
+						</div>
 						
-							{title}
+						<!-- //End Image shown by default -->
 						
-						{/exp:eehive_hacksaw}
+						<!-- Hidden by default -->
 						
-						</a>
-						
-					</h3>
-				
-					<p class="date"><strong>{column_name} - {author}</strong></p>
-					
-					<p class="date"><strong>{date_format}</strong></p>
-					
-					<p>
-					
-						{exp:eehive_hacksaw words = "20" append="..."}				
-						
-							{text_body}
-						
-						{/exp:eehive_hacksaw}
+						<div class="back {categories limit="1"}{category_url_title}{/categories}">
 							
-					</p>
-					
-					<div class="clear"></div>
+							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}"></a>
+						
+						</div>
+						
+						<!-- //End Hidden by default -->
+						
+						<div class="details">
+				
+							<h3>
+							
+								<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
+							
+								{exp:eehive_hacksaw characters = "80" }				
+								
+									{title}
+								
+								{/exp:eehive_hacksaw}
+								
+								</a>
+								
+							</h3>
+						
+							<p class="date"><strong>{column_name} - {author}</strong></p>
+							
+							<p class="date"><strong>{date_format}</strong></p>
+							
+							<p>
+							
+								{exp:eehive_hacksaw words = "20" append="..."}				
+								
+									{text_body}
+								
+								{/exp:eehive_hacksaw}
+									
+							</p>
+						
+						</div>
 									
 				</article>
 				
@@ -102,7 +127,8 @@
 		
 		<!-- //End of Related Items -->
 
-<!-- Filter -->
+
+{/if}
 		
 {embed="common/footer"}
 		
