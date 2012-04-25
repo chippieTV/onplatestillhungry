@@ -55,13 +55,13 @@
 						
 						<div class="front">
 						
-							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
+							<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">
 							
-								{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
-							
-									<img src="{made}" alt="{title}" />
-							
-								{/exp:ce_img:pair}
+								{exp:channel_images:images show_cover="yes" limit="1"}
+								
+									    <img src="{image:url:Medium}" alt="{title}" />
+								
+								{/exp:channel_images:images}
 							
 							</a>
 
@@ -73,7 +73,7 @@
 						
 						<div class="back {categories limit="1"}{category_url_title}{/categories}">
 							
-							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}"></a>
+							<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}"></a>
 						
 						</div>
 						
@@ -83,7 +83,7 @@
 				
 							<h3>
 							
-								<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
+								<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">
 							
 								{exp:eehive_hacksaw characters = "80" }				
 								

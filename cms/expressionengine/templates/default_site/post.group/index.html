@@ -12,7 +12,7 @@
 	<meta property="og:url" content="{site_url}post/{url_title}" />
 	<meta property="og:site_name" content="On Plate, Still Hungry"/>
 	<meta property="og:type" content="website"/>
-	<meta property="og:image" content="{exp:ce_img:pair src="{image}" width="100" height="100" crop="yes"}http://www.onplatestillhungry.com{made}{/exp:ce_img:pair}" />
+	<meta property="og:image" content="{exp:channel_images:images show_cover="yes" limit="1"}{image:url:Small}{/exp:channel_images:images}" />
 	<meta property="og:title" content="{title}" />
 	<meta property="og:description" content="{exp:eehive_hacksaw characters = "100" }{text_body}{/exp:eehive_hacksaw}" />
 	<!-- //End Facebook O:G Data -->
@@ -79,11 +79,11 @@
 				
 					<li>
 		
-						{exp:ce_img:pair src="{image}" width="600" height="325" crop="yes" allow_scale_larger="yes"}
-					
-							<img src="{made}" alt="{title}"  />
-					
-						{/exp:ce_img:pair}
+						{exp:channel_images:images}
+								
+								<img src="{image:url:Large}" alt="{title}" />
+								
+						{/exp:channel_images:images}
 				
 					</li>
 				
@@ -199,11 +199,11 @@
 					
 							<li>
 							
-								<p><a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">{title}</a></p>
+								<p><a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">{title}</a></p>
 								
 								{exp:ce_img:pair src="{avatar_url}" width="295" height="163" crop="yes" allow_scale_larger="yes"}
 												
-									<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}"><img src="{made}" alt="{title}" /></a>
+									<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}"><img src="{made}" alt="{title}" /></a>
 							
 						 		{/exp:ce_img:pair}
 							
@@ -231,11 +231,11 @@
 					
 							<li>
 							
-								<p><a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">{title} - {author}</a></p>
+								<p><a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">{title} - {author}</a></p>
 								
 								{exp:ce_img:pair src="{avatar_url}" width="295" height="163" crop="yes" allow_scale_larger="yes"}
 												
-									<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}"><img src="{made}" alt="{title}" /></a>
+									<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}"><img src="{made}" alt="{title}" /></a>
 							
 						 		{/exp:ce_img:pair}
 							
@@ -256,9 +256,3 @@
 		</section>
 		
 		<!-- //End of Related Items -->
-
-<!-- Filter -->
-		
-{embed="common/footer"}
-		
-<!-- //End of Filter -->	

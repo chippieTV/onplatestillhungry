@@ -314,35 +314,29 @@
    ========================================================================== */
 
 	#branding {
-		padding-top: 60px;
 		width: 350px;
 		height: 220px;
 		text-align: center;
 		margin: 0 auto;
+		margin-top: 100px;
 		z-index: 50;
 	}
 	
-	.page-home #branding {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		width: 350px;
-		height: 220px;
-		margin-left: -175px;
-		margin-top: -160px;
-		text-align: center;
-		padding-top: 0px;
+	#logo a {
+		display: block;
+		width: 336px;
+		height: 152px;
+		background: url(../images/assets.png) no-repeat -4px -19px;
+		margin: 0 auto;
 	}
 	
-	#logo {
-		width: 350px;
-		height: 152px;
-		background: url(../images/assets.png) no-repeat 4px -19px;
+	#logo a h2 {
 		text-indent: -9999px;
 	}
 	
 	#strapline {
 		font-size: 11px;
+		color: #000;
 	}
 	
 	#category {
@@ -357,7 +351,7 @@
 		font-size: 16px;
 		font-weight: bold;
 		padding: 0px 10px;
-		color: #000;
+		color: #F5F5F5;
 	}
 	
 	#category a:hover {
@@ -366,9 +360,56 @@
 	
 	#category ul li.with-bullet {
 		padding: 5px 3px;
-		background: url(../images/assets.png) no-repeat -71px 7px;
+		background: url(../images/assets.png) no-repeat -63px 7px;
 	}
 
+	
+/* ==========================================================================
+   Branding Homepage
+   ========================================================================== */
+
+	.page-home #branding {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 470px;
+		height: 220px;
+		margin-left: -295px;
+		margin-top: -220px;
+		background: rgb(00,00,00);
+		background: rgba(00,00,00,0.6);
+		padding: 60px 60px 80px 60px;
+		-webkit-border-radius: 	2px;
+		-moz-border-radius: 	2px;
+		-o-border-radius: 		2px;
+		border-radius: 			2px;
+	}
+	
+	.page-home #branding #logo a {
+		background: url(../images/assets.png) no-repeat -437px -19px;
+	}
+	
+	.page-home #branding #strapline {
+		color: #FFF;
+	}
+	
+	.page-home #branding #category a {
+		font-size: 16px;
+		font-weight: bold;
+		padding: 0px 10px;
+		color: #F5F5F5;
+	}
+	
+	.page-home #branding #category a:hover {
+		color: #FFF;
+	}
+	
+	.page-home #branding #category ul li.with-bullet {
+		padding: 5px 3px;
+		background: url(../images/assets.png) no-repeat -63px 7px;
+	}
+	
+	
 /* ==========================================================================
    Navigation
    ========================================================================== */
@@ -453,6 +494,14 @@
 		display: block;
 		color: #BDBEC1;
 		padding-bottom: 3px;
+		-webkit-transition: all .3s ease-in-out;
+		-moz-transition: 	all .3s ease-in-out;
+		-o-transition: 		all .3s ease-in-out;
+		transition: 		all .3s ease-in-out;
+	}
+	
+	.navigation-footer a:hover {
+		color: #FFF;
 	}
 
 /* ==========================================================================
@@ -505,6 +554,7 @@
 
 	#todays-post {
 		position: relative;
+		background: url(../uploads/images/Untitled-1.jpg) repeat fixed;
 	}
 	
 	#carousel, #carousel li {
@@ -558,7 +608,7 @@
 		position: absolute;
 		width: 100%;
 		height: 85px;
-		background: #000;
+		background: rgba(00,00,00,0.6);
 		padding-bottom: 15px;
 		bottom: 0px;
 		z-index: 10;
@@ -715,8 +765,9 @@
 	}
 	
 	#post-title  {
+		width: 500px;
 		padding: 0px;
-		margin: 0px;
+		margin: 0px auto;
 		line-height: 1.8;
 	}
 		
