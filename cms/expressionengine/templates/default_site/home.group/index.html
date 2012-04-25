@@ -34,7 +34,31 @@
 			
 			<!-- //End of Scroll Down Button -->
 			
-			{embed="common/branding"}
+			<!-- Branding Wrapper -->
+			
+			<div id="branding" style="display:none;">
+			
+				<!-- Logo -->
+				
+				<div id="logo">
+				
+					<a href="{site_url}">
+					
+						<h2>On Plate, Still Hungry</h2>
+					
+					</a>
+					
+				</div>
+				
+				<!-- //End of Logo -->
+				
+				<h3 id="strapline">Worldwide Family Style Food & Culture Magazine</h3>
+				
+				{if segment_1 == "" } {embed="common/category-navigation"} {/if}
+			
+			</div>
+			
+			<!-- //End of Branding Wrapper -->
 		
 			<!-- Get items -->
 		
@@ -144,9 +168,11 @@
 							
 						</h3>
 					
-						<p class="date"><strong>{column_name} - {contributor}</strong></p>
+						<p class="date">{column_name} - {contributor}</p>
 						
-						<p class="date"><strong>{date_format}</strong></p>
+						<p class="date">{entry_date format="%j%S %F"}</p>
+						
+						<p class="date_character">{entry_date format="%D"}</p>
 						
 						<p>
 						
@@ -244,6 +270,9 @@
 			</aside>
 			
 			<!-- //End of Right Column -->
+			
+			
+			<div class="clear"></div>
 		
 		</section>
 		

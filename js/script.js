@@ -1,6 +1,9 @@
 $(document).ready(function() 
 {
 	
+	/* Homepage logo fade in
+	-------------------------------------------------------------- */
+	setTimeout(function(){ $("#todays-post #branding").fadeIn(500) }, 100)
 	
 	/* Homepage Image fit screen
 	-------------------------------------------------------------- */
@@ -20,10 +23,13 @@ $(document).ready(function()
       if (y >= top) { 
       	$('#navigation').addClass('fixed'); 
       	$('#filter').css('margin-top', '58px');
+      	$('#scroll-down').fadeOut();
       }
       else { 
       	$('#navigation').removeClass('fixed');
-      	$('#filter').css('margin-top', '15px'); 
+      	$('#filter').css('margin-top', '15px');
+      	$('#scroll-down').fadeIn();
+ 
       }
 	});
 	

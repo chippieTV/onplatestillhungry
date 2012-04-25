@@ -52,7 +52,7 @@
 
 				<h1 id="post-title">{exp:eehive_hacksaw characters = "80" }{title}{/exp:eehive_hacksaw}</h1>
 				
-				<p class="date"><strong>{date_format} - {column_name} - {contributor}</strong></p>
+				<p class="date">{date_format} - {column_name} - {contributor}</p>
 				
 				
 				<!-- Link to Previous Day -->
@@ -109,7 +109,7 @@
 								
 					<p>{video_body}</p>
 
-					<p><strong>{column_name} - {contributor}</strong></p>
+					<p>{column_name} - {contributor}</p>
 								
 				{if:elseif channel_short_name == "recipe_entry" }
 				
@@ -117,13 +117,13 @@
 					
 					<p>{recipe_recipe}</p>
 
-					<p><strong>{column_name} - {contributor}</strong></p>
+					<p>{column_name} - {contributor}</p>
 					
 				{if:else}
 				
 					<p>{text_body}</p>
 
-					<p><strong>{column_name} - {contributor}</strong></p>
+					<p>{column_name} - {contributor}</p>
 					
 				{/if}
 					
@@ -291,3 +291,5 @@
 		</section>
 		
 		<!-- //End of Related Items -->
+
+{embed="common/footer"}
