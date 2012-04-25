@@ -52,7 +52,7 @@
 
 				<h1 id="post-title">{exp:eehive_hacksaw characters = "80" }{title}{/exp:eehive_hacksaw}</h1>
 				
-				<p class="date">{date_format} - {column_name} - {contributor}</p>
+				<p class="date">{date_format} - Guest Column: {column_name}<br/>by {contributor}</p>
 				
 				
 				<!-- Link to Previous Day -->
@@ -109,7 +109,7 @@
 								
 					<p>{video_body}</p>
 
-					<p>{column_name} - {contributor}</p>
+					<p>Guest Column: {column_name}<br/>by {contributor}</p>
 								
 				{if:elseif channel_short_name == "recipe_entry" }
 				
@@ -117,13 +117,13 @@
 					
 					<p>{recipe_recipe}</p>
 
-					<p>{column_name} - {contributor}</p>
+					<p>Guest Column: {column_name}<br/>by {contributor}</p>
 					
 				{if:else}
 				
 					<p>{text_body}</p>
 
-					<p>{column_name} - {contributor}</p>
+					<p>Guest Column: {column_name}<br/>by {contributor}</p>
 					
 				{/if}
 					

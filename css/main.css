@@ -426,8 +426,10 @@
 
 	#navigation {
 		width: 100%;
-		background: #000;
-		border-top: 1px solid #222;
+	}
+	
+	#navigation .container_12 {
+		background: #FFF;
 		-webkit-box-shadow: 0 0 3px #000;
 		-moz-box-shadow: 	0 0 3px #000;
 		-o-box-shadow: 		0 0 3px #000;
@@ -447,7 +449,7 @@
 	
 	#primary-navigation a, #category-navigation a, #category-navigation-title {
 		font-family: "ff-meta-web-pro", Arial, helvetica, sans;
-		color: #BDBEC1;
+		color: #333;
 		margin-right: 10px;
 		text-transform: uppercase;
 	}
@@ -458,7 +460,7 @@
 	}
 	
 	.active, #primary-navigation a:hover, #category-navigation a:hover {
-		color: #FFF !important;
+		color: #000 !important;
 	}
 	
 	#top {

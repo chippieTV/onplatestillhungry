@@ -100,32 +100,33 @@
 								</a>
 								
 							</h3>
-						
-							<p class="date">{column_name} - {contributor}</p>
-							
-							<p class="date">{date_format}</p>
 							
 							<p>
 							
-								{exp:eehive_hacksaw words = "20" append="..."}				
-								
+								{exp:eehive_hacksaw characters = "150" append="..."}				
+							
 									{if channel_short_name == "video_entry" }
-								
-										{video_body}
+									
+										{video_tagline}
 										
 									{if:elseif channel_short_name == "recipe_entry" }
 									
-										{recipe_body}
+										{recipe_tagline}
 										
 									{if:else}
 									
-										{text_body}
+										{text_tagline}
 										
 									{/if}
-								
+							
 								{/exp:eehive_hacksaw}
 									
 							</p>
+						
+							<p class="date">Guest Column: {column_name}<br/>by {contributor}</p>
+							
+							<p class="date">{date_format}</p>
+							
 						
 						</div>
 									
