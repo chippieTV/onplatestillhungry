@@ -5,7 +5,7 @@
 	<!-- SEO Stuff -->
 	<meta name="title" content="{title}" />
 	<meta name="description" content="{exp:eehive_hacksaw characters = "100" }{text_body}{/exp:eehive_hacksaw}" /> 
-	<meta name="author" content="{author}" />
+	<meta name="author" content="{contributor}" />
 	<!-- //End SEO Stuff -->
 	
 	<!-- Facebook O:G Data -->
@@ -17,7 +17,7 @@
 	<meta property="og:description" content="{exp:eehive_hacksaw characters = "100" }{text_body}{/exp:eehive_hacksaw}" />
 	<!-- //End Facebook O:G Data -->
 		
-	<title>{title} | {column_name} | {author}</title> 
+	<title>{title} | {column_name} | {contributor}</title> 
 	
 {/exp:channel:entries}
 	
@@ -52,7 +52,7 @@
 
 				<h1 id="post-title">{exp:eehive_hacksaw characters = "80" }{title}{/exp:eehive_hacksaw}</h1>
 				
-				<p class="date"><strong>{date_format} - {column_name} - {author}</strong></p>
+				<p class="date"><strong>{date_format} - {column_name} - {contributor}</strong></p>
 				
 				
 				<!-- Link to Previous Day -->
@@ -75,31 +75,57 @@
 
 				<!-- Post Images -->
 				
-				<ul class="carousel">
+				{if channel_short_name == "video_entry" }
 				
-					<li>
-		
-						{exp:channel_images:images}
-								
-								<img src="{image:url:Large}" alt="{title}" />
-								
-						{/exp:channel_images:images}
+					{video_video}
 				
-					</li>
+				{if:else}				
 				
-				</ul>
-				
-				<div class="carousel-navigation"></div>
+					<ul class="carousel">
+					
+						<li>
+			
+							{exp:channel_images:images}
+									
+									<img src="{image:url:Large}" alt="{title}" />
+									
+							{/exp:channel_images:images}
+					
+						</li>
+					
+					</ul>
+					
+					<div class="carousel-navigation"></div>
 				
 				<!-- //End of Post Image -->
+				
+				{/if}
 				
 				<!-- Post Copy -->
 			
 				<div id="post-wrapper">
+				
+				{if channel_short_name == "video_entry" }
+								
+					<p>{video_body}</p>
+
+					<p><strong>{column_name} - {contributor}</strong></p>
+								
+				{if:elseif channel_short_name == "recipe_entry" }
+				
+					<p>{recipe_body}</p>
 					
+					<p>{recipe_recipe}</p>
+
+					<p><strong>{column_name} - {contributor}</strong></p>
+					
+				{if:else}
+				
 					<p>{text_body}</p>
 
-					<p><strong>{column_name} - {author}</strong></p>
+					<p><strong>{column_name} - {contributor}</strong></p>
+					
+				{/if}
 					
 					<div class="divide"></div>
 				
@@ -199,13 +225,18 @@
 					
 							<li>
 							
-								<p><a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">{title}</a></p>
-								
-								{exp:ce_img:pair src="{avatar_url}" width="295" height="163" crop="yes" allow_scale_larger="yes"}
+								<p><a href="{path="{segment_1}/{url_title}"}">{title}</a></p>
+
 												
-									<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}"><img src="{made}" alt="{title}" /></a>
-							
-						 		{/exp:ce_img:pair}
+									<a href="{path="{segment_1}/{url_title}"}">
+									
+										{exp:channel_images:images show_cover="yes" limit="1"}
+								
+									    	<img src="{image:url:Small}" alt="{title}" />
+								
+										{/exp:channel_images:images}
+								
+									</a>
 							
 							</li>
 						
@@ -231,13 +262,17 @@
 					
 							<li>
 							
-								<p><a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">{title} - {author}</a></p>
+								<p><a href="{path="{segment_1}/{url_title}"}">{title} - {contributor}</a></p>
 								
-								{exp:ce_img:pair src="{avatar_url}" width="295" height="163" crop="yes" allow_scale_larger="yes"}
-												
-									<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}"><img src="{made}" alt="{title}" /></a>
-							
-						 		{/exp:ce_img:pair}
+									<a href="{path="{segment_1}/{url_title}"}">
+										
+											{exp:channel_images:images show_cover="yes" limit="1"}
+									
+										    	<img src="{image:url:Small}" alt="{title}" />
+									
+											{/exp:channel_images:images}
+									
+									</a>
 							
 							</li>
 						

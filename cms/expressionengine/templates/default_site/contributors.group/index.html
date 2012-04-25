@@ -1,5 +1,29 @@
 {embed="common/head"}
 
+
+{if segment_2 != "" }
+
+	<!-- SEO Stuff -->
+	<meta name="title" content="Contributors | On Plate, Still Hungry" />
+	<meta name="description" content="some text here" /> 
+	<meta name="author" content="On Plate, Still Hungry" />
+	<!-- //End SEO Stuff -->
+	
+	<!-- Facebook O:G Data -->
+	<meta property="og:url" content="{site_url}/Contributors" />
+	<meta property="og:site_name" content="On Plate, Still Hungry"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="{site_url}images/logo.png" />
+	<meta property="og:title" content="Contributors | On Plate, Still Hungry;" />
+	<meta property="og:description" content="some text here" />
+	<!-- //End Facebook O:G Data -->
+		
+	<title>{author} | Contributors | On Plate, Still Hungry</title> 
+
+	{author}
+
+{if:else}
+
 	<!-- SEO Stuff -->
 	<meta name="title" content="Contributors | On Plate, Still Hungry" />
 	<meta name="description" content="some text here" /> 
@@ -76,7 +100,7 @@
 						
 					</h3>
 				
-					<p class="date"><strong>{column_name} - {author}</strong></p>
+					<p class="date"><strong>{column_name} - {contributor}</strong></p>
 					
 					<p class="date"><strong>{date_format}</strong></p>
 					
@@ -101,6 +125,8 @@
 		</section>
 		
 		<!-- //End of Related Items -->
+
+{/if}
 
 <!-- Filter -->
 		

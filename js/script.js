@@ -42,8 +42,7 @@ $(document).ready(function()
 	
 	/* Homepage Carousel
 	-------------------------------------------------------------- */
-	$('#carousel') 
-	.cycle({ 
+	$('#carousel').cycle({ 
 	    fx:     'scrollHorz', 
 	    speed:  'slow', 
 	    timeout: 0, 
@@ -56,17 +55,17 @@ $(document).ready(function()
 	
 	/* Carousel
 	-------------------------------------------------------------- */
-	$('#related-carousel') 
-	.cycle({ 
+	$('#related-carousel').cycle({ 
 	    fx:     'fade', 
 	    speed:  'fast', 
+	    timeout: 0,
 	    pager:  '#relatedcarousel-navigation' 
 	});
 	
-	$('#contributor-carousel') 
-	.cycle({ 
+	$('#contributor-carousel').cycle({ 
 	    fx:     'fade', 
-	    speed:  'fast', 
+	    speed:  'fast',
+	    timeout: 0, 
 	    pager:  '#contributorcarousel-navigation' 
 	});
 	

@@ -101,7 +101,7 @@
 								
 							</h3>
 						
-							<p class="date"><strong>{column_name} - {author}</strong></p>
+							<p class="date"><strong>{column_name} - {contributor}</strong></p>
 							
 							<p class="date"><strong>{date_format}</strong></p>
 							
@@ -109,7 +109,19 @@
 							
 								{exp:eehive_hacksaw words = "20" append="..."}				
 								
-									{text_body}
+									{if channel_short_name == "video_entry" }
+								
+										{video_body}
+										
+									{if:elseif channel_short_name == "recipe_entry" }
+									
+										{recipe_body}
+										
+									{if:else}
+									
+										{text_body}
+										
+									{/if}
 								
 								{/exp:eehive_hacksaw}
 									

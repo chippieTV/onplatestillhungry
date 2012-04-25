@@ -18,31 +18,17 @@
 		 
 		 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
 								
-				<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+				<a href="{path="contributors/{author_id}"}">
+				
+					<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+					
+					
+				</a>
 			
 		 	{/exp:ce_img:pair}
 		 
 		 
 		 </div>
-		
-		 
-		 <div class="connect">
-					
-				<ul>
-				
-					<li>Connect:</li>
-					
-					{if url != ""} <li><a href="http://{url}" target="_blank">Website</a></li> {/if}
-					
-					{if member_facebook != ""} <li><a href="http://{member_facebook}" target="_blank">Facebook</a></li> {/if}
-					
-					{if member_twitter != ""}<li><a href="http://{member_twitter}" target="_blank">Twitter</a></li>{/if}
-					
-					{if member_google != ""}<li><a href="http://{member_google}" target="_blank">Google+</a></li>{/if}
-				
-				</ul>
-			
-		</div>
 	
 	{/exp:member:custom_profile_data}
 	
@@ -66,31 +52,16 @@
 		 
 		 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
 								
-				<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+				<a href="{path="contributors/{author_id}"}">
+				
+					<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+					
+				</a>
 			
 		 	{/exp:ce_img:pair}
 		 
 		 
 		 </div>
-		
-		 
-		 <div class="connect">
-					
-				<ul>
-				
-					<li>Connect:</li>
-					
-					{if url != ""} <li><a href="http://{url}" target="_blank">Website</a></li> {/if}
-					
-					{if member_facebook != ""} <li><a href="http://{member_facebook}" target="_blank">Facebook</a></li> {/if}
-					
-					{if member_twitter != ""}<li><a href="http://{member_twitter}" target="_blank">Twitter</a></li>{/if}
-					
-					{if member_google != ""}<li><a href="http://{member_google}" target="_blank">Google+</a></li>{/if}
-				
-				</ul>
-			
-		</div>
 	
 	{/exp:member:custom_profile_data}
 	
