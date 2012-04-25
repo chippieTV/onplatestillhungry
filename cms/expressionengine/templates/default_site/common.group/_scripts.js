@@ -1,3 +1,6 @@
+	<script type="text/javascript" src="http://use.typekit.com/ltf7rsv.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
 {exp:minimee:js}
 
 	<script type="text/javascript" src="/js/mylibs/jquery.cycle.all.js"></script>

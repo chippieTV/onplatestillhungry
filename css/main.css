@@ -21,7 +21,7 @@
 	
 	body { margin: 0; font-size: 12px; line-height: 1.4; color: #595A5C; background: url(../images/background.gif) no-repeat fixed center bottom #F2F2F3; }
 	
-	body, button, input, select, textarea { font-family: sans-serif; }
+	body, button, input, select, textarea { font-family: "ff-meta-web-pro", helvetica, arial, sans-serif; }
 	
 	/* 
 	 * Remove text-shadow in selection highlight: h5bp.com/i
@@ -207,7 +207,7 @@
    
    
    h1, h3, h3, h4 {
-   		font-family: "Pontano Sans", Arial, helvetica, sans;
+   		font-family: "ff-meta-web-pro", Arial, helvetica, sans;
    		color: #000;
    }
    
