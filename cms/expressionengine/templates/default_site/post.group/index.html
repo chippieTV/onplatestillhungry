@@ -12,7 +12,7 @@
 	<meta property="og:url" content="{site_url}post/{url_title}" />
 	<meta property="og:site_name" content="On Plate, Still Hungry"/>
 	<meta property="og:type" content="website"/>
-	<meta property="og:image" content="{exp:channel_images:images show_cover="yes" limit="1"}{image:url:Small}{/exp:channel_images:images}" />
+	<meta property="og:image" content="{exp:channel_images:images show_cover="yes" limit="1"}{image:url:small}{/exp:channel_images:images}" />
 	<meta property="og:title" content="{title}" />
 	<meta property="og:description" content="{exp:eehive_hacksaw characters = "100" }{text_body}{/exp:eehive_hacksaw}" />
 	<!-- //End Facebook O:G Data -->
@@ -29,11 +29,7 @@
 		
 		<!-- //End of Navigation -->
 		
-		<!-- Branding -->
-		
-		{embed="common/branding"}
-		
-		<!-- //End of Branding -->
+
 		
 		{exp:channel:entries channel="NOT static_page" dynamic="no" limit="1" url_title="{segment_2}" }
 		
@@ -232,7 +228,7 @@
 									
 										{exp:channel_images:images show_cover="yes" limit="1"}
 								
-									    	<img src="{image:url:Small}" alt="{title}" />
+									    	<img src="{image:url:small}" alt="{title}" />
 								
 										{/exp:channel_images:images}
 								
@@ -268,7 +264,7 @@
 										
 											{exp:channel_images:images show_cover="yes" limit="1"}
 									
-										    	<img src="{image:url:Small}" alt="{title}" />
+										    	<img src="{image:url:small}" alt="{title}" />
 									
 											{/exp:channel_images:images}
 									
