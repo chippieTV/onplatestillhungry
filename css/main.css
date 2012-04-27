@@ -996,6 +996,11 @@
 		-moz-column-gap: 		50px;
 		column-gap: 			50px;
 	}
+	
+	.member {
+		margin: 0px;
+		padding: 0px;
+	}
 
 /* ==|== non-semantic helper classes ========================================
    Please define your styles before this section.
