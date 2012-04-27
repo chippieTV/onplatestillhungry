@@ -976,7 +976,7 @@
    Recipe Post
    ========================================================================== */
 
-	.two-cols p {
+	.two-col p {
 		-webkit-column-count: 	2;
 		-moz-column-count: 		3;
 		column-count: 			3;
