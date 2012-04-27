@@ -7,7 +7,7 @@ $(document).ready(function()
 	
 	/* Homepage Image fit screen
 	-------------------------------------------------------------- */
-	$('#todays-post, #carousel, #carousel li').css('width', $(window).width()+'px').css('height', $(window).height()+'px');
+	$('#todays-post, #carousel, #carousel li').css('width', $(window).width()+'px').css('height', $(window).height()+10+'px');
 	
 	
 	/* ScrollTo
