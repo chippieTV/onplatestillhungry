@@ -589,6 +589,14 @@
    Homepage
    ========================================================================== */
 
+	#beta {
+		position: absolute;
+		top: -50px;
+		left: 50%;
+		margin-left: -25px;
+		font-size: 20px;
+	}
+	
 	#todays-post {
 		position: relative;
 	}
@@ -699,7 +707,7 @@
 	
 	.post-title-wrapper .next:before, .post-title-wrapper .next img {
 	  	clip: rect(1px 47px 16px 34px);
-	  	right: -755px;
+	  	right: -312px;
 	}
 	
 	.post-title-wrapper .previous:before, .post-title-wrapper .previous img {
