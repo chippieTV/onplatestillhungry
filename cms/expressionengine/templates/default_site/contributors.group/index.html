@@ -57,17 +57,12 @@
 					
 					<article class="grid_4 margin-right{switch="| last"}">
 					
-						{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
-						
-								<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
-									
-									<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+								{exp:channel_images:images show_cover="yes" limit="1" entry_id="{entry_id}"}
 								
-								</a>
-						
-						{/exp:ce_img:pair}
-				
-					
+									    <img src="{image:url:medium}" alt="{title}" />
+								
+								{/exp:channel_images:images}								
+													
 						<h3>
 						
 							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
@@ -159,7 +154,7 @@
 	<!-- //End SEO Stuff -->
 	
 	<!-- Facebook O:G Data -->
-	<meta property="og:url" content="{site_url}/Contributors" />
+	<meta property="og:url" content="{site_url}/contributors" />
 	<meta property="og:site_name" content="On Plate, Still Hungry"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:image" content="{site_url}images/logo.png" />
