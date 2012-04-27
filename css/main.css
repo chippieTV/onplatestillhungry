@@ -1006,6 +1006,11 @@
 		width: 940px;
 	}
 
+
+	#small-video iframe {
+		width: 620px;
+	}
+
 /* ==|== non-semantic helper classes ========================================
    Please define your styles before this section.
    ========================================================================== */
