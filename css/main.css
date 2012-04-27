@@ -172,7 +172,8 @@
 	 */
 	
 	input[type="text"] {
-		border: 1px solid #F5F5F5;
+		background: #F5F5F5;
+		border: 0 none;
 		width: 200px;
 		padding: 5px 10px;
 	}
