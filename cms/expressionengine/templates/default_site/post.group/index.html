@@ -198,43 +198,7 @@
 		
 		<section class="container_12 white block">
 		
-			<!-- Contributor Articles -->
-		
-			<div class="grid_4 related_item">
-					
-				<h4>Contributor Articles</h4>
-
-					<ul id="contributor-carousel" class="carousel">
-					
-						{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" url_title="NOT {segment_2}" author="{author_id}"}
-					
-							<li>
-							
-								<p><a href="{path="{segment_1}/{url_title}"}">{title}</a></p>
-
-												
-									<a href="{path="{segment_1}/{url_title}"}">
-									
-										{exp:channel_images:images show_cover="yes" limit="1" entry_id="{entry_id}"}
-								
-									    	<img src="{image:url:small}" alt="{title}" />
-								
-										{/exp:channel_images:images}
-								
-									</a>
-							
-							</li>
 						
-						{/exp:channel:entries}
-					
-					</ul>
-					
-					<div id="contributorcarousel-navigation" class="carousel-navigation"></div>
-			
-			</div>
-			
-			<!-- //End Contributor Articles -->
-			
 			<!-- Related Articles -->
 			
 			<div class="grid_4">
