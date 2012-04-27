@@ -2,18 +2,8 @@
 
 {if segment_1 == "" }
 
-	{exp:member:custom_profile_data member_id="3" }
+	{exp:member:custom_profile_data member_id="6" }
 	
-	<h4>{screen_name} - {member_columnname}</h4>
-		 
-		 <p>
-		 	{exp:eehive_hacksaw words = "20" append="..."}				
-									
-				{bio}
-									
-			{/exp:eehive_hacksaw}
-		 </p>
-		 
 		 <div id="avatar">
 		 
 		 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
@@ -29,6 +19,16 @@
 		 
 		 
 		 </div>
+		 
+		 <h4>{screen_name} - {member_columnname}</h4>
+		 
+		 <p>
+		 	{exp:eehive_hacksaw words = "20" append="..."}				
+									
+				{bio}
+									
+			{/exp:eehive_hacksaw}
+		 </p>
 	
 	{/exp:member:custom_profile_data}
 	
@@ -38,6 +38,21 @@
  
  	{exp:member:custom_profile_data member_id="{author_id}"}
  	
+		 <div id="avatar">
+		 
+		 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
+								
+				<a href="{path="contributors/{author_id}"}">
+				
+					<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+					
+				</a>
+			
+		 	{/exp:ce_img:pair}
+		 
+		 
+		 </div>
+		 
 		 <h4>{screen_name} - {member_columnname}</h4>
 		 
 		 <p>
@@ -48,20 +63,7 @@
 			{/exp:eehive_hacksaw}
 		 </p>
 		 
-		 <div id="avatar">
 		 
-		 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
-								
-				<a href="{path="contributors/{author_id}"}">
-				
-					<img src="{made}" alt="{title}" width="{width}" height="{height}" />
-					
-				</a>
-			
-		 	{/exp:ce_img:pair}
-		 
-		 
-		 </div>
 	
 	{/exp:member:custom_profile_data}
 	

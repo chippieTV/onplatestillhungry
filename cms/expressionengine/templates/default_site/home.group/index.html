@@ -22,17 +22,7 @@
 		<!-- Todays Post with Full Screen Image -->
 		<section id="todays-post">
 		
-			<!-- Scroll Down Button -->
-				
-			<div id="scroll-down">
 			
-				<a href="#navigation">Scroll Down</a>
-			
-				<div class="down-arrow"></div>
-				
-			</div>			
-			
-			<!-- //End of Scroll Down Button -->
 			
 			<!-- Branding Wrapper -->
 			
@@ -55,6 +45,19 @@
 				<h3 id="strapline">Worldwide Family Style Food & Culture Magazine</h3>
 				
 				{if segment_1 == "" } {embed="common/category-navigation"} {/if}
+				
+				
+				<!-- Scroll Down Button -->
+				
+				<div id="scroll-down">
+				
+					<a href="#navigation">Scroll Down</a>
+				
+					<div class="down-arrow"></div>
+					
+				</div>			
+				
+				<!-- //End of Scroll Down Button -->
 			
 			</div>
 			
@@ -62,7 +65,7 @@
 		
 			<!-- Get items -->
 		
-			<ul id="carousel" class="no-bullets">
+			<ul id="carousel" class="carousel no-bullets">
 			
 				{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" }
 				
@@ -75,10 +78,9 @@
 							{if:else}
 							
 								<!-- Link to Next Day -->
+
+									<a href="#" class="next">Next Day<?php //print date("l jS M"; ?></a>
 								
-								{exp:sm_links type="next" entry_id="{entry_id}" channel="NOT static_page"}
-									<a href="#" class="next">Next: {l_title}</a>
-								{/exp:sm_links}
 								
 								<!-- //End Link to Previous Day -->
 							
@@ -102,9 +104,7 @@
 							
 								<!-- Link to Previous Day -->
 	
-								{exp:sm_links type="previous" entry_id="{entry_id}" channel="NOT static_page"}
-									<a href="#" class="previous">Previous: {l_title}</a>
-								{/exp:sm_links}
+								<a href="#" class="previous">Previous Day<?php //print date('l jS M'); ?></a>
 	
 								<!-- //End of Link to Previous Day -->
 							

@@ -77,11 +77,11 @@
 				
 				{if:else}				
 				
-					<ul class="carousel">
+					<ul id="post-carousel" class="carousel">
 					
 						<li>
 			
-							{exp:channel_images:images}
+							{exp:channel_images:images entry_id="{entry_id}"}
 									
 									<img src="{image:url:large}" alt="{title}" />
 									
@@ -122,10 +122,17 @@
 					<p>Guest Column: {column_name}<br/>by {contributor}</p>
 					
 				{/if}
+				
 					
 					<div class="divide"></div>
+					
+					<br/>
+					
+					{embed="common/post-share"}
 				
 				</div>
+				
+				
 				
 				<!-- //End Post Copy -->
 			
@@ -139,10 +146,6 @@
 				
 					{exp:member:custom_profile_data member_id="{author_id}"}
  	
-						 <h4>{screen_name} - {member_columnname}</h4>
-						 
-						 <p>{bio}</p>
-						 
 						 <div id="avatar">
 						 
 						 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
@@ -153,25 +156,11 @@
 						 
 						 
 						 </div>
-						
 						 
-						 <div class="connect">
-									
-								<ul>
-								
-									<li>Connect:</li>
-									
-									{if url != ""} <li><a href="http://{url}" target="_blank">Website</a></li> {/if}
-									
-									{if member_facebook != ""} <li><a href="http://{member_facebook}" target="_blank">Facebook</a></li> {/if}
-									
-									{if member_twitter != ""}<li><a href="http://{member_twitter}" target="_blank">Twitter</a></li>{/if}
-									
-									{if member_google != ""}<li><a href="http://{member_google}" target="_blank">Google+</a></li>{/if}
-								
-								</ul>
-							
-						</div>
+						 <h4>{screen_name} - {member_columnname}</h4>
+						 
+						 <p>{bio}</p>
+						
 					
 					{/exp:member:custom_profile_data}
 
@@ -196,8 +185,8 @@
 		<?php 
 			
 			//Setup similar items for further down the page
-			$author = {author_id}; 
-			$category = {categories}{category_id}{/categories};
+			//$author = {author_id}; 
+			//$category = "{categories}{category_id}{/categories}";
 			
 		?>
 		
@@ -212,12 +201,12 @@
 			<!-- Contributor Articles -->
 		
 			<div class="grid_4 related_item">
-			
+					
 				<h4>Contributor Articles</h4>
 
 					<ul id="contributor-carousel" class="carousel">
 					
-						{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" url_title="NOT {segment_2}" author="<?php print $author; ?>"}
+						{exp:channel:entries channel="NOT static_page" limit="5" dynamic="no" url_title="NOT {segment_2}" author="{author_id}"}
 					
 							<li>
 							
@@ -279,6 +268,7 @@
 					<div id="relatedcarousel-navigation" class="carousel-navigation"></div>
 			
 			</div>
+		
 			
 			<!-- //Related Articles -->
 			
@@ -287,5 +277,15 @@
 		</section>
 		
 		<!-- //End of Related Items -->
+		
+		<section class="container_12 white block">
+		
+				<!-- Comments -->
+		
+					{embed="common/comments"}
+					
+					<!-- /end Comments -->
+
+		</section>
 
 {embed="common/footer"}
