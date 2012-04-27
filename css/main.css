@@ -846,7 +846,8 @@
 		padding: 20px 60px;
 	}
 	
-	#page-title .next {
+	/*
+#page-title .next {
 		right: 0;
 	}
 	
@@ -866,6 +867,31 @@
 	#page-title .previous:before, #page-title .previous img {
 	  	clip: rect(1px 32px 16px 15px);
 	  	left: -20px;
+	}
+	
+	*/
+
+	
+	#page-title .next-btn, #page-title .previous-btn {
+		position: absolute;
+		top: 50px;
+	}
+	
+	
+	#page-title .next-btn:hover, #page-title .previous-btn:hover {
+		text-decoration: underline;
+	}
+	
+	#page-title .next-btn {
+		right: 0;
+		padding-right: 20px;
+		background: url(../images/right-arrow.png) no-repeat right center;
+	}
+	
+	#page-title .previous-btn {
+		left: 0;
+		padding-left: 20px;
+		background: url(../images/left-arrow.png) no-repeat left center;
 	}
 
 	.divide {

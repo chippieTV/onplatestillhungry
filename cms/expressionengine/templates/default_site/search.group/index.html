@@ -1,21 +1,21 @@
 {embed="common/head"}
 
 	<!-- SEO Stuff -->
-	<meta name="title" content="All | On Plate, Still Hungry" />
-	<meta name="description" content="some text here" /> 
+	<meta name="title" content="Search | On Plate, Still Hungry" />
+	<meta name="description" content="On Plate, Still Hungry is a food, drink, travel and culture magazine that sees a worldwide collective of writers, artists, chefs, designers, photographers, musicians and filmmakers share meals, stories, interviews and ideas on the daily, family styles." /> 
 	<meta name="author" content="On Plate, Still Hungry" />
 	<!-- //End SEO Stuff -->
 	
 	<!-- Facebook O:G Data -->
-	<meta property="og:url" content="{site_url}/all" />
+	<meta property="og:url" content="{site_url}/search" />
 	<meta property="og:site_name" content="On Plate, Still Hungry"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:image" content="{site_url}images/logo.png" />
 	<meta property="og:title" content="All | On Plate, Still Hungry;" />
-	<meta property="og:description" content="some text here" />
+	<meta name="og:description" content="On Plate, Still Hungry is a food, drink, travel and culture magazine that sees a worldwide collective of writers, artists, chefs, designers, photographers, musicians and filmmakers share meals, stories, interviews and ideas on the daily, family styles." /> 
 	<!-- //End Facebook O:G Data -->
 		
-	<title>Posts | On Plate, Still Hungry</title> 
+	<title>Search | On Plate, Still Hungry</title> 
 		
 {embed="common/header"}
 
@@ -31,7 +31,7 @@
 		
 		<div id="page-title" class="container_12 block">
 				
-				<h1 id="post-title">Posts</h1>
+				<h1 id="post-title">Search</h1>
 		
 		</div>
 		
@@ -41,7 +41,7 @@
 		
 		<section id="categories" class="container_12 block white">
 		
-			{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" paginate="bottom" }
+			{exp:search:search_results}
 		
 			<!-- Invidual Post -->
 				
@@ -123,26 +123,9 @@
 				
 				<!-- //End of Invidual Post -->	
 				
-				<!-- Pagination (Hidden by infinite scroll -->
-				
-				{paginate}
-							
-					<div class="navigation">
-					
-						<span id="paginationtotal">{total_pages}</span>
-				    
-				        {if previous_page}<a href="{auto_path}">Previous Page</a> &nbsp;{/if}
-		        	
-		        		{if next_page}<a class="next" href="{auto_path}">Next Page</a>{/if}
-				
-					</div>
-							
-				{/paginate}
-				
-				<!-- // End of Pagination (Hidden by infinite scroll -->
 				
 				
-				{/exp:channel:entries}		
+				{/exp:search:search_results}		
 
 		
 		</section>

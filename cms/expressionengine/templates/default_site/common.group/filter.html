@@ -4,9 +4,10 @@
 		
 			<div id="search" class="grid_5">
 		
-				{exp:search:simple_form channel="" search_in="entries"}
+				{exp:search:simple_form channel="text_entry|video_entry|recipe_entry" result_page="search" search_in="everywhere"}
 		
-					<input type="text" name="keywords" placeholder="Search" size="18" maxlength="100"  />
+					<input type="text" name="keywords" id="keywords" placeholder="Search" size="18" maxlength="100"  />
+					<input type="submit" value="Search" name="search" >
 		
 				{/exp:search:simple_form}
 		

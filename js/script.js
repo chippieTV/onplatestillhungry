@@ -61,16 +61,12 @@ $(document).ready(function()
 	
 	/* Carousel
 	-------------------------------------------------------------- */
-	$('#related-carousel').cycle({ 
+	$('#related-carousel, #post-carousel li, #contributor-carousel').cycle({ 
 	    fx:     'fade', 
 	    speed:  'fast'
 	});
 	
-	$('#contributor-carousel').cycle({ 
-	    fx:     'fade', 
-	    speed:  'fast'
- 
-	});
+	
 	
 	
 	/* Filter Expandables
