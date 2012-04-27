@@ -57,11 +57,16 @@
 					
 					<article class="grid_4 margin-right{switch="| last"}">
 					
-								{exp:channel_images:images show_cover="yes" limit="1" entry_id="{entry_id}"}
 								
-									    <img src="{image:url:medium}" alt="{title}" />
+								<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">
 								
-								{/exp:channel_images:images}								
+									{exp:channel_images:images show_cover="yes" limit="1" entry_id="{entry_id}"}
+									
+										    <img src="{image:url:medium}" alt="{title}" />
+									
+									{/exp:channel_images:images}
+									
+								</a>								
 													
 						<h3>
 						
