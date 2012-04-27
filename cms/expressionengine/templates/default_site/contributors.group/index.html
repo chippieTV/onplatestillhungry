@@ -3,24 +3,150 @@
 
 {if segment_2 != "" }
 
+	{exp:channel:entries channel="NOT static_page" limit="9" dynamic="yes"  paginate="bottom" author="{author_id}"}
+
 	<!-- SEO Stuff -->
-	<meta name="title" content="Contributors | On Plate, Still Hungry" />
-	<meta name="description" content="On Plate, Still Hungry is a food, drink, travel and culture magazine that sees a worldwide collective of writers, artists, chefs, designers, photographers, musicians and filmmakers share meals, stories, interviews and ideas on the daily, family styles." /> 
+	<meta name="title" content="{author} | Contributors | On Plate, Still Hungry" />
+	<meta name="description" content="{exp:member:custom_profile_data member_id="{author_id}" }{bio}{/exp:member:custom_profile_data}" /> 
 	<meta name="author" content="On Plate, Still Hungry" />
 	<!-- //End SEO Stuff -->
 	
 	<!-- Facebook O:G Data -->
-	<meta property="og:url" content="{site_url}/Contributors" />
+	<meta property="og:url" content="{site_url}/contributors/{auhtor_id}" />
 	<meta property="og:site_name" content="On Plate, Still Hungry"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:image" content="{site_url}images/logo.png" />
-	<meta property="og:title" content="Contributors | On Plate, Still Hungry;" />
-	<meta name="og:description" content="On Plate, Still Hungry is a food, drink, travel and culture magazine that sees a worldwide collective of writers, artists, chefs, designers, photographers, musicians and filmmakers share meals, stories, interviews and ideas on the daily, family styles." /> 
+	<meta property="og:title" content="{author} | On Plate, Still Hungry;" />
+	<meta name="og:description" content="{exp:member:custom_profile_data member_id="{author_id}" }{bio}{/exp:member:custom_profile_data}" /> 
 	<!-- //End Facebook O:G Data -->
 		
 	<title>{author} | Contributors | On Plate, Still Hungry</title> 
+	
+	{/exp:channel:entries}
 
-	{author}
+{embed="common/header"}
+
+		<!-- Navigation -->
+		
+		{embed="common/navigation"}
+		
+		<!-- //End of Navigation -->
+		
+		
+	
+		<!-- Page Title -->
+		
+		<div id="page-title" class="container_12 block">
+				
+				<h1 id="post-title">{exp:member:custom_profile_data member_id="{segment_2}" }{screen_name}{/exp:member:custom_profile_data}</h1>
+		
+		</div>
+		
+		<!-- //End of Post Title -->
+
+		<!-- Post Section -->
+		
+		<section id="categories" class="container_12 block white">
+		
+			
+			<div class="grid_8">
+			
+				{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" paginate="bottom" author_id="{segment_2}"}
+			
+				<!-- Invidual Post -->
+					
+					<article class="grid_4 margin-right{switch="| last"}">
+					
+						{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
+						
+								<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
+									
+									<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+								
+								</a>
+						
+						{/exp:ce_img:pair}
+				
+					
+						<h3>
+						
+							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
+						
+							{exp:eehive_hacksaw characters = "80" }				
+							
+								{title}
+							
+							{/exp:eehive_hacksaw}
+							
+							</a>
+							
+						</h3>
+					
+						<p class="date">Guest Column: {column_name}<br/>by {contributor}</p>
+						
+						<p class="date">{date_format}</p>
+						
+						<p>
+						
+							{exp:eehive_hacksaw words = "20" append="..."}				
+							
+								{text_body}
+							
+							{/exp:eehive_hacksaw}
+								
+						</p>
+						
+						<div class="clear"></div>
+										
+					</article>
+					
+					<!-- //End of Invidual Post -->	
+					
+				{/exp:channel:entries}	
+				
+					
+			</div>
+			
+			<!-- Right Column -->
+			
+			<aside class="right-col">
+			
+				<div class="grid_4">
+				
+					{exp:member:custom_profile_data member_id="{segment_2}"}
+ 	
+						 <div id="avatar">
+						 
+						 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
+												
+								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+							
+						 	{/exp:ce_img:pair}
+						 
+						 
+						 </div>
+						 
+						 <h4>{screen_name} - {member_columnname}</h4>
+						 
+						 <p>{bio}</p>
+						
+					
+					{/exp:member:custom_profile_data}
+
+				
+				</div>
+				
+				<div class="clear"></div>
+			
+			</aside>
+			
+			<!-- //End of Right Column -->
+
+			<div class="clear"></div>
+		
+		</section>
+		
+		<!-- //End of Related Items -->	
 
 {if:else}
 
@@ -65,59 +191,29 @@
 		
 		<section id="categories" class="container_12 block white">
 		
-			{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" category="2" paginate="bottom"}
+			{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" paginate="bottom"}
 		
 			<!-- Invidual Post -->
 				
-				<article class="grid_4 margin-right{switch="|| last"}">
-				
-					{exp:ce_img:pair src="{image}" width="300" height="163" crop="yes" allow_scale_larger="yes"}
-					
-							<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
-								
+				{exp:member:custom_profile_data member_id="1|2|2|3|4"}
+ 	
+						 <div id="avatar">
+						 
+						 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
+												
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							
-							</a>
-					
-					{/exp:ce_img:pair}
-			
-				
-					<h3>
-					
-						<a href="{path="{categories}{category_url_title}{/categories}/{url_title}"}">
-					
-						{exp:eehive_hacksaw characters = "80" }				
+						 	{/exp:ce_img:pair}
+						 
+						 
+						 </div>
+						 
+						 <h4>{screen_name} - {member_columnname}</h4>
+						 
+						 <p>{bio}</p>
 						
-							{title}
-						
-						{/exp:eehive_hacksaw}
-						
-						</a>
-						
-					</h3>
-				
-					<p class="date">Guest Column: {column_name}<br/>by {contributor}</p>
 					
-					<p class="date">{date_format}</p>
-					
-					<p>
-					
-						{exp:eehive_hacksaw words = "20" append="..."}				
-						
-							{text_body}
-						
-						{/exp:eehive_hacksaw}
-							
-					</p>
-					
-					<div class="clear"></div>
-									
-				</article>
-				
-				<!-- //End of Invidual Post -->	
-				
-				{/exp:channel:entries}		
-		
+					{/exp:member:custom_profile_data}		
 		</section>
 		
 		<!-- //End of Related Items -->
