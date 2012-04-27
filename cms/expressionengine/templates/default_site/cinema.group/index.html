@@ -41,7 +41,24 @@
 		
 		<section id="categories" class="container_12 block white">
 		
-			{exp:channel:entries channel="video_entry" limit="9" dynamic="no" paginate="bottom" }
+			{exp:channel:entries channel="video_entry" limit="1" dynamic="no" }
+			
+				<article class="grid_10">
+				
+					<div id="main-video">
+					
+						{video_video}
+						
+						{video_tagline}
+						
+					</div>
+					
+				</article>
+			
+			{/exp:channel:entries}
+		
+		
+			{exp:channel:entries channel="video_entry" limit="9" dynamic="no" paginate="bottom" offset="1" }
 		
 			<!-- Invidual Post -->
 				
