@@ -976,8 +976,11 @@
    Recipe Post
    ========================================================================== */
 
-	.two-col p {
+	.two-col {
 		margin: 50px 0px;
+	}
+	
+	.two-col p {
 		-webkit-column-count: 	2;
 		-moz-column-count: 		3;
 		column-count: 			3;
