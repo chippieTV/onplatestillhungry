@@ -193,85 +193,55 @@
 		
 		<section id="categories" class="container_12 block white">
 		
-			{exp:channel:entries channel="text_entry" limit="9" dynamic="no" paginate="bottom" }
-		
+			{exp:query sql="SELECT * FROM exp_members"}
+			
+
 			<!-- Invidual Post -->
 				
-				<article class="grid_4 margin-right{switch="|| last"}">
+				<article class="grid_4 contributor margin-right{switch="|| last"}">
 				
 					<!-- Image shown by default -->
+					
+					{exp:member:custom_profile_data member_id="{member_id}" }
 						
 						<div class="front">
 						
-							<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">
-							
-								{exp:channel_images:images show_cover="yes" limit="1" entry_id="{entry_id}"}
+							{exp:ce_img:pair src="{avatar_url}" width="300" height="250" crop="yes" allow_scale_larger="yes"}
 								
-									    <img src="{image:url:medium}" alt="{title}" />
+								<a href="{path="contributors/{member_id}"}">
 								
-								{/exp:channel_images:images}
+									<img src="{made}" alt="{title}" width="{width}" height="{height}" />
+									
+									
+								</a>
 							
-							</a>
+						 	{/exp:ce_img:pair}
 
 						</div>
 						
 						<!-- //End Image shown by default -->
-						
-						<!-- Hidden by default -->
-						
-						<div class="back {categories limit="1"}{category_url_title}{/categories}">
-							
-							<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}"></a>
-						
-						</div>
-						
-						<!-- //End Hidden by default -->
+										
 						
 						<div class="details">
 				
 							<h3>
 							
-								<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">
-							
-								{exp:eehive_hacksaw characters = "80" }				
+								<a href="{path="contributors/{member_id}"}">			
 								
-									{title}
-								
-								{/exp:eehive_hacksaw}
-								
+									{screen_name}
+
 								</a>
 								
 							</h3>
 							
-							<p>
+								
+							<p class="member">{location}</p>
+		 					<p class="member"><a href="http://www.{url}">{url}</a></p>
 							
-								{exp:eehive_hacksaw characters = "150" append="..."}				
-							
-									{if channel_short_name == "video_entry" }
-									
-										{video_tagline}
-										
-									{if:elseif channel_short_name == "recipe_entry" }
-									
-										{recipe_tagline}
-										
-									{if:else}
-									
-										{text_tagline}
-										
-									{/if}
-							
-								{/exp:eehive_hacksaw}
-									
-							</p>
-						
-							<p class="date">Guest Column: {column_name}<br/>by {contributor}</p>
-							
-							<p class="date">{date_format}</p>
-							
-							
-						
+					
 						</div>
+						
+					{/exp:member:custom_profile_data}
 									
 				</article>
 				
@@ -296,7 +266,7 @@
 				<!-- // End of Pagination (Hidden by infinite scroll -->
 				
 				
-				{/exp:channel:entries}		
+				{/exp:query}		
 	
 		</section>
 		

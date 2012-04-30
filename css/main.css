@@ -321,6 +321,9 @@
 	}
 
 
+	.navigation {
+		clear: both;
+	}
 
 /* ==========================================================================
    Branding
@@ -854,31 +857,9 @@
 		padding: 20px 60px;
 	}
 	
-	/*
-#page-title .next {
-		right: 0;
+	#post-wrapper a {
+		text-decoration: underline;
 	}
-	
-	#page-title .previous {
-		left: 0;
-	}
-	
-	#page-title .next:hover, #page-title .previous:hover {
-		color: #666;
-	}
-	
-	#page-title .next:before, #page-title .next img {
-	  	clip: rect(1px 47px 16px 34px);
-	  	right: -310px;
-	}
-	
-	#page-title .previous:before, #page-title .previous img {
-	  	clip: rect(1px 32px 16px 15px);
-	  	left: -20px;
-	}
-	
-	*/
-
 	
 	#page-title .next-btn, #page-title .previous-btn {
 		position: absolute;
@@ -1010,7 +991,18 @@
 	#small-video iframe {
 		width: 620px;
 	}
+	
+	
+	/* ==========================================================================
+   Contributor
+   ========================================================================== */
 
+	
+	.contributor .details {
+		top: 290px;
+	}
+	
+	
 /* ==|== non-semantic helper classes ========================================
    Please define your styles before this section.
    ========================================================================== */
