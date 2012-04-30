@@ -325,7 +325,7 @@ $config['cache_path'] = "";
 | enabled you MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = "1Password";
+$config['encryption_key'] = "513jgTnTf3*,_v(M1>CZ5T=p%;nR|lx|M\“vLKh^u$*S46\bVh.ueWEcC`5of(:";
 
 /*
 |--------------------------------------------------------------------------
