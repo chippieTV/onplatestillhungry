@@ -3,24 +3,25 @@
 
 {if segment_2 != "" }
 
-	{exp:channel:entries channel="NOT static_page" limit="9" dynamic="yes"  paginate="bottom" author="{author_id}"}
+	{exp:channel:entries channel="NOT static_page" limit="1" dynamic="yes"  paginate="bottom" author="{segment_2_member_id}"}
+
 
 	<!-- SEO Stuff -->
-	<meta name="title" content="{author} | Contributors | On Plate, Still Hungry" />
-	<meta name="description" content="{exp:member:custom_profile_data member_id="{author_id}" }{bio}{/exp:member:custom_profile_data}" /> 
-	<meta name="author" content="On Plate, Still Hungry" />
+	<meta name="title" content="{segment_2_screen_name} | Contributors | On Plate, Still Hungry" />
+	<meta name="description" content="{segment_2_bio}" /> 
+	<meta name="author" content="{segment_2_screen_name}" />
 	<!-- //End SEO Stuff -->
 	
 	<!-- Facebook O:G Data -->
-	<meta property="og:url" content="{site_url}/contributors/{auhtor_id}" />
+	<meta property="og:url" content="{site_url}/contributors/{segment_2_screen_name}" />
 	<meta property="og:site_name" content="On Plate, Still Hungry"/>
 	<meta property="og:type" content="website"/>
-	<meta property="og:image" content="{site_url}images/logo.png" />
-	<meta property="og:title" content="{author} | On Plate, Still Hungry;" />
-	<meta name="og:description" content="{exp:member:custom_profile_data member_id="{author_id}" }{bio}{/exp:member:custom_profile_data}" /> 
+	<meta property="og:image" content="{segment_2_avatar_filename}" />
+	<meta property="og:title" content="{segment_2_screen_name} | On Plate, Still Hungry;" />
+	<meta name="og:description" content="{segment_2_bio}" /> 
 	<!-- //End Facebook O:G Data -->
 		
-	<title>{author} | Contributors | On Plate, Still Hungry</title> 
+	<title>{segment_2_screen_name} | Contributors | On Plate, Still Hungry</title> 
 	
 	{/exp:channel:entries}
 
@@ -38,7 +39,7 @@
 		
 		<div id="page-title" class="container_12 block">
 				
-				<h1 id="post-title">{exp:member:custom_profile_data member_id="{segment_2}" }{screen_name}{/exp:member:custom_profile_data}</h1>
+				<h1 id="post-title">{segment_2_screen_name}</h1>
 		
 		</div>
 		
@@ -51,7 +52,7 @@
 			
 			<div class="grid_8">
 			
-				{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" paginate="bottom" author_id="{segment_2}"}
+				{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" paginate="bottom" author_id="{segment_2_member_id}"}
 			
 				<!-- Invidual Post -->
 					
@@ -208,7 +209,7 @@
 						
 							{exp:ce_img:pair src="{avatar_url}" width="300" height="250" crop="yes" allow_scale_larger="yes"}
 								
-								<a href="{path="contributors/{member_id}"}">
+								<a href="{path="contributors/{username}"}">
 								
 									<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 									
@@ -226,7 +227,7 @@
 				
 							<h3>
 							
-								<a href="{path="contributors/{member_id}"}">			
+								<a href="{path="contributors/{username}"}">			
 								
 									{screen_name}
 
