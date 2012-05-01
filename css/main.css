@@ -862,13 +862,14 @@
 	#page-title .next-btn, #page-title .previous-btn {
 		position: absolute;
 		top: 50px;
+		width: 200px;
+		word-break: break-word;
 	}
 	
 	
 	#page-title .next-btn:hover, #page-title .previous-btn:hover {
 		text-decoration: underline;
-		width: 200px;
-		word-break: break-word;
+		
 	}
 	
 	#page-title .next-btn {
