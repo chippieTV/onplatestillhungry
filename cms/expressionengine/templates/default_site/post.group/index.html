@@ -4,7 +4,7 @@
 
 	<!-- SEO Stuff -->
 	<meta name="title" content="{title}" />
-	<meta name="description" content="{exp:eehive_hacksaw characters = "100" }{text_body}{/exp:eehive_hacksaw}" /> 
+	<meta name="description" content="{exp:eehive_hacksaw chars = "100" }{text_body}{/exp:eehive_hacksaw}" /> 
 	<meta name="author" content="{author}" />
 	<!-- //End SEO Stuff -->
 	
@@ -14,7 +14,7 @@
 	<meta property="og:type" content="website"/>
 	<meta property="og:image" content="{exp:channel_images:images show_cover="yes" limit="1" entry_id="{entry_id}"}{image:url:small}{/exp:channel_images:images}" />
 	<meta property="og:title" content="{title}" />
-	<meta property="og:description" content="{exp:eehive_hacksaw characters = "100" }{text_body}{/exp:eehive_hacksaw}" />
+	<meta property="og:description" content="{exp:eehive_hacksaw chars = "100" }{text_body}{/exp:eehive_hacksaw}" />
 	<!-- //End Facebook O:G Data -->
 		
 	<title>{title} | {column_name} | {contributor}</title> 
@@ -40,13 +40,14 @@
 				<!-- Link to Next Day -->
 								
 				{exp:sm_links type="next" entry_id="{entry_id}" channel="NOT static_page"}
-					<a href="{path="{categories}{category_url_title}{/categories}/{l_url_title}"}" class="next-btn">{exp:eehive_hacksaw characters = "50" }{l_title}{/exp:eehive_hacksaw}</a>
+					<a href="{path="{categories}{category_url_title}{/categories}/{l_url_title}"}" class="next-btn">{exp:eehive_hacksaw
+chars = "10"}{l_title}{/exp:eehive_hacksaw}</a>
 				{/exp:sm_links}
 				
 				<!-- //End Link to Previous Day -->
 				
 
-				<h1 id="post-title">{exp:eehive_hacksaw characters = "80" }{title}{/exp:eehive_hacksaw}</h1>
+				<h1 id="post-title">{exp:eehive_hacksaw words = "25" }{title}{/exp:eehive_hacksaw}</h1>
 				
 				<p class="date">{date_format} - Guest Column: {column_name}<br/>by {contributor}</p>
 				
@@ -54,7 +55,7 @@
 				<!-- Link to Previous Day -->
 	
 				{exp:sm_links type="previous" entry_id="{entry_id}" channel="NOT static_page" }
-					<a href="{path="{categories}{category_url_title}{/categories}/{l_url_title}"}" class="previous-btn">{exp:eehive_hacksaw characters = "50" }{l_title}{/exp:eehive_hacksaw}</a>
+					<a href="{path="{categories}{category_url_title}{/categories}/{l_url_title}"}" class="previous-btn">{l_title}</a>
 				{/exp:sm_links}
 
 				<!-- //End of Link to Previous Day -->
