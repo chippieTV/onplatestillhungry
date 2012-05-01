@@ -995,9 +995,12 @@
    Contributor
    ========================================================================== */
 
+	#categories article.contributor {
+		min-height: 370px;
+	}
 	
 	.contributor .details {
-		top: 290px;
+		top: 270px;
 	}
 	
 	

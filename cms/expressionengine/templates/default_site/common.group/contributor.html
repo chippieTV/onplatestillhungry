@@ -1,76 +1,32 @@
-<!-- Show random profile on homepage -->
+{exp:member:custom_profile_data member_id="8" }
 
-{if segment_1 == "" }
-
-	{exp:member:custom_profile_data member_id="8" }
-	
-		 <div id="avatar">
-		 
-		 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
-								
-				<a href="{path="contributors/8"}">
-				
-					<img src="{made}" alt="{title}" width="{width}" height="{height}" />
-					
-					
-				</a>
+	 <div id="avatar">
+	 
+	 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
+							
+			<a href="{path="contributors/carloscarneiro"}">
 			
-		 	{/exp:ce_img:pair}
-		 
-		 
-		 </div>
-		 
-		 <h4>{screen_name} - {member_columnname}</h4>
-		 
-		 <p class="member">{location}</p>
-		 <p class="member"><a href="http://www.{url}">{url}</a></p>
-		 
-		 <p>
-		 	{exp:eehive_hacksaw words = "20" append="..."}				
-									
-				{bio}
-									
-			{/exp:eehive_hacksaw}
-		 </p>
-	
-	{/exp:member:custom_profile_data}
-	
-<!-- //End Show random profile on homepage -->
-
-{if:else}
- 
- 	{exp:member:custom_profile_data member_id="{author_id}"}
- 	
-		 <div id="avatar">
-		 
-		 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
-								
-				<a href="{path="contributors/{author_id}"}">
+				<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 				
-					<img src="{made}" alt="{title}" width="{width}" height="{height}" />
-					
-				</a>
-			
-		 	{/exp:ce_img:pair}
-		 
-		 
-		 </div>
-		 
-		 <h4>{screen_name} - {member_columnname}</h4>
-		 
-		 <p class="member">{screen_name}<br/>
-		 <p class="member"><a href="{url}">{url}</a></p>
-		 
-		 <p>
-		 	{exp:eehive_hacksaw words = "20" append="..."}				
-									
-				{bio}
-									
-			{/exp:eehive_hacksaw}
-		 </p>
-		 
-		 
-	
-	{/exp:member:custom_profile_data}
-	
-{/if}
+				
+			</a>
+		
+	 	{/exp:ce_img:pair}
+	 
+	 
+	 </div>
+	 
+	 <h4>{screen_name} - {member_columnname}</h4>
+	 
+	 <p class="member">{location}</p>
+	 <p class="member"><a href="http://www.{url}">{url}</a></p>
+	 
+	 <p>
+	 	{exp:eehive_hacksaw words = "20" append="..."}				
+								
+			{bio}
+								
+		{/exp:eehive_hacksaw}
+	 </p>
+
+{/exp:member:custom_profile_data}
