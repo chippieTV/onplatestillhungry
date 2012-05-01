@@ -40,7 +40,7 @@
 				<!-- Link to Next Day -->
 								
 				{exp:sm_links type="next" entry_id="{entry_id}" channel="NOT static_page"}
-					<a href="{path="{categories}{category_url_title}{/categories}/{l_url_title}"}" class="next-btn">{l_title}</a>
+					<a href="{path="{categories}{category_url_title}{/categories}/{l_url_title}"}" class="next-btn">{exp:eehive_hacksaw characters = "50" }{l_title}{/exp:eehive_hacksaw}</a>
 				{/exp:sm_links}
 				
 				<!-- //End Link to Previous Day -->
@@ -54,7 +54,7 @@
 				<!-- Link to Previous Day -->
 	
 				{exp:sm_links type="previous" entry_id="{entry_id}" channel="NOT static_page" }
-					<a href="{path="{categories}{category_url_title}{/categories}/{l_url_title}"}" class="previous-btn">{l_title}</a>
+					<a href="{path="{categories}{category_url_title}{/categories}/{l_url_title}"}" class="previous-btn">{exp:eehive_hacksaw characters = "50" }{l_title}{/exp:eehive_hacksaw}</a>
 				{/exp:sm_links}
 
 				<!-- //End of Link to Previous Day -->
