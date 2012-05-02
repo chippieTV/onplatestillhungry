@@ -1,10 +1,8 @@
-{embed="common/head"}
-
 {exp:channel:entries channel="NOT static_page|newsletter" limit="1" dynamic="no" url_title="{segment_2}" }
 
 	<!-- SEO Stuff -->
 	<meta name="title" content="{title}" />
-	<meta name="description" content="{exp:eehive_hacksaw chars = "100" }{text_body}{/exp:eehive_hacksaw}" /> 
+	<meta name="description" content="{if channel_short_name == "video_entry" }{video_tagline}{if:elseif channel_short_name == "recipe_entry" }{recipe_tagline}{if:else}{text_tagline}{/if}" /> 
 	<meta name="author" content="{author}" />
 	<!-- //End SEO Stuff -->
 	
@@ -14,10 +12,10 @@
 	<meta property="og:type" content="website"/>
 	<meta property="og:image" content="{exp:channel_images:images show_cover="yes" limit="1" entry_id="{entry_id}"}{image:url:small}{/exp:channel_images:images}" />
 	<meta property="og:title" content="{title}" />
-	<meta property="og:description" content="{exp:eehive_hacksaw chars = "100" }{text_body}{/exp:eehive_hacksaw}" />
+	<meta property="og:description" content="{if channel_short_name == "video_entry" }{video_tagline}{if:elseif channel_short_name == "recipe_entry" }{recipe_tagline}{if:else}{text_tagline}{/if}" />
 	<!-- //End Facebook O:G Data -->
 		
-	<title>{title} | {column_name} | {contributor}</title> 
+	<title>{title} | {column_name} | {author}</title> 
 	
 {/exp:channel:entries}
 	

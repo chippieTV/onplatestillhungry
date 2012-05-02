@@ -1,0 +1,44 @@
+body { 
+	margin: 0; 
+	font-size: 12px; 
+	line-height: 1.7; 
+	letter-spacing: 1px; 
+	color: #595A5C; 
+	background: #F2F2F3;
+	font-family: arial, sans;
+}
+
+a {
+	text-decoration: none;
+}
+
+#header a {
+	line-height: 1.2;
+	color: #CCC;
+	padding: 10px 0px;
+	vertical-align: middle;
+}
+
+h1, h3, h3, h4 {
+	font-family: "ff-meta-web-pro", Arial, helvetica, sans;
+	color: #000;
+	font-weight: normal;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	line-height: 1.2;
+}
+
+h1 {
+	font-size: 24px;
+	margin: 0;
+	padding: 0;	
+}
+
+h3 {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+#footer {
+	text-align: center;
+}
