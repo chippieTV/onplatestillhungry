@@ -3,7 +3,7 @@
 
 {if segment_2 != "" }
 
-	{exp:channel:entries channel="NOT static_page" limit="1" dynamic="yes"  paginate="bottom" author="{segment_2_member_id}"}
+	{exp:channel:entries channel="NOT static_page|newsletter" limit="1" dynamic="yes"  paginate="bottom" author="{segment_2_member_id}"}
 
 
 	<!-- SEO Stuff -->
@@ -52,7 +52,7 @@
 			
 			<div class="grid_8">
 			
-				{exp:channel:entries channel="NOT static_page" limit="9" dynamic="no" paginate="bottom" author_id="{segment_2_member_id}"}
+				{exp:channel:entries channel="NOT static_page|newsletter" limit="9" dynamic="no" paginate="bottom" author_id="{segment_2_member_id}"}
 			
 				<!-- Invidual Post -->
 					
