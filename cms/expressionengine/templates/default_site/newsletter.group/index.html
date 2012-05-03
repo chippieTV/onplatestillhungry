@@ -34,7 +34,7 @@
 			body { 
 				margin: 0; 
 				font-size: 12px; 
-				line-height: 1.1; 
+				line-height: 1.4; 
 				letter-spacing: 1px; 
 				color: #595A5C; 
 				background: #F2F2F3;
@@ -69,10 +69,11 @@
 				padding: 0;	
 			}
 			
-			h3 {
+			h3, h3 a {
 				font-size: 16px;
 				margin-top: 0;
 				padding-top: 0;
+				color: #000;
 			}
 			
 			.date {
@@ -152,13 +153,23 @@
 							      		</tr>
                                    {newsletter_items}
 									{newsletter_item}
+									
+										<?php
+										
+											//Get the article category
+											$result = mysql_query("SELECT * FROM exp_category_posts LEFT JOIN exp_categories ON exp_category_posts.cat_id = exp_categories.cat_id WHERE entry_id = '{entry_id}'");
+											$row = mysql_fetch_array($result);
+										    $cat = $row["cat_url_title"];
+										    
+										?>
+
 									    <tr valign="top">
 									      <td width="20" rowspan="8" valign="top">&nbsp;</td>
-										  <td width="305" valign="top"><h3>{title}</h3></td>
+										  <td width="305" valign="top"><h3><a href="{path="<?php echo $cat; ?>/{url_title}"}">{title}</a></h3></td>
 										  <td width="20" rowspan="8" valign="top">&nbsp;</td>
 										  <td width="200" rowspan="8" valign="top" align="right">
                                           		{exp:channel_images:images entry_id="{entry_id}" cover_only="yes"} 
-                                                  <a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">
+                                                  <a href="{path="<?php echo $cat; ?>/{url_title}"}">
                                                     <img src="{image:url:newsletter}" alt="{title}" align="right"/> 
                                                   </a>
 										      {/exp:channel_images:images}
@@ -181,13 +192,47 @@
 										  <td height="1"></td>
 									    </tr>
 										<tr valign="bottom">
-										  <td height="7"><p>{if newsletter_tagline != ""}{newsletter_tagline}{if:else}{/if}</p></td>
+										  <td height="7">
+										  	<p>
+										  		{if newsletter_tagline != ""}
+										  		
+										  			{newsletter_tagline}
+										  			
+										  		{if:else}
+										  		
+								
+														<?php
+															//Get the Tagline
+															$result = mysql_query("SELECT `channel_id`,`field_id_14`,`field_id_14`,`field_id_17` FROM exp_channel_data WHERE entry_id = '{entry_id}'");
+															$row = mysql_fetch_array($result);
+														    $channel = $row["channel_id"];
+														    //Text Entry
+														    if($channel == "1") {
+														    	$tagline = $row["field_id_14"];
+														    	 echo $tagline;
+														    }
+														    //Recipe
+														    if($channel == "3") {
+														    	$tagline = $row["field_id_16"];
+														    	 echo $tagline;
+														    }
+														    //Video
+														    if($channel == "2") {
+														    	$tagline = $row["field_id_17"];
+														    	echo $tagline;
+														    }
+														   
+														?>
+																				  		
+										  		{/if}
+										  	</p>
+										  </td>
 									    </tr>
                                         <tr valign="bottom">
                                           <td height="4">&nbsp;</td>
                                         </tr>
                                         <tr valign="bottom">
-                                          <td height="4"><a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}"><img src="{site_url}images/read-more.png" alt="Read More" /></a></td>
+                                          <td height="4"><a href="{path="<?php echo $cat; ?>/{url_title}"}"><img src="{site_url}images/read-more.png" alt="Read More" /></a></td>
                                         </tr>
                                         <tr valign="middle">
                                           <td height="30" colspan="5" valign="middle"><img src="{site_url}images/line.jpg" /></td>
