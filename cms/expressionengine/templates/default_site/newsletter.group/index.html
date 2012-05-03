@@ -34,7 +34,7 @@
 			body { 
 				margin: 0; 
 				font-size: 12px; 
-				line-height: 1.7; 
+				line-height: 1.1; 
 				letter-spacing: 1px; 
 				color: #595A5C; 
 				background: #F2F2F3;
@@ -42,8 +42,10 @@
 				text-align: left;
 			}
 			
-			a {
+			a, img {
 				text-decoration: none;
+				border: 0 none;
+				outline: 0 none;
 			}
 			
 			#header a {
@@ -59,7 +61,6 @@
 				font-weight: normal;
 				text-transform: uppercase;
 				letter-spacing: 2px;
-				line-height: 1.2;
 			}
 			
 			h1 {
@@ -74,8 +75,20 @@
 				padding-top: 0;
 			}
 			
+			.date {
+				margin: 1px 0px;;
+				padding: 0;	
+				font-weight: bold;
+			}
+			
 			#footer {
 				text-align: center;
+			}
+			
+			#footer a {
+				color: #666;
+				font-size:11px;
+				text-decoration: underline;	
 			}
 		
  	</style>
@@ -86,39 +99,35 @@
 						<!-- Navigation Bar -->
 						<tr valign="top">
 							<td align="center">
-											<table width="100%" cellspacing="0" cellpadding="0" bgcolor="#00000">
-												<tr valign="top">
-													<td align="center">
-														<table width="660px" cellspacing="0" cellpadding="0" bgcolor="#00000">
-															<tr valign="middle" id="header" height="40px">
-																<td align="center" width="160px">
-																	<a href="{site_url}" target="_blank">On Plate, Still Hungry.</a>
-																</td>
-																<td align="center" width="100px">
-																	<a href="{path="contributors"}" target="_blank">Contributors</a>
-																</td>
-																<td align="center" width="100px">
-																	<a href="{path="recipes"}" target="_blank">Recipes</a>
-																</td>
-																<td align="center" width="100px">
-																	<a href="{path="film"}" target="_blank">Film</a>
-																</td>
-																<td align="center" width="100px">
-																	<a href="{path="about"}" target="_blank">About</a>
-																</td>
-															</tr>
-														</table>
-													
-													</td>
-												</tr>
-											</table>
+                                <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#00000">
+                                    <tr valign="top">
+                                        <td align="center">
+                                            <table width="660px" cellspacing="0" cellpadding="0" bgcolor="#00000">
+                                                <tr valign="middle" id="header" height="40px">
+                                                    <td align="center" width="160px">
+                                                        <a href="{site_url}" target="_blank">On Plate, Still Hungry.</a>
+                                                    </td>
+                                                    <td align="center" width="100px">
+                                                        <a href="{path="contributors"}" target="_blank">Contributors</a>
+                                                    </td>
+                                                    <td align="center" width="100px">
+                                                        <a href="{path="recipes"}" target="_blank">Recipes</a>
+                                                    </td>
+                                                    <td align="center" width="100px">
+                                                        <a href="{path="film"}" target="_blank">Film</a>
+                                                    </td>
+                                                    <td align="center" width="100px">
+                                                        <a href="{path="about"}" target="_blank">About</a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
 							</td>
                         </tr>
                         <!-- //End of Navigation Bar -->
-                        
               {exp:channel:entries channel="newsletter" limit="1"}
-						
-						<!-- Logo & Title -->
 						<tr valign="top">
 							<td align="center">
 								<table width="580px" cellspacing="0" cellpadding="0" bgcolor="#F2F2F3">
@@ -135,69 +144,74 @@
 								</table>
 							</td>
                         </tr>
-                        <!-- //End of Logo & Title -->
-
-                   <!-- Featured Story -->
-              			
-		  				<tr valign="top">
+                        <tr valign="top">
 							<td align="center">
-								<table cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" id="main" width="580px" align="center">								  	
-									
-									<tr>
-											<td height="20px">&nbsp;</td>
-										</tr>
-									{newsletter_items}
-										{newsletter_item}
-										<!-- Posts -->
-										<tr valign="top">
-										  <td width="15" rowspan="3">&nbsp;</td>
-										   <td width="335" valign="top"><h3>{title}</h3></td>
-										   <td width="15" rowspan="4" ></td>
-										   <td width="200" rowspan="4" valign="top">
-										     {exp:channel_images:images entry_id="{entry_id}" cover_only="yes"} 
-										     	<a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">
-										     		<img src="{image:url:newsletter}" alt="{title}" /> 
-										     	</a>
-										     {/exp:channel_images:images} </td>
-										   <td width="15" rowspan="4">&nbsp;</td>										  </tr>
-										  <tr valign="top" valign="top">
-										    <td width="310">{date_format}</td>
+								<table width="580" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+										  <tr valign="top">
+										    <td colspan="5" valign="top" height="20">&nbsp;	</td>
+							      		</tr>
+                                   {newsletter_items}
+									{newsletter_item}
+									    <tr valign="top">
+									      <td width="20" rowspan="8" valign="top">&nbsp;</td>
+										  <td width="305" valign="top"><h3>{title}</h3></td>
+										  <td width="20" rowspan="8" valign="top">&nbsp;</td>
+										  <td width="200" rowspan="8" valign="top" align="right">
+                                          		{exp:channel_images:images entry_id="{entry_id}" cover_only="yes"} 
+                                                  <a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}">
+                                                    <img src="{image:url:newsletter}" alt="{title}" align="right"/> 
+                                                  </a>
+										      {/exp:channel_images:images}
+                                          
+                                          </td>
+										  <td width="20" rowspan="8" valign="top">&nbsp;</td>
 									  	</tr>
 										<tr>
-										  <td width="310" valign="top">
-										  	<p>{if newsletter_tagline != ""}{newsletter_tagline}{if:else}{/if}</p>
-										</td>
-										</tr>
-										 <tr valign="bottom">  		 
-										   <td height="15">&nbsp;</td>
-										   <td height="15" valign="bottom"><a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}"><img src="{site_url}images/read-more.png" alt="Read More" /></a></td>
-									     </tr>
-									    
-											</td>
-										</tr>
+										  <td width="305" valign="top">
+										    
+										    </td>
+									    </tr>
+										<tr valign="bottom">
+										  <td height="1"></td>
+								  </tr>
+										<tr valign="bottom">
+										  <td height="15"><p class="date">{date_format}</p></td>
+								  </tr>
+										<tr valign="bottom">
+										  <td height="1"></td>
+									    </tr>
+										<tr valign="bottom">
+										  <td height="7"><p>{if newsletter_tagline != ""}{newsletter_tagline}{if:else}{/if}</p></td>
+									    </tr>
+                                        <tr valign="bottom">
+                                          <td height="4">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="bottom">
+                                          <td height="4"><a href="{path="{categories limit="1"}{category_url_title}{/categories}/{url_title}"}"><img src="{site_url}images/read-more.png" alt="Read More" /></a></td>
+                                        </tr>
+                                        <tr valign="middle">
+                                          <td height="30" colspan="5" valign="middle"><img src="{site_url}images/line.jpg" /></td>
+                                        </tr>
+                                        
 										{/newsletter_item}
-										<tr>
-											<td height="20px">&nbsp;</td>
-										</tr>
-								<!-- // End Posts -->
-							{/newsletter_items}	
-						 </table>	
-						  </td>
-		 					<tr valign="top" id="footer">
-								<td align="center">	
-									<table cellpadding="0" cellspacing="0" width="660px">
-										<tr colspan="2">
-											<td>&nbsp;</td>
-										</tr>
-										<tr valign="middle">
-											<td align="center"><a href="*|FORWARD|*">Forward</a> | <a href="*|UNSUB|*">Unsubscribe</a></td>
-										<tr>
-								  </table>
-								</td>
-							</tr>
-					</table>
-				</td>
-			</tr>
+									{/newsletter_items}	
+								</table>
+							</td>
+                        </tr>
+                        <tr valign="top" id="footer">
+                            <td align="center">	
+                                <table cellpadding="0" cellspacing="0" width="580px">
+                                    <tr colspan="2">
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr valign="middle">
+                                        <td align="center"><a href="*|FORWARD|*">Forward</a> | <a href="*|UNSUB|*">Unsubscribe</a></td>
+                                    <tr valign="middle">
+                                      <td align="center">&nbsp;</td>
+                                    <tr>
+                              </table>
+                            </td>
+                        </tr>
 			{/exp:channel:entries}
 		</table>	
 	</body>
