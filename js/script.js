@@ -1,13 +1,19 @@
 $(document).ready(function() 
 {
 	
+	/* Variables
+	-------------------------------------------------------------- */
+	$browser_width = $(window).width();
+	$browser_height = $(window).height();
+	
+	
 	/* Homepage logo fade in
 	-------------------------------------------------------------- */
 	setTimeout(function(){ $("#todays-post #branding").fadeIn(500) }, 100)
 	
 	/* Homepage Image fit screen
 	-------------------------------------------------------------- */
-	$('#todays-post, #carousel, #carousel li').css('width', $(window).width()+'px').css('height', $(window).height()+10+'px');
+	$('#todays-post, #carousel, #carousel li').css('width', $browser_width+'px').css('height', $browser_height+10+'px');
 	
 	
 	/* ScrollTo
@@ -71,7 +77,7 @@ $(document).ready(function()
     -------------------------------------------------------------- */
 	// infinitescroll() is called on the element that
     // surrounds the items you will be loading more of
-    $('#categories').infinitescroll({
+    $('.infinite_scroll').infinitescroll({
         navSelector : ".navigation",
         nextSelector : "a.next",
         itemSelector : "article",
@@ -79,9 +85,37 @@ $(document).ready(function()
         bufferPx : 100   
     });  
     
+    //Get browser size and apply to images to make fullscreen on browser resize
+	$(window).bind("debouncedresize", function() {
+	
+		/* Variables
+		-------------------------------------------------------------- */
+		$browser_width = $(window).width();
+		$browser_height = $(window).height();
+		
+		
+		/* Homepage Image fit screen
+		-------------------------------------------------------------- */
+		$('#todays-post, #carousel, #carousel li').css('width', $browser_width+'px').css('height', $browser_height+10+'px');
+		
+		/* Lock navigation on scroll past fist screen
+		-------------------------------------------------------------- */
+		var top = $('#navigation').offset().top;
+	    $(window).scroll(function (event) {
+	      var y = $(this).scrollTop();
+	      if (y >= top) { 
+	      	$('#navigation').addClass('fixed'); 
+	      	$('#filter').css('margin-top', '58px');
+	      	$('#scroll-down').fadeOut();
+	      }
+	      else { 
+	      	$('#navigation').removeClass('fixed');
+	      	$('#filter').css('margin-top', '15px');
+	      	$('#scroll-down').fadeIn();
+	 
+	      }
+		});
+		    
+    });
     
-});
-
-$(window).resize(function() {
-  $('#todays-post, #carousel, #carousel li').css('width', $(window).width()+'px').css('height', $(window).height()+'px');
 });
