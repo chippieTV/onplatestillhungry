@@ -54,8 +54,8 @@ $(document).ready(function()
 	    timeout: 0, 
 	    rev:	1,
 	    nowrap: 1,
-	    next: '.previous',
-	    prev: '.next' 
+	    next: '.previous-item',
+	    prev: '.next-item' 
 	});
 	
 	
@@ -67,17 +67,7 @@ $(document).ready(function()
 	});
 	
 	
-	
-	
-	/* Filter Expandables
-	-------------------------------------------------------------- */
-	$('.expand').click(function() {
-		$("#tags").slideToggle();
-	});
-	
-
-	
-	/* Feed Infinite Scroll 
+	/* Infinite Scroll 
     -------------------------------------------------------------- */
 	// infinitescroll() is called on the element that
     // surrounds the items you will be loading more of

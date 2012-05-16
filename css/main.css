@@ -288,24 +288,24 @@
 		list-style: none;
 	}
 	
-	.next, .previous {
+	.next-item, .previous-item {
 		position: absolute;
 		display: block;
 		top: 40px;
 		background-image: expression(this.runtimeStyle.backgroundImage='none', this.innerHTML = '<img alt="" src="../images/assets.png">' + this.innerHTML);
 	}
 	
-	.next {
+	.next-item {
 		padding-right: 30px;
 		text-align: right;
 	}
 	
-	.previous {
+	.previous-item {
 		padding-left: 30px;
 		text-align: left;
 	}
 	
-	.next:before, .next img, .previous:before, .previous img {
+	.next-item:before, .next-item img, .previous-item:before, .previous-item img {
 		content: url(../images/assets.png);
 	  	position: absolute;
 	  	height: 15px;
@@ -684,7 +684,7 @@
 		line-height: 1.3;
 	}
 	
-	.post-title-wrapper .next, .post-title-wrapper .previous {
+	.post-title-wrapper .next-item, .post-title-wrapper .previous-item {
 		font-family: "ff-meta-web-pro", Arial, helvetica, sans;
 		color: rgb(255,255,255);
 		color: rgba(255,255,255,0.6);
@@ -695,25 +695,25 @@
 		width: 24%;
 	}
 	
-	.post-title-wrapper .next {
+	.post-title-wrapper .next-item {
 		right: 2%;
 	}
 	
-	.post-title-wrapper .previous {
+	.post-title-wrapper .previous-item {
 		left: 2%;
 	}
 	
-	.post-title-wrapper .next:hover, .post-title-wrapper .previous:hover {
+	.post-title-wrapper .next-item:hover, .post-title-wrapper .previous-item:hover {
 		color: rgb(255,255,255);
 		color: rgba(255,255,255,1);
 	}
 	
-	.post-title-wrapper .next:before, .post-title-wrapper .next img {
+	.post-title-wrapper .next-item:before, .post-title-wrapper .next-item img {
 	  	clip: rect(1px 47px 16px 34px);
 	  	right: -312px;
 	}
 	
-	.post-title-wrapper .previous:before, .post-title-wrapper .previous img {
+	.post-title-wrapper .previous-item:before, .post-title-wrapper .previous-item img {
 	  	clip: rect(1px 32px 16px 15px);
 	  	left: -20px;
 	}
@@ -789,6 +789,7 @@
 	.back.drink {
 		background: rgba(255,255,255, 0.75) url(../images/assets.png) no-repeat 101px -852px;
 	}
+
 
 /* ==========================================================================
    Right Col

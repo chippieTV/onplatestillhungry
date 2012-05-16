@@ -1,13 +1,15 @@
-{exp:member:custom_profile_data member_id="8" }
+{exp:query sql="SELECT `member_id` FROM `exp_members` WHERE group_id = '7' ORDER BY RAND() LIMIT 1"}
+
+	{exp:member:custom_profile_data member_id="{member_id}" }
 
 	 <div id="avatar">
 	 
 	 	{exp:ce_img:pair src="{avatar_url}" width="300" height="233" crop="yes" allow_scale_larger="yes"}
 							
-			<a href="{path="contributors/carloscarneiro"}">
+			<a href="{path="contributors/{username}"}">
 			
 				<img src="{made}" alt="{title}" width="{width}" height="{height}" />
-				
+			
 			</a>
 		
 	 	{/exp:ce_img:pair}
@@ -18,7 +20,7 @@
 	 
 	 <p class="member">{location}</p>
 	 <p class="member"><a href="{url}">{url}</a></p>
-	 
+
 	 <p>
 	 	{exp:eehive_hacksaw words = "20" append="..."}				
 								
@@ -28,3 +30,6 @@
 	 </p>
 
 {/exp:member:custom_profile_data}
+					
+{/exp:query}
+

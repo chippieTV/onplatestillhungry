@@ -81,7 +81,7 @@
 							
 								<!-- Link to Next Day -->
 
-									<a href="#" class="next">Next Day<?php //print date("l jS M"; ?></a>
+									<a href="javascript:void(0);" class="next-item">Next Day<?php //print date("l jS M"; ?></a>
 								
 								
 								<!-- //End Link to Previous Day -->
@@ -106,7 +106,7 @@
 							
 								<!-- Link to Previous Day -->
 	
-								<a href="#" class="previous">Previous Day<?php //print date('l jS M'); ?></a>
+								<a href="javascript:void(0);" class="previous-item">Previous Day<?php //print date('l jS M'); ?></a>
 	
 								<!-- //End of Link to Previous Day -->
 							
@@ -146,7 +146,7 @@
 			
 			<div class="grid_8">
 			
-			{exp:channel:entries channel="NOT static_page|newsletter" limit="18" dynamic="no" orderby="entry_date" paginate="bottom"}
+			{exp:channel:entries channel="NOT static_page|newsletter" limit="9" dynamic="no" orderby="entry_date" paginate="bottom"}
 			
 				<!-- Invidual Post -->
 				
@@ -281,7 +281,7 @@
 				<div class="grid_4">
 				
 					{embed="common/contributor"}
-				
+									
 				</div>
 				
 				
