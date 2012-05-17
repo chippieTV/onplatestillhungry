@@ -28,12 +28,12 @@ $(document).ready(function()
       var y = $(this).scrollTop();
       if (y >= top) { 
       	$('#navigation').addClass('fixed'); 
-      	$('#filter').css('margin-top', '58px');
+      	$('#filter').css('margin-top', '78px');
       	$('#scroll-down').fadeOut();
       }
       else { 
       	$('#navigation').removeClass('fixed');
-      	$('#filter').css('margin-top', '15px');
+      	$('#filter').css('margin-top', '35px');
       	$('#scroll-down').fadeIn();
  
       }
